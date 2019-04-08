@@ -20,7 +20,7 @@ public class PlayerManager {
 		try {
 			FileWriter fw = new FileWriter(registryFile, false);
 			for(Player p : players.values()) {
-				fw.write(p.getID() + "," + p.getName() + "," + p.getPoints() + "\n");
+				fw.write(p.getID() + "," + p.getPasswordHash() + "," + p.getName() + "," + p.getPoints() + "\n");
 			}
 			fw.close();
 		} catch (IOException e) {
@@ -38,9 +38,10 @@ public class PlayerManager {
 			while((line = reader.readLine()) != null) {
 				StringTokenizer st = new StringTokenizer(line);
 				String tempID = st.nextToken(",");
+				int tempPass = Integer.parseInt(st.nextToken(","));
 				String tempName = st.nextToken(",");
 				int tempPoints = Integer.parseInt(st.nextToken(","));
-				playerMap.put(tempID, new BasePlayer(tempID, tempName, tempPoints));
+				playerMap.put(tempID, new BasePlayer(tempID, tempPass, tempName, tempPoints));
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {

@@ -9,7 +9,7 @@ import view.UserInterfaceManager;
 
 public class GameEngineImpl implements GameEngine {
 	
-	private static int MAX_PLAYERS = 2;
+	//private static int MAX_PLAYERS = 2;
 	private Map<String, Player> players;
 	private List<UserInterfaceManager> userInterfaceManagers;
 	private GameBoard mainBoard;
@@ -26,9 +26,7 @@ public class GameEngineImpl implements GameEngine {
 	
 	@Override
 	public void addPlayer(Player p) {
-		if (players.size() < MAX_PLAYERS){
-			players.put(p.getID(), p);
-		} 
+		players.put(p.getID(), p);
 	}
 
 	@Override

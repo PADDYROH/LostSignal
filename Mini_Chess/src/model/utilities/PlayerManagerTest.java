@@ -19,9 +19,9 @@ public class PlayerManagerTest {
 	public void setUp() throws Exception {
 		pm = new PlayerManager();
 		players = new HashMap<String, Player>();
-		players.put("001", new BasePlayer("001", "John F. Kennedy", 0));
-		players.put("002", new BasePlayer("002", "Jimmy Barnes", 250));
-		players.put("003", new BasePlayer("003", "George Michael", 99999));
+		players.put("001", new BasePlayer("001", "password1".hashCode(), "John F. Kennedy", 0));
+		players.put("002", new BasePlayer("002", "password2".hashCode(), "Jimmy Barnes", 250));
+		players.put("003", new BasePlayer("003", "password3".hashCode(), "George Michael", 99999));
 	}
 
 	@After
@@ -36,6 +36,7 @@ public class PlayerManagerTest {
 		for(Player p : tempPlayers.values()) {
 			String tempID = p.getID();
 			assertEquals(tempID, players.get(tempID).getID());
+			assertEquals(p.getPasswordHash(), players.get(tempID).getPasswordHash());
 			assertEquals(p.getName(), players.get(tempID).getName());
 			assertEquals(p.getPoints(), players.get(tempID).getPoints());	
 		}

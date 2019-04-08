@@ -14,4 +14,6 @@ public interface Player {
 	
 	public abstract String getName();
 
+	public abstract int getPasswordHash();
+
 }
