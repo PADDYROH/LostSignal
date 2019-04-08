@@ -1,11 +1,21 @@
 package model;
 
-import java.util.Map;
+
+import java.util.*;
+import java.io.*;
 
 import view.UserInterfaceManager;
 
 public class GameEngineImpl implements GameEngine {
 
+	private Map<String, Player> players;
+	private List<UserInterfaceManager> userInterfaceManagers;
+	
+	public GameEngineImpl() {
+		players = new HashMap<String, Player>();
+		userInterfaceManagers = new LinkedList<>();
+	}
+	
 	@Override
 	public void addPlayer() {
 		// TODO Auto-generated method stub
@@ -14,28 +24,39 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public Player getPlayer(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return players.get(id);
 	}
 
 	@Override
 	public Map<String, Player> getAllPlayers() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Player> newMap = new HashMap<String, Player>();
+		for(String k : players.keySet()) {
+			newMap.put(k, players.get(k));
+		}
+		return newMap;
 	}
 
 	@Override
 	public boolean removePlayer(Player p) {
-		// TODO Auto-generated method stub
-		return false;
+		if(players.remove(p.getName()) == null) {
+			return false;
+		}
+		return true;
+		
 	}
 
 	@Override
 	public void addUIManager(UserInterfaceManager manager) {
-		// TODO Auto-generated method stub
 		
+		userInterfaceManagers.add(manager);
 	}
-
+	
+	@Override
+	public void removeUIManager(UserInterfaceManager manager) {
+	
+		userInterfaceManagers.remove(manager);
+	}
+	
 	@Override
 	public int calculatePlayerPoints() {
 		// TODO Auto-generated method stub
@@ -48,11 +69,7 @@ public class GameEngineImpl implements GameEngine {
 		return null;
 	}
 
-	@Override
-	public void removeUIManager(UserInterfaceManager manager) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public boolean movePiece() {
