@@ -1,0 +1,3 @@
+001,-928147210,John F. Kennedy,0
+002,-928147209,Jimmy Barnes,250
+003,-928147208,George Michael,99999

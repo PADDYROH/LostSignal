@@ -2,30 +2,31 @@ package model;
 
 import java.util.Map;
 
+import model.piece.Piece;
 import view.UserInterfaceManager;
 
 public interface GameEngine {
 
-	public void addPlayer(Player p);
+	public abstract void addPlayer(Player p);
 
-	public Player getPlayer(String id);
+	public abstract Player getPlayer(String id);
 
-	public Map<String, Player> getAllPlayers();
+	public abstract Map<String, Player> getAllPlayers();
 
-	public boolean removePlayer(Player p);
+	public abstract boolean removePlayer(Player p);
 
-	public Player getCurrentPlayer();
+	public abstract Player getCurrentPlayer();
 
-	public void addUIManager(UserInterfaceManager manager);
+	public abstract void addUIManager(UserInterfaceManager manager);
 
-	public void removeUIManager(UserInterfaceManager manager);
+	public abstract void removeUIManager(UserInterfaceManager manager);
 
-	public int calculatePlayerPoints();
+	public abstract int calculatePlayerPoints();
 
-	public GameBoard getGameBoard();
+	public abstract GameBoard getGameBoard();
 
-	public boolean movePiece();
+	public abstract boolean movePiece(Piece piece, int xCo, int yCo);
 
-	public void setMaxTurns(int turns);
+	public abstract void setMaxTurns(int turns);
 
 }

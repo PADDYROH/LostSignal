@@ -5,13 +5,15 @@ public class BasePlayer implements Player {
 	private String playerID;
 	private String playerName;
 	private int playerPoints;
-	private String playerPassword;
+	private int playerPasswordHash;
 
-	public BasePlayer(String playerID, String playerName, int playerPoints) {
+	public BasePlayer(String playerID, int playerPasswordHash, String playerName, int playerPoints) {
 
 		this.playerID = playerID;
+		this.playerPasswordHash = playerPasswordHash;
 		this.playerPoints = playerPoints;
 		this.playerName = playerName;
+		
 
 	}
 
@@ -44,6 +46,16 @@ public class BasePlayer implements Player {
 	public String getID() {
 
 		return this.playerID;
+	}
+
+	@Override
+	public String getName() {
+		return playerName;
+	}
+	
+	@Override
+	public int getPasswordHash() {
+		return playerPasswordHash;
 	}
 
 }
