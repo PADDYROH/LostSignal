@@ -1,5 +1,5 @@
 package view;
 
-public class CLIManager implements UIManager {
+public class CLIManager implements UserInterfaceManager {
 
 }
