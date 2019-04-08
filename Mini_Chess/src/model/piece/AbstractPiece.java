@@ -1,5 +1,5 @@
 package model.piece;
 
-public abstract class AbstractPiece implements Piece{
+public abstract class AbstractPiece implements Piece {
 
 }

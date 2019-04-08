@@ -4,12 +4,12 @@ public interface Player {
 
 	public abstract void login();
 
-	
-	public abstract void changeName();
-	
+	public abstract void setName(String name);
+
 	public abstract int getPoints();
-	
-	public abstract void setPoints();
-	
+
+	public abstract void setPoints(int points);
+
 	public abstract String getID();
+
 }
