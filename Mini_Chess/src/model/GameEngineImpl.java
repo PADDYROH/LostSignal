@@ -93,6 +93,5 @@ public class GameEngineImpl implements GameEngine {
 	public void setMaxTurns(int turns) {
 		maxTurns = turns;
 	}
-
 	
 }
