@@ -11,5 +11,7 @@ public interface Player {
 	public abstract void setPoints(int points);
 
 	public abstract String getID();
+	
+	public abstract String getName();
 
 }

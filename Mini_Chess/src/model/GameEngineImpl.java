@@ -1,6 +1,9 @@
 package model;
 
 import java.util.*;
+
+import model.piece.Piece;
+
 import java.io.*;
 import view.UserInterfaceManager;
 
@@ -78,15 +81,14 @@ public class GameEngineImpl implements GameEngine {
 	
 
 	@Override
-	public boolean movePiece() {
+	public boolean movePiece(Piece piece, int xCo, int yCo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public Player getCurrentPlayer() {
-		// TODO Auto-generated method stub
-		return null;
+		return currentPlayer;
 	}
 	
 	@Override

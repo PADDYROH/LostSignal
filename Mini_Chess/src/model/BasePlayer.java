@@ -46,4 +46,9 @@ public class BasePlayer implements Player {
 		return this.playerID;
 	}
 
+	@Override
+	public String getName() {
+		return playerName;
+	}
+
 }
