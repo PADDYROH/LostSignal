@@ -24,10 +24,16 @@ public class GameEngineImplTest extends GameEngineImpl {
 	}
 
 	@Test
-	public void testAddPlayer() {
-
+	public void testgetAllPlayer() {
 		gameEngine.addPlayer(p);
-		assertEquals(true, gameEngine.getAllPlayers().containsValue(p));
+		assertEquals(1, gameEngine.getAllPlayers().size());
+
+	}
+
+	@Test
+	public void testAddPlayer() {
+		gameEngine.addPlayer(p);
+		assertEquals(true, gameEngine.getAllPlayers().containsKey(p.getID()));
 	}
 
 }
