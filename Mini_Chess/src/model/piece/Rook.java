@@ -2,8 +2,8 @@ package model.piece;
 
 public class Rook extends AbstractPiece {
 
-	public Rook(String color, int posX, int posY) {
-		super(color, posX, posY);
+	public Rook(String pieceID ,String COLOR, int posX, int posY) {
+		super(pieceID, COLOR, posX, posY);
 	}
 
 }

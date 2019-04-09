@@ -6,4 +6,6 @@ public interface Piece {
 
 	public abstract String getColor();
 
+	public abstract String getPieceId();
+
 }

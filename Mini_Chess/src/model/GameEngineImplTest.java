@@ -13,7 +13,7 @@ public class GameEngineImplTest extends GameEngineImpl {
 	@Before
 	public void setUp() throws Exception {
 
-		p = new BasePlayer("30", "ChessGuy", 100);
+		p = new BasePlayer("30", 2, "ChessGuy", 100);
 		gameEngine = new GameEngineImpl();
 
 	}

@@ -2,17 +2,19 @@ package model.piece;
 
 public abstract class AbstractPiece implements Piece {
 
-	private String color;
+	private String COLOR;
 	private int move1Spaces;
 	private int move2Spaces;
 	private int posX;
 	private int posY;
+	private String pieceID;
 
-	public AbstractPiece(String color, int posX, int posY) {
+	public AbstractPiece(String pieceID, String COLOR, int posX, int posY) {
 
 		this.posX = posX;
 		this.posY = posY;
-		this.color = color;
+		this.COLOR = COLOR;
+		this.pieceID = pieceID;
 
 	}
 
@@ -21,7 +23,20 @@ public abstract class AbstractPiece implements Piece {
 	}
 
 	public String getColor() {
-		return this.color;
+		return this.COLOR;
+	}
+
+	public String getPieceId() {
+
+		return this.pieceID;
+	}
+
+	@Override
+	public String toString() {
+
+		return (String.format("pieceID: id=%s, COLOR=%s, posX=%s, posY=%s ", pieceID, COLOR, posX,
+				posY));
+
 	}
 
 }
