@@ -3,17 +3,18 @@ package model;
 import java.util.Map;
 
 import model.piece.Piece;
+import model.utilities.PlayerManager;
 import view.UserInterfaceManager;
 
 public interface GameEngine {
 
-	public abstract void addPlayer(Player p);
+	//public abstract void addPlayer(Player p);
 
-	public abstract Player getPlayer(String id);
+	//public abstract Player getPlayer(String id);
 
-	public abstract Map<String, Player> getAllPlayers();
+	//public abstract Map<String, Player> getAllPlayers();
 
-	public abstract boolean removePlayer(Player p);
+	//public abstract boolean removePlayer(Player p);
 
 	public abstract Player getCurrentPlayer();
 
@@ -28,5 +29,9 @@ public interface GameEngine {
 	public abstract boolean movePiece(Piece piece, int xCo, int yCo);
 
 	public abstract void setMaxTurns(int turns);
+	
+	public abstract PlayerManager getPlayerManager();
+
+	void login(String id, String password);
 
 }

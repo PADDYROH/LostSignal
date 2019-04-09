@@ -17,11 +17,11 @@ public class PlayerManagerTest {
 	Map<String, Player> players;
 	@Before
 	public void setUp() throws Exception {
-		pm = new PlayerManager();
+		pm = new PlayerManager("players.txt");
 		players = new HashMap<String, Player>();
-		players.put("001", new BasePlayer("001", "password1".hashCode(), "John F. Kennedy", 0));
-		players.put("002", new BasePlayer("002", "password2".hashCode(), "Jimmy Barnes", 250));
-		players.put("003", new BasePlayer("003", "password3".hashCode(), "George Michael", 99999));
+		pm.addPlayer(new BasePlayer("001", "password1".hashCode(), "John F. Kennedy", 0));
+		pm.addPlayer(new BasePlayer("002", "password2".hashCode(), "Jimmy Barnes", 250));
+		pm.addPlayer(new BasePlayer("003", "password3".hashCode(), "George Michael", 99999));
 	}
 
 	@After
@@ -30,7 +30,7 @@ public class PlayerManagerTest {
 
 	@Test
 	public void testLoadSave() {
-		pm.savePlayers(players);
+		pm.savePlayers();
 		
 		Map<String, Player> tempPlayers = pm.loadPlayers();
 		for(Player p : tempPlayers.values()) {
