@@ -1,20 +1,25 @@
 package main;
 
 import model.BasePlayer;
+import model.GameBoardImpl;
 import model.GameEngineImpl;
 
 public class Driver {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// System.out.println("Hello, world!");
 
-		BasePlayer p = new BasePlayer("30", "chessboi", 100);
-		GameEngineImpl gameEngine = new GameEngineImpl();
+		GameBoardImpl gb = new GameBoardImpl();
 
-		gameEngine.addPlayer(p);
+		for (int i = 0; i < gb.getChessBoard().length; i++) {
+			for (int j = 0; j < gb.getChessBoard().length; j++) {
+				if (gb.getChessBoard()[i][j] != null) {
 
-		System.out.println(gameEngine.getAllPlayers().containsValue(p));
+					System.out.println(gb.getChessBoard()[i][j].toString());
+
+				}
+
+			}
+		}
 
 	}
 
