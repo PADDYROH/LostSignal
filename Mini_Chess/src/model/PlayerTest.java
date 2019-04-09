@@ -15,16 +15,16 @@ class PlayerTest {
 		@Test
 		public void testsetName() {
 			//when
-			player.setName("Tgay");
+			player.setName("joe");
 			//then
-			assertEquals("Tgay", player.getName());
+			assertEquals("joe", player.getName());
 		}
 		
 		public void testgetName() {
 			//when
-			player.setName("Tgay");
+			player.setName("joe");
 			//then
-			assertEquals("Tgay", player.getName());
+			assertEquals("joe", player.getName());
 		}
 
 		@Test
