@@ -18,7 +18,8 @@ public class GameBoardImplTest {
 
 	@Test
 	public void testHashMap() {
-		assertEquals(12, gb.getPieces().size());
+
+		assertEquals(true, gb.movePiece(gb.getChessBoard()[0][0], 1, 0));
 	}
 
 	@Test

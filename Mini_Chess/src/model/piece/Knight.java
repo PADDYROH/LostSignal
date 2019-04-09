@@ -9,7 +9,7 @@ public class Knight extends AbstractPiece {
 	}
 
 	@Override
-	public boolean checkMovement(GameBoardImpl gameBoard) {
+	public boolean checkMovement(GameBoardImpl gameBoard, int x, int y) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -73,10 +73,12 @@ public class GameBoardImpl implements GameBoard {
 		this.pieces = pieces;
 	}
 
-	public void movePiece(GameBoardImpl gB) {
+	public boolean movePiece(String id, int x, int y) {
 
-		
-		
-		
+		if (pieces.get(id).checkMovement(this, 1, 0)) {
+			return true;
+		}
+		return false;
+
 	}
 }

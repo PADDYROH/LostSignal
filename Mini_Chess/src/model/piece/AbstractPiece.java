@@ -31,4 +31,34 @@ public abstract class AbstractPiece implements Piece {
 
 	}
 
+
+	public String getCOLOR() {
+		return COLOR;
+	}
+
+
+	public void setCOLOR(String cOLOR) {
+		COLOR = cOLOR;
+	}
+
+
+	public int getPosX() {
+		return posX;
+	}
+
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+
+	public int getPosY() {
+		return posY;
+	}
+
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
 }
