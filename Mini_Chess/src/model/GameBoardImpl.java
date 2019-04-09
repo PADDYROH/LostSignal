@@ -11,67 +11,72 @@ import model.piece.Rook;
 public class GameBoardImpl implements GameBoard {
 
 	private static int NUMBER_OF_PIECES = 6;
-	private AbstractPiece[][] chessBoard = new AbstractPiece[6][6];
-	private Map<String, AbstractPiece> pieces;
+	private String[][] chessBoard = new String[6][6];
+	private Map<String, Piece> pieces;
 
 	public GameBoardImpl() {
 
-		pieces = new HashMap<String, AbstractPiece>();
+		pieces = new HashMap<String, Piece>();
 		initChessBoard();
 		intialPieces();
 	}
 
-	public void addPiece(AbstractPiece piece, GameBoardImpl gameBoard) {
-		pieces.put(piece.getPieceId(), piece);
-	}
-
 	public void initChessBoard() {
 
-		chessBoard[0][0] = new Rook("r1", "black", 0, 0);
-		chessBoard[0][1] = new Bishop("b1", "black", 0, 1);
-		chessBoard[0][2] = new Knight("K1", "black", 0, 2);
-		chessBoard[0][3] = new Knight("K2", "black", 0, 3);
-		chessBoard[0][4] = new Bishop("b2", "black", 0, 4);
-		chessBoard[0][5] = new Rook("r2", "black", 0, 5);
+		chessBoard[0][0] = new String("r1");
+		chessBoard[0][1] = new String("b1");
+		chessBoard[0][2] = new String("K1");
+		chessBoard[0][3] = new String("K2");
+		chessBoard[0][4] = new String("b2");
+		chessBoard[0][5] = new String("r2");
 
-		chessBoard[5][0] = new Rook("r1w", "black", 0, 0);
-		chessBoard[5][1] = new Bishop("b1w", "black", 0, 1);
-		chessBoard[5][2] = new Knight("K1w", "black", 0, 2);
-		chessBoard[5][3] = new Knight("K2w", "black", 0, 3);
-		chessBoard[5][4] = new Bishop("b2w", "black", 0, 4);
-		chessBoard[5][5] = new Rook("r2w", "black", 0, 5);
-
-	}
-
-	public AbstractPiece getPiece(int x, int y) {
-
-		return chessBoard[x][y];
+		chessBoard[5][0] = new String("r1w");
+		chessBoard[5][1] = new String("b1w");
+		chessBoard[5][2] = new String("K1w");
+		chessBoard[5][3] = new String("K2w");
+		chessBoard[5][4] = new String("b2w");
+		chessBoard[5][5] = new String("r2w");
 
 	}
 
 	public void intialPieces() {
-		for (int i = 0; i < chessBoard.length; i++) {
-			for (int j = 0; j < chessBoard.length; j++) {
-				if (chessBoard[i][j] != null) {
-					pieces.put(chessBoard[i][j].getPieceId(), chessBoard[i][j]);
-				}
-			}
-		}
+
+		pieces.put("r1", new Rook("black", 0, 0));
+		pieces.put("b1", new Rook("black", 0, 1));
+		pieces.put("K1", new Rook("black", 0, 2));
+		pieces.put("K2", new Rook("black", 0, 3));
+		pieces.put("b2", new Rook("black", 0, 4));
+		pieces.put("r2", new Rook("black", 0, 5));
+		pieces.put("r1w", new Rook("white", 5, 0));
+		pieces.put("b1w", new Rook("white", 5, 1));
+		pieces.put("K1w", new Rook("white", 5, 2));
+		pieces.put("K2w", new Rook("white", 5, 3));
+		pieces.put("b2w", new Rook("white", 5, 4));
+		pieces.put("r2w", new Rook("white", 5, 5));
+
 	}
 
-	public AbstractPiece[][] getChessBoard() {
+	public Piece getPiece(int x, int y) {
+		String id = this.chessBoard[x][y];
+		return pieces.get(id);
+	}
+
+	public String[][] getChessBoard() {
 		return chessBoard;
 	}
 
-	public void setChessBoard(AbstractPiece[][] chessBoard) {
-		this.chessBoard = chessBoard;
-	}
-
-	public Map<String, AbstractPiece> getPieces() {
+	public Map<String, Piece> getPieces() {
 		return pieces;
 	}
 
-	public void setPieces(Map<String, AbstractPiece> pieces) {
+	public void setPieces(Map<String, Piece> pieces) {
 		this.pieces = pieces;
+	}
+
+	public void movePiece(GameBoardImpl gB) {
+
+		
+		
+		
 	}
 }
