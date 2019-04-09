@@ -9,12 +9,12 @@ public class Driver {
 		// TODO Auto-generated method stub
 		// System.out.println("Hello, world!");
 
-		BasePlayer p = new BasePlayer("30", "chessboi", 100);
+		//BasePlayer p = new BasePlayer("30", "chessboi", 100);
 		GameEngineImpl gameEngine = new GameEngineImpl();
 
-		gameEngine.addPlayer(p);
+		//gameEngine.addPlayer(p);
 
-		System.out.println(gameEngine.getAllPlayers().containsValue(p));
+		//System.out.println(gameEngine.getAllPlayers().containsValue(p));
 
 	}
 

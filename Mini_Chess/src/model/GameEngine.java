@@ -32,6 +32,10 @@ public interface GameEngine {
 	
 	public abstract PlayerManager getPlayerManager();
 
-	void login(String id, String password);
+	public abstract void login(String id, String password);
+
+	public abstract Player getPlayer1();
+	
+	public abstract Player getPlayer2();
 
 }

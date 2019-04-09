@@ -18,6 +18,7 @@ public class PlayerManager {
 
 	public PlayerManager(String registryFile) {
 		this.registryFile = registryFile;
+		players = new HashMap<String, Player>();
 	}
 
 	public void savePlayers() {
@@ -62,9 +63,11 @@ public class PlayerManager {
 		return players.get(id);
 	}
 
-	public void addPlayer(Player p) {
+	public void addPlayer(Player p) throws IllegalArgumentException{
 		if(players.get(p.getID()) == null) {
 			players.put(p.getID(), p);
+		} else {
+			throw new IllegalArgumentException("Player ID Already Exists!");
 		}
 	}
 
