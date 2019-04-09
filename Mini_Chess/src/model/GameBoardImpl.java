@@ -76,6 +76,9 @@ public class GameBoardImpl implements GameBoard {
 	public boolean movePiece(String id, int x, int y) {
 
 		if (pieces.get(id).checkMovement(this, 1, 0)) {
+			
+			// update chessBoard here 
+
 			return true;
 		}
 		return false;
