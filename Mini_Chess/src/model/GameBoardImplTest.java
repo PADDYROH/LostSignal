@@ -16,10 +16,22 @@ public class GameBoardImplTest {
 
 	}
 
-	// check if valid move for Rook
+	//  MOVEMENT FOR ROOK
 	@Test
-	public void testHashMap() {
+	public void testRookMovement() {
 		assertEquals(true, gb.movePiece(gb.getChessBoard()[0][0], 1, 0));
+	}
+	
+	//  MOVEMENT FOR KNIGHT 
+	@Test
+	public void testKnightMovement() {
+		assertEquals(true, gb.movePiece(gb.getChessBoard()[2][0], 1, 2));
+	}
+
+	//  MOVEMENT FOR BISHOP
+	@Test
+	public void testBishopMovement() {
+		assertEquals(true, gb.movePiece(gb.getChessBoard()[1]0], 0, 1));
 	}
 
 	// test if hash map has pieces
