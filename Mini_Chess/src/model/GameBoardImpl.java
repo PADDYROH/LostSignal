@@ -9,9 +9,9 @@ import model.piece.Piece;
 import model.piece.Rook;
 
 public class GameBoardImpl implements GameBoard {
-
 	private static int NUMBER_OF_PIECES = 6;
-	private String[][] chessBoard = new String[6][6];
+
+	private String[][] chessBoard = new String[NUMBER_OF_PIECES][NUMBER_OF_PIECES];
 	private Map<String, Piece> pieces;
 
 	public GameBoardImpl() {
@@ -42,16 +42,16 @@ public class GameBoardImpl implements GameBoard {
 	public void intialPieces() {
 
 		pieces.put("r1", new Rook("black", 0, 0));
-		pieces.put("b1", new Rook("black", 0, 1));
-		pieces.put("K1", new Rook("black", 0, 2));
-		pieces.put("K2", new Rook("black", 0, 3));
-		pieces.put("b2", new Rook("black", 0, 4));
+		pieces.put("b1", new Bishop("black", 0, 1));
+		pieces.put("K1", new Knight("black", 0, 2));
+		pieces.put("K2", new Knight("black", 0, 3));
+		pieces.put("b2", new Bishop("black", 0, 4));
 		pieces.put("r2", new Rook("black", 0, 5));
 		pieces.put("r1w", new Rook("white", 5, 0));
-		pieces.put("b1w", new Rook("white", 5, 1));
-		pieces.put("K1w", new Rook("white", 5, 2));
-		pieces.put("K2w", new Rook("white", 5, 3));
-		pieces.put("b2w", new Rook("white", 5, 4));
+		pieces.put("b1w", new Bishop("white", 5, 1));
+		pieces.put("K1w", new Knight("white", 5, 2));
+		pieces.put("K2w", new Knight("white", 5, 3));
+		pieces.put("b2w", new Bishop("white", 5, 4));
 		pieces.put("r2w", new Rook("white", 5, 5));
 
 	}
@@ -69,19 +69,35 @@ public class GameBoardImpl implements GameBoard {
 		return pieces;
 	}
 
+	public String getByID(String id) {
+
+		return pieces.get(id).toString();
+
+	}
+
 	public void setPieces(Map<String, Piece> pieces) {
 		this.pieces = pieces;
 	}
 
-	public boolean movePiece(String id, int x, int y) {
+	public void movePiece(String id, int x, int y) {
 
-		if (pieces.get(id).checkMovement(this, 1, 0)) {
-			
-			// update chessBoard here 
+		if (pieces.get(id).checkMovement(this, x, y)) {
 
-			return true;
+			// move the piece
+			this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
+
+			// set starting pos to null
+			this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
+
+			// update x and y in pieces map
+			pieces.get(id).setPosX(x);
+			pieces.get(id).setPosY(y);
+
+		} else {
+
+			System.out.println("INVALID");
+
 		}
-		return false;
 
 	}
 }

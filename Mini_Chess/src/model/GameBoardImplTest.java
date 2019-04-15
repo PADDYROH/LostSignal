@@ -39,5 +39,9 @@ public class GameBoardImplTest {
 	public void testGameBoard() {
 		assertEquals(12, gb.getPieces().size());
 	}
+	
+	
+	
+	
 
 }

@@ -14,12 +14,20 @@ public class Driver {
 			for (int j = 0; j < gb.getChessBoard().length; j++) {
 				if (gb.getChessBoard()[i][j] != null) {
 
-					System.out.println(gb.getChessBoard()[i][j].toString());
+					System.out.print(gb.getChessBoard()[i][j].toString());
 
+				} else {
+					System.out.print("x  ");
 				}
 
 			}
+			System.out.println();
 		}
+
+		System.out.println();
+		System.out.println();
+
+		gb.movePiece("r2", 2, 5);
 
 	}
 
