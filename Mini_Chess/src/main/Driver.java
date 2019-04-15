@@ -8,6 +8,7 @@ public class Driver {
 
 	public static void main(String[] args) {
 
+
 		GameBoardImpl gb = new GameBoardImpl();
 
 		for (int i = 0; i < gb.getChessBoard().length; i++) {
@@ -24,10 +25,17 @@ public class Driver {
 			System.out.println();
 		}
 
-		System.out.println();
-		System.out.println();
+// 		System.out.println();
+// 		System.out.println();
 
-		gb.movePiece("r2", 2, 5);
+// 		gb.movePiece("r2", 2, 5);
+
+// 		//BasePlayer p = new BasePlayer("30", "chessboi", 100);
+// 		GameEngineImpl gameEngine = new GameEngineImpl();
+
+		//gameEngine.addPlayer(p);
+
+		//System.out.println(gameEngine.getAllPlayers().containsValue(p));
 
 	}
 
