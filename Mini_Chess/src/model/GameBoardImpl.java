@@ -92,11 +92,7 @@ public class GameBoardImpl implements GameBoard {
 		return pieces;
 	}
 
-	public String getByID(String id) {
 
-		return pieces.get(id).toString();
-
-	}
 
 	public void setPieces(Map<String, Piece> pieces) {
 		this.pieces = pieces;

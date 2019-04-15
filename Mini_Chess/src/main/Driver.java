@@ -38,10 +38,11 @@ public class Driver {
 		gb.movePiece("r1", 2, 5);
 		gb.movePiece("r1", 3, 5);
 		gb.movePiece("r1", 4, 5);
+		gb.movePiece("r2w", 4, 5);
 
 		int count = 0;
 		for (Piece value : gb.getPieces().values()) {
-			if (value.getColor() == "white") {
+			if (value.getColor() == "black") {
 				count++;
 			}
 		}

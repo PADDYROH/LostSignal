@@ -12,7 +12,7 @@ public interface GameBoard {
 
 	public Map<String, Piece> getPieces();
 
-	public String getByID(String id);
+
 
 	public void setPieces(Map<String, Piece> pieces);
 
