@@ -92,8 +92,6 @@ public class GameBoardImpl implements GameBoard {
 		return pieces;
 	}
 
-
-
 	public void setPieces(Map<String, Piece> pieces) {
 		this.pieces = pieces;
 	}

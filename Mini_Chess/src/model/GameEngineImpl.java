@@ -90,13 +90,13 @@ public class GameEngineImpl implements GameEngine {
 				numTurns++;
 				calculatePlayerPoints(currentPlayer);
 				if (currentPlayer == whitePlayer) {
-					if (mainBoard.getNumberBlackPieces() == 0) {
+					if (mainBoard.calculateNumberBlackPieces() == 0) {
 						endGame();
 						return true;
 					}
 					currentPlayer = blackPlayer;
 				} else if (currentPlayer == blackPlayer) {
-					if (mainBoard.getNumberWhitePieces() == 0) {
+					if (mainBoard.calculateNumberWhitePieces() == 0) {
 						endGame();
 						return true;
 					}
