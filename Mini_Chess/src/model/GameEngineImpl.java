@@ -90,13 +90,13 @@ public class GameEngineImpl implements GameEngine {
 				numTurns++;
 				calculatePlayerPoints(currentPlayer);
 				if (currentPlayer == whitePlayer) {
-					if (mainBoard.getNumberBlackPieces() == 0) {
+					if (mainBoard.calculateNumberBlackPieces() == 0) {
 						endGame();
 						return true;
 					}
 					currentPlayer = blackPlayer;
 				} else if (currentPlayer == blackPlayer) {
-					if (mainBoard.getNumberWhitePieces() == 0) {
+					if (mainBoard.calculateNumberWhitePieces() == 0) {
 						endGame();
 						return true;
 					}
@@ -105,12 +105,14 @@ public class GameEngineImpl implements GameEngine {
 
 				// update player points *
 				// change currentPlayer *
-				// check if game over
+				// check if game over *
 				numTurns++;
 				if (numTurns >= maxTurns) {
 					endGame();
 				}
-				// call ui manager methods
+				for(UserInterfaceManager uIM : userInterfaceManagers) {
+					uIM.updateBoard();
+				}
 				return true;
 			}
 		} else {
@@ -120,8 +122,20 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void endGame() {
-		// call ui manager methods
-		// reset all game state
+		calculatePlayerPoints(currentPlayer);
+		for(UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateBoard();
+			uIM.endGame();
+		}
+		whitePlayer.setPoints(whitePlayer.getPoints() + whitePlayerPoints);
+		blackPlayer.setPoints(blackPlayer.getPoints() + blackPlayerPoints);
+		playerManager.savePlayers();
+		currentPlayer = null;
+		whitePlayer = null;
+		blackPlayer = null;
+		numTurns = 0;
+		maxTurns = 0;
+		mainBoard = new GameBoardImpl();
 	}
 
 	@Override
@@ -168,7 +182,9 @@ public class GameEngineImpl implements GameEngine {
 				}
 			}
 		}
-		// call ui manager method
+		for(UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateCurrentPlayers();
+		}
 	}
 
 	@Override

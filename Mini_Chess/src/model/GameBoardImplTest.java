@@ -31,7 +31,7 @@ public class GameBoardImplTest {
 	//  MOVEMENT FOR BISHOP
 	@Test
 	public void testBishopMovement() {
-		assertEquals(true, gb.movePiece(gb.getChessBoard()[1]0], 0, 1));
+		assertEquals(true, gb.movePiece(gb.getChessBoard()[1][0], 0, 1));
 	}
 
 	// test if hash map has pieces
