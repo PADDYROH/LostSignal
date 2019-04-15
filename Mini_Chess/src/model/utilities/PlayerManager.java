@@ -32,7 +32,6 @@ public class PlayerManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	public void loadPlayers() {
