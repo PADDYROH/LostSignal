@@ -31,6 +31,16 @@ public class Bishop extends AbstractPiece {
 		// check if move is valid
 		if (validMove(gameBoard, x, y)) {
 
+			if (gameBoard.getChessBoard()[x][y] != null) {
+				if (!sameTeam(gameBoard, x, y)) {
+
+					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setCOLOR(null);
+					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosX(-1);
+					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosY(-1);
+
+				}
+			}
+
 			posX = x;
 			posY = y;
 			return true;
