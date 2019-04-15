@@ -61,6 +61,29 @@ public class GameBoardImpl implements GameBoard {
 		return pieces.get(id);
 	}
 
+	public int calculateNumberWhitePieces() {
+
+		int whitePieces = 0;
+		for (Piece value : pieces.values()) {
+			if (value.getColor() == "white") {
+				whitePieces++;
+			}
+		}
+
+		return whitePieces;
+	}
+
+	public int calculateNumberBlackPieces() {
+		int whitePieces = 0;
+		for (Piece value : pieces.values()) {
+			if (value.getColor() == "black") {
+				whitePieces++;
+			}
+		}
+
+		return whitePieces;
+	}
+
 	public String[][] getChessBoard() {
 		return chessBoard;
 	}
