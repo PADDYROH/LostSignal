@@ -13,6 +13,8 @@ public class GameEngineImpl implements GameEngine {
 	// private static int MAX_PLAYERS = 2;
 	private Player player1;
 	private Player player2;
+	private int player1Points;
+	private int player2Points;
 	private PlayerManager playerManager;
 	private List<UserInterfaceManager> userInterfaceManagers;
 	private GameBoard mainBoard;
@@ -25,6 +27,8 @@ public class GameEngineImpl implements GameEngine {
 		mainBoard = new GameBoardImpl();
 		player1 = null;
 		player2 = null;
+		player1Points = 0;
+		player2Points = 0;
 	}
 
 	@Override
