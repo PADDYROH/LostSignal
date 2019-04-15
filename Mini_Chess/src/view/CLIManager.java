@@ -1,43 +1,28 @@
 package view;
 
+import model.GameBoardImpl;
+
 public class CLIManager implements UserInterfaceManager {
-	private int boardwidth;
-	private int boardlength;
+	GameBoardImpl chessboard = new GameBoardImpl();
+	{
 
-	public CLIManager(int boardlength,  int boardwidth) {
+		for (int row = 0; row < chessboard.getChessBoard().length; row++) {
 
-	this.boardlength = boardlength;
-	this.boardwidth = boardwidth;
-	
-	//piece.rook()
-	//piece.getpiece()	
-	
-		String[][] chess = new String[boardwidth][boardlength];
-		for (int row = 0; row < boardwidth; row++) {
 			System.out.println("");
 			System.out.println("_____________________________________");
-			for (int column = 0; column < boardwidth; column++) {
-				if( /*piece position */ = chess[row][column]) {
-				System.out.print("| "+ "*"+ "   ");
-				}else{
-					System.out.print("| "+ " "+ "   ");	
+
+			for (int column = 0; column < chessboard.getChessBoard().length; column++) {
+
+				if (chessboard.getChessBoard()[row][column] != null) {
+					System.out.print("| " + " " + "   ");
+				} else {
+					System.out.print("| " + chessboard.getChessBoard()[row][column] + "   ");
 				}
-			}
 				System.out.println("|");
+			}
+
+			System.out.println(" ");
+			System.out.println("_____________________________________");
 		}
-		System.out.println(" ");
-		System.out.println("_____________________________________");
-	}
-
-	public void getPiece() {
-		//return this.Piece;
-	}
-
-	public void getGameBoard() {
-
-	}
-
-	public void getchessbardarray() {
-
 	}
 }
