@@ -24,17 +24,17 @@ public class GameBoardImpl implements GameBoard {
 	public void initChessBoard() {
 
 		chessBoard[0][0] = new String("r1");
-		chessBoard[0][1] = new String("b1");
-		chessBoard[0][2] = new String("K1");
-		chessBoard[0][3] = new String("K2");
-		chessBoard[0][4] = new String("b2");
-		chessBoard[0][5] = new String("r2");
+		chessBoard[1][0] = new String("b1");
+		chessBoard[2][0] = new String("K1");
+		chessBoard[3][0] = new String("K2");
+		chessBoard[4][0] = new String("b2");
+		chessBoard[5][0] = new String("r2");
 
-		chessBoard[5][0] = new String("r1w");
-		chessBoard[5][1] = new String("b1w");
-		chessBoard[5][2] = new String("K1w");
-		chessBoard[5][3] = new String("K2w");
-		chessBoard[5][4] = new String("b2w");
+		chessBoard[0][5] = new String("r1w");
+		chessBoard[1][5] = new String("b1w");
+		chessBoard[2][5] = new String("K1w");
+		chessBoard[3][5] = new String("K2w");
+		chessBoard[4][5] = new String("b2w");
 		chessBoard[5][5] = new String("r2w");
 
 	}
@@ -42,16 +42,16 @@ public class GameBoardImpl implements GameBoard {
 	public void intialPieces() {
 
 		pieces.put("r1", new Rook("black", 0, 0));
-		pieces.put("b1", new Bishop("black", 0, 1));
-		pieces.put("K1", new Knight("black", 0, 2));
-		pieces.put("K2", new Knight("black", 0, 3));
-		pieces.put("b2", new Bishop("black", 0, 4));
-		pieces.put("r2", new Rook("black", 0, 5));
-		pieces.put("r1w", new Rook("white", 5, 0));
-		pieces.put("b1w", new Bishop("white", 5, 1));
-		pieces.put("K1w", new Knight("white", 5, 2));
-		pieces.put("K2w", new Knight("white", 5, 3));
-		pieces.put("b2w", new Bishop("white", 5, 4));
+		pieces.put("b1", new Bishop("black", 1, 0));
+		pieces.put("K1", new Knight("black", 2, 0));
+		pieces.put("K2", new Knight("black", 3, 0));
+		pieces.put("b2", new Bishop("black", 4, 0));
+		pieces.put("r2", new Rook("black", 5, 0));
+		pieces.put("r1w", new Rook("white", 0, 5));
+		pieces.put("b1w", new Bishop("white", 1, 5));
+		pieces.put("K1w", new Knight("white", 2, 5));
+		pieces.put("K2w", new Knight("white", 3, 5));
+		pieces.put("b2w", new Bishop("white", 4, 5));
 		pieces.put("r2w", new Rook("white", 5, 5));
 
 	}
@@ -59,6 +59,29 @@ public class GameBoardImpl implements GameBoard {
 	public Piece getPiece(int x, int y) {
 		String id = this.chessBoard[x][y];
 		return pieces.get(id);
+	}
+
+	public int calculateNumberWhitePieces() {
+
+		int whitePieces = 0;
+		for (Piece value : pieces.values()) {
+			if (value.getColor() == "white") {
+				whitePieces++;
+			}
+		}
+
+		return whitePieces;
+	}
+
+	public int calculateNumberBlackPieces() {
+		int whitePieces = 0;
+		for (Piece value : pieces.values()) {
+			if (value.getColor() == "black") {
+				whitePieces++;
+			}
+		}
+
+		return whitePieces;
 	}
 
 	public String[][] getChessBoard() {
@@ -69,17 +92,13 @@ public class GameBoardImpl implements GameBoard {
 		return pieces;
 	}
 
-	public String getByID(String id) {
 
-		return pieces.get(id).toString();
-
-	}
 
 	public void setPieces(Map<String, Piece> pieces) {
 		this.pieces = pieces;
 	}
 
-	public void movePiece(String id, int x, int y) {
+	public boolean movePiece(String id, int x, int y) {
 
 		if (pieces.get(id).checkMovement(this, x, y)) {
 
@@ -93,11 +112,10 @@ public class GameBoardImpl implements GameBoard {
 			pieces.get(id).setPosX(x);
 			pieces.get(id).setPosY(y);
 
-		} else {
-
-			System.out.println("INVALID");
+			return true;
 
 		}
+		return false;
 
 	}
 }

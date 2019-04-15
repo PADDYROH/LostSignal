@@ -61,6 +61,7 @@ public abstract class AbstractPiece implements Piece {
 		return true;
 
 	}
+	
 
 	public boolean sameTeam(GameBoardImpl gameBoard, int x, int y) {
 
