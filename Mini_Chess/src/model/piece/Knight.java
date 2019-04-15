@@ -28,10 +28,6 @@ public class Knight extends AbstractPiece {
 
 		if (validMove(gameBoard, x, y)) {
 			
-			if (!sameTeam(gameBoard, x, y)) {
-				System.out.println("dead boi");
-			}
-
 			posX = x;
 			posY = y;
 			return true;

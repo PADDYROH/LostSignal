@@ -30,6 +30,10 @@ public class Rook extends AbstractPiece {
 
 		// checks if move is valid
 		if (validMove(gameBoard, x, y)) {
+			
+			if (!sameTeam(gameBoard, x, y)) {
+				System.out.println("dead boi");
+			}
 			posX = x;
 			posY = y;
 			return true;
