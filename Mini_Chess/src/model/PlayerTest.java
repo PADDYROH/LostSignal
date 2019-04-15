@@ -13,27 +13,21 @@ public class PlayerTest{
 	@Before
 	public void setUp() throws Exception {
 		// given
-		player = new BasePlayer("100", 10, "", 100);
+		player = new BasePlayer("100", "password123".hashCode(), "johnny the goose", 100);
 		// public BasePlayer(String playerID, int playerPasswordHash, String playerName,int playerPoints) {
 	}
 
 	@Test
-	public void testsetName() {
+	public void testSetGetName() {
 		// when
 		player.setName("joe");
 		// then
 		assertEquals("joe", player.getName());
 	}
 
-	public void testgetName() {
-		// when
-		player.setName("joe");
-		// then
-		assertEquals("joe", player.getName());
-	}
 
 	@Test
-	public void testgetPoint() {
+	public void testGetPoints() {
 		// when
 		player.setPoints(100);
 		// then
@@ -43,41 +37,19 @@ public class PlayerTest{
 	@Test
 	public void testSetPoint() {
 		// when
-		player.setPoints(100);
+		player.setPoints(500);
 		// then
-		assertEquals(100, player.getPoints());
+		assertEquals(500, player.getPoints());
 	}
 
 	@Test
-	public void testSetPasswordHash() {
-		// when
-		//player.setPasswordHash(100);
-		// then
-		assertEquals(100, player.getPasswordHash());
-	}
-
-	@Test
-	public void testGetPasswordHash() {
-		// when
-		//player.setPasswordHash(100);
-		// then
-		assertEquals(100, player.getPasswordHash());
-	}
-
-	@Test
-	public void testsetID() {
-		// when
-		//player.setID("100");
-		// then
-		assertEquals(100, player.getID());
+	public void testCheckPasswordHash() {
+		assertEquals("password123".hashCode(), player.getPasswordHash());
 	}
 
 	@Test
 	public void testgetID() {
-		// when
-		//player.setID("100");
-		// then
-		assertEquals(100, player.getID());
+		assertEquals("100", player.getID());
 	}
 
 }

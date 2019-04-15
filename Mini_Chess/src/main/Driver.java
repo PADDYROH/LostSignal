@@ -2,71 +2,31 @@ package main;
 
 import model.BasePlayer;
 import model.GameBoardImpl;
+import model.GameEngine;
 import model.GameEngineImpl;
 import model.piece.Piece;
+import view.CLIManager;
+import view.UserInterfaceManager;
 
 public class Driver {
 
 	public static void main(String[] args) {
 
-		GameEngineImpl ge = new GameEngineImpl();
-
-		// ge.getGameBoard()
-
-		GameBoardImpl gb = new GameBoardImpl();
-
-		for (int i = 0; i < gb.getChessBoard().length; i++) {
-			for (int j = 0; j < gb.getChessBoard().length; j++) {
-				if (gb.getChessBoard()[j][i] != null) {
-
-					System.out.print(gb.getChessBoard()[j][i]);
-
-				} else {
-					System.out.print("x  ");
-				}
-
-			}
-			System.out.println();
-		}
-		System.out.println();
-		System.out.println();
-
-		gb.movePiece("r1", 0, 2);
-		gb.movePiece("r1", 0, 4);
-		gb.movePiece("r1", 0, 5);
-		gb.movePiece("r1", 1, 5);
-		gb.movePiece("r1", 2, 5);
-		gb.movePiece("r1", 3, 5);
-		gb.movePiece("r1", 4, 5);
-		gb.movePiece("r2w", 4, 5);
-
-		int count = 0;
-		for (Piece value : gb.getPieces().values()) {
-			if (value.getColor() == "black") {
-				count++;
-			}
-		}
-
-		System.out.println(count);
-
-		for (int i = 0; i < gb.getChessBoard().length; i++) {
-			for (int j = 0; j < gb.getChessBoard().length; j++) {
-				if (gb.getChessBoard()[j][i] != null) {
-
-					System.out.print(gb.getChessBoard()[j][i].toString());
-
-				} else {
-					System.out.print("x  ");
-				}
-
-			}
-			System.out.println();
-		}
-		System.out.println();
-		System.out.println();
-
-		// gb.movePiece("r2", 2, 5);
-
+		GameEngine ge = new GameEngineImpl();
+		UserInterfaceManager cLIM = new CLIManager(ge);
+		ge.addUIManager(cLIM);
+		ge.getPlayerManager().addPlayer(new BasePlayer("100", "password123".hashCode(), "joe dempsie", 0));
+		ge.getPlayerManager().addPlayer(new BasePlayer("101", "321password".hashCode(), "homer simpson", 0));
+		
+		ge.login("100", "password123");
+		ge.login("101", "321password");
+		ge.setMaxTurns(3);
+		cLIM.updateBoard();
+		ge.movePiece("r1w", 0, 4);
+		ge.movePiece("r1", 0, 2);
+		// this wont do anything which is correct ge.movePiece("r1w", 4, 4);
+		ge.movePiece("r1w", 0, 2);
+		// null pointer exception mateo! ge.movePiece("r1", 0, 4);
+		
 	}
-
 }
