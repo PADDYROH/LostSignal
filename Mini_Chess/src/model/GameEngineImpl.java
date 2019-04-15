@@ -11,24 +11,28 @@ import view.UserInterfaceManager;
 public class GameEngineImpl implements GameEngine {
 
 	// private static int MAX_PLAYERS = 2;
-	private Player player1;
-	private Player player2;
-	private int player1Points;
-	private int player2Points;
+	private static int BOARD_ROWS = 6;
+	private static int BOARD_COLS = 6;
+	private Player whitePlayer;
+	private Player blackPlayer;
+	private int whitePlayerPoints;
+	private int blackPlayerPoints;
 	private PlayerManager playerManager;
 	private List<UserInterfaceManager> userInterfaceManagers;
-	private GameBoard mainBoard;
-	int maxTurns;
+	private GameBoardImpl mainBoard;
+	private int maxTurns;
+	private int numTurns;
 	private Player currentPlayer;
 
 	public GameEngineImpl() {
 		playerManager = new PlayerManager("players.txt");
 		userInterfaceManagers = new LinkedList<>();
 		mainBoard = new GameBoardImpl();
-		player1 = null;
-		player2 = null;
-		player1Points = 0;
-		player2Points = 0;
+		whitePlayer = null;
+		blackPlayer = null;
+		whitePlayerPoints = 0;
+		blackPlayerPoints = 0;
+		numTurns = 0;
 	}
 
 	@Override
@@ -44,10 +48,28 @@ public class GameEngineImpl implements GameEngine {
 	}
 
 	@Override
-	public int calculatePlayerPoints() {
-		// TODO Auto-generated method stub
-		// Loop through pieces of opposite player?
-		return 0;
+	public int calculatePlayerPoints(Player player) {
+		int newPoints = 0;
+		if (player.getID().equals(whitePlayer.getID())) {
+			for (int y = 0; y < BOARD_ROWS; y++) {
+				for (int x = 0; x < BOARD_COLS; x++) {
+					if (mainBoard.getPiece(x, y).getColor().equals("black")) {
+						newPoints += 5;
+					}
+				}
+			}
+			whitePlayerPoints = newPoints;
+		} else if (player.getID().equals(blackPlayer.getID())) {
+			for (int y = 0; y < BOARD_ROWS; y++) {
+				for (int x = 0; x < BOARD_COLS; x++) {
+					if (mainBoard.getPiece(x, y).getColor().equals("white")) {
+						newPoints += 5;
+					}
+				}
+			}
+			blackPlayerPoints = newPoints;
+		}
+		return newPoints;
 	}
 
 	@Override
@@ -56,9 +78,50 @@ public class GameEngineImpl implements GameEngine {
 	}
 
 	@Override
-	public boolean movePiece(Piece piece, int xCo, int yCo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean movePiece(String pieceID, int xCo, int yCo) {
+		// check piece belongs to current player
+		String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
+		if ((pieceColor.equals("Black") && currentPlayer == blackPlayer)
+				|| (pieceColor.equals("White") && currentPlayer == whitePlayer)) {
+			// try to move piece
+			if (!mainBoard.movePiece(pieceID, xCo, yCo)) {
+				return false;
+			} else {
+				numTurns++;
+				calculatePlayerPoints(currentPlayer);
+				if (currentPlayer == whitePlayer) {
+					if (mainBoard.getNumberBlackPieces() == 0) {
+						endGame();
+						return true;
+					}
+					currentPlayer = blackPlayer;
+				} else if (currentPlayer == blackPlayer) {
+					if (mainBoard.getNumberWhitePieces() == 0) {
+						endGame();
+						return true;
+					}
+					currentPlayer = whitePlayer;
+				}
+
+				// update player points *
+				// change currentPlayer *
+				// check if game over
+				numTurns++;
+				if (numTurns >= maxTurns) {
+					endGame();
+				}
+				// call ui manager methods
+				return true;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public void endGame() {
+		// call ui manager methods
+		// reset all game state
 	}
 
 	@Override
@@ -79,42 +142,52 @@ public class GameEngineImpl implements GameEngine {
 	@Override
 	public void login(String id, String password) {
 		if (playerManager.getPlayer(id) != null) {
-			if (player1 == null) {
-				if (player2 != null) {
-					if (player2.getID() != id) {
+			if (whitePlayer == null) {
+				if (blackPlayer != null) {
+					if (blackPlayer.getID() != id) {
 						if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
-							player1 = playerManager.getPlayer(id);
+							whitePlayer = playerManager.getPlayer(id);
 						}
 					}
 				} else {
 					if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
-						player1 = playerManager.getPlayer(id);
+						whitePlayer = playerManager.getPlayer(id);
 					}
 				}
-			} else if (player2 == null) {
-				if (player1 != null) {
-					if (player1.getID() != id) {
+			} else if (blackPlayer == null) {
+				if (whitePlayer != null) {
+					if (whitePlayer.getID() != id) {
 						if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
-							player2 = playerManager.getPlayer(id);
+							blackPlayer = playerManager.getPlayer(id);
 						}
 					}
 				} else {
 					if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
-						player2 = playerManager.getPlayer(id);
+						blackPlayer = playerManager.getPlayer(id);
 					}
 				}
 			}
 		}
-
+		// call ui manager method
 	}
 
 	@Override
-	public Player getPlayer1() {
-		return player1;
+	public Player getWhitePlayer() {
+		return whitePlayer;
 	}
 
 	@Override
-	public Player getPlayer2() {
-		return player2;
+	public Player getBlackPlayer() {
+		return blackPlayer;
+	}
+
+	@Override
+	public int getWhitePlayerPoints() {
+		return whitePlayerPoints;
+	}
+
+	@Override
+	public int getBlackPlayerPoints() {
+		return blackPlayerPoints;
 	}
 }

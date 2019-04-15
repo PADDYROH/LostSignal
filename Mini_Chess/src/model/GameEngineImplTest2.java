@@ -34,40 +34,40 @@ class GameEngineImplTest2 {
 	@Test
 	void testLoginInvalidID() {
 		gE.login("005", "password1");
-		assertEquals(gE.getPlayer1(), null);
-		assertEquals(gE.getPlayer2(), null);
+		assertEquals(gE.getWhitePlayer(), null);
+		assertEquals(gE.getBlackPlayer(), null);
 	}
 	
 	@Test
 	void testLoginInvalidPassword() {
 		gE.login("001", "wrongpassword");
-		assertEquals(gE.getPlayer1(), null);
-		assertEquals(gE.getPlayer2(), null);
+		assertEquals(gE.getWhitePlayer(), null);
+		assertEquals(gE.getBlackPlayer(), null);
 	}
 	
 	@Test
 	void testLoginValid() {
 		gE.login("001", "password1");
-		System.out.println(gE.getPlayer1());
+		System.out.println(gE.getWhitePlayer());
 		System.out.println(gE.getPlayerManager());
-		assertEquals(gE.getPlayer1(), gE.getPlayerManager().getPlayer("001"));
-		assertEquals(gE.getPlayer2(), null);
+		assertEquals(gE.getWhitePlayer(), gE.getPlayerManager().getPlayer("001"));
+		assertEquals(gE.getBlackPlayer(), null);
 	}
 	
 	@Test
 	void testDoubleLogin() {
 		gE.login("001", "password1");
 		gE.login("001", "password1");
-		assertEquals(gE.getPlayer1(),  gE.getPlayerManager().getPlayer("001"));
-		assertEquals(gE.getPlayer2(), null);
+		assertEquals(gE.getWhitePlayer(),  gE.getPlayerManager().getPlayer("001"));
+		assertEquals(gE.getBlackPlayer(), null);
 	}
 	
 	@Test
 	void testLogin2Players() {
 		gE.login("001", "password1");
 		gE.login("002", "password2");
-		assertEquals(gE.getPlayer1(), gE.getPlayerManager().getPlayer("001"));
-		assertEquals(gE.getPlayer2(), gE.getPlayerManager().getPlayer("002"));
+		assertEquals(gE.getWhitePlayer(), gE.getPlayerManager().getPlayer("001"));
+		assertEquals(gE.getBlackPlayer(), gE.getPlayerManager().getPlayer("002"));
 	
 	}
 }
