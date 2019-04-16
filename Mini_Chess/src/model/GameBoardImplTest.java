@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.piece.Piece;
+
 public class GameBoardImplTest {
 
 	GameBoardImpl gb;
@@ -121,19 +123,49 @@ public class GameBoardImplTest {
 		assertEquals(false, gb.movePiece("r1w", 3, 2));
 
 	}
-	
-	
+
 	// Attempt to move a bishop piece in diagonal directions bypassing
-		// other pieces fails
-		@Test
-		public void checkForBlockingPiecesBishop() {
+	// other pieces fails
+	@Test
+	public void checkForBlockingPiecesBishop() {
 
-			gb.movePiece("r2", 5, 2);
-			gb.movePiece("r2", 3, 2);
-			gb.movePiece("b1", 2, 1);
+		gb.movePiece("r2", 5, 2);
+		gb.movePiece("r2", 3, 2);
+		gb.movePiece("b1", 2, 1);
 
-			assertEquals(false, gb.movePiece("b1", 4, 3));
+		assertEquals(false, gb.movePiece("b1", 4, 3));
 
+	}
+	
+	// Attempt to get the piece in a position that has no piece returns null
+	@Test
+	public void checkNullPiece() {
+		assertEquals(gb.getPiece(3, 3), null);
+	}
+	
+	@Test
+	public void checkMoveOffBoard() {
+		gb.movePiece("r2", 6, 0);
+		
+		assertEquals(gb.getPiece(5, 0), gb.getPieces().get("r2"));
+	}
+	
+	@Test
+	public void checkMoveToOccupiedPosition() {
+		gb.movePiece("r2", 4, 0);
+		assertEquals(gb.getPiece(5, 0), gb.getPieces().get("r2"));
+	}
+
+	@Test
+	public void checkInitialBoard() {
+		if (!(gb.getPiece(0, 0) instanceof Piece)) {
+			fail("Board failed to initialize.");
 		}
-
+		if (!(gb.getPiece(5, 0) instanceof Piece)) {
+			fail("Board failed to initialize.");
+		}
+		if (gb.getPiece(3, 3) != null) {
+			fail("Board failed to initialize.");
+		}
+	}
 }

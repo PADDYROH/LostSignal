@@ -1,4 +1,4 @@
-package view;
+/*package view;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,4 +29,4 @@ class CLIManagerTest {
 	void testMove() {
 		
 	}
-}
+}*/

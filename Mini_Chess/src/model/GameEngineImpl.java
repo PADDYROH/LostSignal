@@ -149,7 +149,7 @@ public class GameEngineImpl implements GameEngine {
 		if (playerManager.getPlayer(id) != null) {
 			if (whitePlayer == null) {
 				if (blackPlayer != null) {
-					if (blackPlayer.getID() != id) {
+					if (!blackPlayer.getID().equals(id)) {
 						if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
 							whitePlayer = playerManager.getPlayer(id);
 						}
@@ -161,7 +161,7 @@ public class GameEngineImpl implements GameEngine {
 				}
 			} else if (blackPlayer == null) {
 				if (whitePlayer != null) {
-					if (whitePlayer.getID() != id) {
+					if (!whitePlayer.getID().equals(id)) {
 						if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
 							blackPlayer = playerManager.getPlayer(id);
 						}
@@ -176,6 +176,11 @@ public class GameEngineImpl implements GameEngine {
 		currentPlayer = whitePlayer;
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateCurrentPlayers();
+		}
+		if(whitePlayer != null && blackPlayer != null) {
+			for (UserInterfaceManager uIM : userInterfaceManagers) {
+				uIM.updateBoard(true);
+			}
 		}
 	}
 
