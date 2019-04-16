@@ -2,7 +2,7 @@ package model;
 
 public interface Player {
 
-	public abstract void login();
+	//public abstract void login();
 
 	public abstract void setName(String name);
 

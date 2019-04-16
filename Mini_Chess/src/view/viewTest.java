@@ -12,7 +12,7 @@ CLIManager chessboard;
 @Before
 public void setUp() throws Exception {
 	 //given
-	chessboard = new CLIManager(6, 6);
+	//chessboard = new CLIManager(6, 6);
 }
 
 

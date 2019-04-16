@@ -51,22 +51,10 @@ public class GameEngineImpl implements GameEngine {
 	public int calculatePlayerPoints(Player player) {
 		int newPoints = 0;
 		if (player.getID().equals(whitePlayer.getID())) {
-			for (int y = 0; y < BOARD_ROWS; y++) {
-				for (int x = 0; x < BOARD_COLS; x++) {
-					if (mainBoard.getPiece(x, y).getColor().equals("black")) {
-						newPoints += 5;
-					}
-				}
-			}
+			newPoints = 30 - mainBoard.calculateNumberBlackPieces() * 5;
 			whitePlayerPoints = newPoints;
 		} else if (player.getID().equals(blackPlayer.getID())) {
-			for (int y = 0; y < BOARD_ROWS; y++) {
-				for (int x = 0; x < BOARD_COLS; x++) {
-					if (mainBoard.getPiece(x, y).getColor().equals("white")) {
-						newPoints += 5;
-					}
-				}
-			}
+			newPoints = 30 - mainBoard.calculateNumberWhitePieces() * 5;
 			blackPlayerPoints = newPoints;
 		}
 		return newPoints;
@@ -81,22 +69,25 @@ public class GameEngineImpl implements GameEngine {
 	public boolean movePiece(String pieceID, int xCo, int yCo) {
 		// check piece belongs to current player
 		String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
-		if ((pieceColor.equals("Black") && currentPlayer == blackPlayer)
-				|| (pieceColor.equals("White") && currentPlayer == whitePlayer)) {
+		if ((pieceColor.equals("black") && currentPlayer.getID().equals(blackPlayer.getID()))
+				|| (pieceColor.equals("white") && currentPlayer.getID().equals(whitePlayer.getID()))) {
 			// try to move piece
 			if (!mainBoard.movePiece(pieceID, xCo, yCo)) {
+				for (UserInterfaceManager uIM : userInterfaceManagers) {
+					uIM.updateBoard(false);
+				}
 				return false;
 			} else {
 				numTurns++;
 				calculatePlayerPoints(currentPlayer);
-				if (currentPlayer == whitePlayer) {
-					if (mainBoard.getNumberBlackPieces() == 0) {
+				if (currentPlayer.getID().equals(whitePlayer.getID())) {
+					if (mainBoard.calculateNumberBlackPieces() == 0) {
 						endGame();
 						return true;
 					}
 					currentPlayer = blackPlayer;
-				} else if (currentPlayer == blackPlayer) {
-					if (mainBoard.getNumberWhitePieces() == 0) {
+				} else if (currentPlayer.getID().equals(blackPlayer.getID())) {
+					if (mainBoard.calculateNumberWhitePieces() == 0) {
 						endGame();
 						return true;
 					}
@@ -105,12 +96,14 @@ public class GameEngineImpl implements GameEngine {
 
 				// update player points *
 				// change currentPlayer *
-				// check if game over
-				numTurns++;
+				// check if game over *
+
 				if (numTurns >= maxTurns) {
 					endGame();
 				}
-				// call ui manager methods
+				for (UserInterfaceManager uIM : userInterfaceManagers) {
+					uIM.updateBoard(true);
+				}
 				return true;
 			}
 		} else {
@@ -120,8 +113,20 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void endGame() {
-		// call ui manager methods
-		// reset all game state
+		calculatePlayerPoints(currentPlayer);
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateBoard(true);
+			uIM.endGame();
+		}
+		whitePlayer.setPoints(whitePlayer.getPoints() + whitePlayerPoints);
+		blackPlayer.setPoints(blackPlayer.getPoints() + blackPlayerPoints);
+		playerManager.savePlayers();
+		currentPlayer = null;
+		whitePlayer = null;
+		blackPlayer = null;
+		numTurns = 0;
+		maxTurns = 0;
+		mainBoard = new GameBoardImpl();
 	}
 
 	@Override
@@ -168,7 +173,10 @@ public class GameEngineImpl implements GameEngine {
 				}
 			}
 		}
-		// call ui manager method
+		currentPlayer = whitePlayer;
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateCurrentPlayers();
+		}
 	}
 
 	@Override
