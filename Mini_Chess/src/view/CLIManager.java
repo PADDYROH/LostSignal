@@ -23,13 +23,14 @@ public class CLIManager implements UserInterfaceManager {
 			for (int row = 0; row < chessBoard.getChessBoard().length; row++) {
 
 				if (chessBoard.getChessBoard()[row][column] != null) {
-					if (chessBoard.getChessBoard()[row][column].length() < 3) {
-						System.out.print("| " + chessBoard.getChessBoard()[row][column] + "    ");
+					if(chessBoard.getChessBoard()[row][column].length() < 3) {
+						System.out.print("| " + chessBoard.getChessBoard()[row][column] + "    ");	
 					} else {
 						System.out.print("| " + chessBoard.getChessBoard()[row][column] + "   ");
 					}
 				} else {
 					System.out.print("| " + "   " + "   ");
+
 				}
 			}
 		}
