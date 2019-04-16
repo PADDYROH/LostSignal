@@ -9,25 +9,26 @@ import model.GameBoardImpl;
 
 public class KnightTest {
 
-	Knight knight;
-	GameBoardImpl gb;
+
+	GameBoardImpl gameBoard;
 
 	@Before
 	public void setUp() throws Exception {
 
-		knight = new Knight("white", 0, 2);
+		gameBoard = new GameBoardImpl();
 
 	}
 
-	// CHECK MOVEMENT FOR KNIGHT IS FALSE - INVALID MOVEMENT 
+	// CHECK MOVEMENT FOR ROOK IS FALSE - INVALID MOVEMENT
 	@Test
-	public void checkmovemnentBishopReturnsFalse() {
-		assertEquals(false, knight.checkMovement(gb, 0, 0));
+	public void checkMovemnentRookInvalid() {
+		assertEquals(false, gameBoard.getPieces().get("K1").checkMovement(gameBoard, 0, 0));
 	}
-
-	// CHECK MOVEMENT FOR ROOK IS TRUE - VALID MOVEMNT
+	
+	
+	// CHECK MOVEMENT FOR ROOK IS TRUE - VALID MOVEMENT
 	@Test
-	public void checkmovemnentBishopReturnsTrue() {
-		assertEquals(true, knight.checkMovement(gb, 1, 2));
+	public void checkMovemnentRookValid() {
+		assertEquals(true, gameBoard.getPieces().get("K1").checkMovement(gameBoard, 0, 1));
 	}
 }

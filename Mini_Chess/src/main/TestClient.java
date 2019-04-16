@@ -10,13 +10,13 @@ import model.utilities.PlayerManager;
 
 public class TestClient {
 
-public void printMenu() {
-	System.out.println("   Welcome to Mini Chess Game!     ");
-	System.out.println("MENU (ENTER NUMBER FOR MENU CHOICE)");
-	System.out.println("1.Register New Player");
-	System.out.println("2.Start Game (Must have 2 registered players)");
-	System.out.println("3.Exit");
-}
+	public void printMenu() {
+		System.out.println("   Welcome to Mini Chess Game!     ");
+		System.out.println("MENU (ENTER NUMBER FOR MENU CHOICE)");
+		System.out.println("1.Register New Player");
+		System.out.println("2.Start Game (Must have 2 registered players)");
+		System.out.println("3.Exit");
+	}
 
 public void InitialiseGame(String database,GameEngine gameengine) {
 
@@ -113,7 +113,5 @@ default:
 	
 	
 }
-
-	
 
 }
