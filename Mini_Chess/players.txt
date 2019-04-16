@@ -1,2 +1,2 @@
-1,49,joe dempsie,5
-2,50,homer simpson,0
+1,48690,johnny,70
+2,48690,freddy,5

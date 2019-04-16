@@ -55,7 +55,7 @@ class GameEngineImplTest2 {
 	}
 	
 	@Test
-	void testDoubleLogin() {
+	void testDoubleLogin() { 
 		gE.login("001", "password1");
 		gE.login("001", "password1");
 		assertEquals(gE.getWhitePlayer(),  gE.getPlayerManager().getPlayer("001"));
@@ -69,5 +69,42 @@ class GameEngineImplTest2 {
 		assertEquals(gE.getWhitePlayer(), gE.getPlayerManager().getPlayer("001"));
 		assertEquals(gE.getBlackPlayer(), gE.getPlayerManager().getPlayer("002"));
 	
+	}
+	
+	@Test
+	void testPointIncrease() {
+		gE.login("001", "password1");
+		gE.login("002", "password2");
+
+		gE.setMaxTurns(10);
+		gE.movePiece("r2w", 5, 3);
+		gE.movePiece("r2", 5, 2);
+		gE.movePiece("r2w", 5, 2);
+		
+		assertEquals(gE.getWhitePlayerPoints(), 5);
+	}
+	
+	@Test
+	void testPlayerSwitch() {
+		gE.login("001", "password1");
+		gE.login("002", "password2");
+
+		gE.setMaxTurns(10);
+		assertEquals(gE.getCurrentPlayer().getID(), "001");
+		gE.movePiece("r2w", 5, 3);
+		assertEquals(gE.getCurrentPlayer().getID(), "002");
+		gE.movePiece("r2", 5, 2);
+	
+	}
+	
+	@Test
+	void testMoveWrongPiece() {
+		gE.login("001", "password1");
+		gE.login("002", "password2");
+
+		gE.setMaxTurns(10);
+		gE.movePiece("r2", 5, 2);
+		assertEquals(gE.getCurrentPlayer().getID(), "001");
+		assertEquals(gE.getGameBoard().getPiece(5, 2), null);
 	}
 }

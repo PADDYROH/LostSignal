@@ -1,6 +1,5 @@
 // 
 // package main;
-
 // import model.BasePlayer;
 // import model.GameBoardImpl;
 // import model.GameEngine;
@@ -60,20 +59,23 @@ public class Driver {
 	public static void main(String[] args) {
 
 		
-		GameEngine ge = new GameEngineImpl();
-		UserInterfaceManager cLIM = new CLIManager(ge);
-		ge.addUIManager(cLIM);
-		ge.getPlayerManager().addPlayer(new BasePlayer("100", "password123".hashCode(), "joe dempsie", 0));
-		ge.getPlayerManager().addPlayer(new BasePlayer("101", "321password".hashCode(), "homer simpson", 0));
+		GameEngine gE = new GameEngineImpl();
+		UserInterfaceManager cLIM = new CLIManager(gE);
+		gE.addUIManager(cLIM);
 		
-		ge.login("100", "password123");
-		ge.login("101", "321password");
-		ge.setMaxTurns(3);
-		cLIM.updateBoard(true);
-		ge.movePiece("r2w", 5, 3);
-		ge.movePiece("r2", 5, 2);
+		TestClient tC = new TestClient(gE);
+		tC.initialiseGame();
+		//gE.getPlayerManager().addPlayer(new BasePlayer("100", "password123".hashCode(), "joe dempsie", 0));
+		//gE.getPlayerManager().addPlayer(new BasePlayer("101", "321password".hashCode(), "homer simpson", 0));
+		
+//		gE.login("100", "password123");
+//		gE.login("101", "321password");
+//		gE.setMaxTurns(3);
+//		cLIM.updateBoard(true);
+//		gE.movePiece("r2w", 5, 3);
+//		gE.movePiece("r2", 5, 2);
 		// this wont do anything which is correct ge.movePiece("r1w", 4, 4);
-		ge.movePiece("r2w", 5, 2);
+		//gE.movePiece("r2w", 5, 2);
 		// null pointer exception mateo! ge.movePiece("r1", 0, 4);
 		//ge.movePiece(pieceID, xCo, yCo)
 		
