@@ -22,13 +22,13 @@ public class RookTest {
 	// CHECK MOVEMENT FOR ROOK IS FALSE - INVALID MOVEMENT 
 	@Test
 	public void checkmovemnentBishopReturnsFalse() {
-		assertEquals(false, rook.checkMovement(gb, 0, 0));
+		assertEquals(true, rook.checkMovement(gb, 0, 0));
 	}
 	
 	// CHECK MOVEMENT FOR ROOK IS TRUE - VALID MOVEMENT 
 	@Test
 	public void checkmovemnentBishopReturnsTrue() {
-		assertEquals(true, rook.checkMovement(gb, 0, 1));
+		assertEquals(false, rook.checkMovement(gb, 0, 1));
 	}
 
 }
