@@ -73,6 +73,9 @@ public class GameEngineImpl implements GameEngine {
 				|| (pieceColor.equals("white") && currentPlayer.getID().equals(whitePlayer.getID()))) {
 			// try to move piece
 			if (!mainBoard.movePiece(pieceID, xCo, yCo)) {
+				for (UserInterfaceManager uIM : userInterfaceManagers) {
+					uIM.updateBoard(false);
+				}
 				return false;
 			} else {
 				numTurns++;
@@ -99,7 +102,7 @@ public class GameEngineImpl implements GameEngine {
 					endGame();
 				}
 				for (UserInterfaceManager uIM : userInterfaceManagers) {
-					uIM.updateBoard();
+					uIM.updateBoard(true);
 				}
 				return true;
 			}
@@ -112,7 +115,7 @@ public class GameEngineImpl implements GameEngine {
 	public void endGame() {
 		calculatePlayerPoints(currentPlayer);
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
-			uIM.updateBoard();
+			uIM.updateBoard(true);
 			uIM.endGame();
 		}
 		whitePlayer.setPoints(whitePlayer.getPoints() + whitePlayerPoints);

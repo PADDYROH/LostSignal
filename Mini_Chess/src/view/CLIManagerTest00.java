@@ -24,7 +24,7 @@ public class CLIManagerTest00 {
 
 	@Test
 	public void test() {
-		mainManager.updateBoard();
+		mainManager.updateBoard(true);
 	}
 
 }

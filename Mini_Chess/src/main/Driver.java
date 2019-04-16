@@ -21,12 +21,13 @@ public class Driver {
 		ge.login("100", "password123");
 		ge.login("101", "321password");
 		ge.setMaxTurns(3);
-		cLIM.updateBoard();
-		ge.movePiece("r1w", 0, 4);
-		ge.movePiece("r1", 0, 2);
+		cLIM.updateBoard(true);
+		ge.movePiece("r2w", 5, 3);
+		ge.movePiece("r2", 5, 2);
 		// this wont do anything which is correct ge.movePiece("r1w", 4, 4);
-		ge.movePiece("r1w", 0, 2);
+		ge.movePiece("r2w", 5, 2);
 		// null pointer exception mateo! ge.movePiece("r1", 0, 4);
+		//ge.movePiece(pieceID, xCo, yCo)
 		
 	}
 }

@@ -13,7 +13,7 @@ public class CLIManager implements UserInterfaceManager {
 	}
 
 	@Override
-	public void updateBoard() {
+	public void updateBoard(boolean successfulMove) {
 		GameBoard chessBoard = mainEngine.getGameBoard();
 		for (int column = 0; column < chessBoard.getChessBoard().length; column++) {
 
@@ -32,6 +32,10 @@ public class CLIManager implements UserInterfaceManager {
 					System.out.print("| " + "   " + "   ");
 				}
 			}
+		}
+		System.out.println("\n");
+		if(!successfulMove) {
+			System.out.println("Invalid move. Try again " + mainEngine.getCurrentPlayer().getID() + ":" + mainEngine.getCurrentPlayer().getName());
 		}
 	}
 
