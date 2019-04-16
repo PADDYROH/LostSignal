@@ -22,6 +22,12 @@ public class GameBoardImplTest {
 		assertEquals(12, gb.getPieces().size());
 	}
 
+	@Test
+	public void moveToSamePosition() {
+		assertEquals(false, gb.movePiece("r1", 0, 0));
+
+	}
+
 	// Attempt to move a rook by two cells
 	@Test
 	public void moveRook2() {
@@ -103,7 +109,7 @@ public class GameBoardImplTest {
 		gb.movePiece("r1", 0, 1);
 		gb.movePiece("r1", 2, 1);
 		gb.movePiece("K1", 1, 2);
-		
+
 		assertEquals("K1", gb.getChessBoard()[1][2]);
 	}
 

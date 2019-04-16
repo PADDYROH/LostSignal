@@ -9,27 +9,29 @@ import model.GameBoardImpl;
 
 public class BishopTest {
 
-	Bishop bishop;
-	GameBoardImpl gb;
+
+	GameBoardImpl gameBoard;
 
 	@Before
 	public void setUp() throws Exception {
 
-		bishop = new Bishop("white", 1, 0);
+		gameBoard = new GameBoardImpl();
 
 	}
 
-	// CHECK MOVEMENT FOR BISHOP IS FALSE - INVALID MOVEMENT 
+	// CHECK MOVEMENT FOR BISHOP IS FALSE - INVALID MOVEMENT
 	@Test
-	public void checkmovemnentBishopReturnsFalse() {
-		assertEquals(false, bishop.checkMovement(gb, 0, 0));
+	public void checkMovemnentBishopInvalid() {
+		assertEquals(false, gameBoard.getPieces().get("b1").checkMovement(gameBoard, 0, 0));
 	}
 	
-	// CHECK MOVEMENT FOR BISHOP IS TRUE - VALID MOVEMENT 
+	
+	// CHECK MOVEMENT FOR BISHOP IS TRUE - VALID MOVEMENT
 	@Test
-	public void checkmovemnentBishopReturnsTrue() {
-		assertEquals(true, bishop.checkMovement(gb, 0, 1));
+	public void checkMovemnentBishopValid() {
+		assertEquals(true, gameBoard.getPieces().get("b1").checkMovement(gameBoard, 0, 1));
 	}
+
 
 
 }
