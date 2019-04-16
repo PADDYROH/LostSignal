@@ -22,6 +22,13 @@ public class GameBoardImplTest {
 		assertEquals(12, gb.getPieces().size());
 	}
 
+	// test piece can't move to its own pos
+	@Test
+	public void moveToSamePosition() {
+		assertEquals(false, gb.movePiece("r1", 0, 0));
+
+	}
+
 	// Attempt to move a rook by two cells
 	@Test
 	public void moveRook2() {
@@ -92,18 +99,12 @@ public class GameBoardImplTest {
 	}
 
 	// Attempt to move a knight piece over another piece succeeds @Test
-	public void moveKnightOverOtherPiece() {
-		gb.movePiece("K1", 1, 2);
-		assertEquals("K1", gb.getChessBoard()[1][2]);
-	}
-
-	// Attempt to move a bishop piece diagonally bypassing other pieces fails.
 	@Test
-	public void checkForBlockingPiecesBishop() {
+	public void knightJumpOverPiece() {
 		gb.movePiece("r1", 0, 1);
 		gb.movePiece("r1", 2, 1);
 		gb.movePiece("K1", 1, 2);
-		
+
 		assertEquals("K1", gb.getChessBoard()[1][2]);
 	}
 
@@ -120,5 +121,19 @@ public class GameBoardImplTest {
 		assertEquals(false, gb.movePiece("r1w", 3, 2));
 
 	}
+	
+	
+	// Attempt to move a bishop piece in diagonal directions bypassing
+		// other pieces fails
+		@Test
+		public void checkForBlockingPiecesBishop() {
+
+			gb.movePiece("r2", 5, 2);
+			gb.movePiece("r2", 3, 2);
+			gb.movePiece("b1", 2, 1);
+
+			assertEquals(false, gb.movePiece("b1", 4, 3));
+
+		}
 
 }
