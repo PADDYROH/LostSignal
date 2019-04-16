@@ -12,9 +12,66 @@ public class TestClient {
 	GameEngine gameEngine;
 	Scanner scanner = new Scanner(System.in);
 
-	public TestClient(GameEngine gameEngine) {
-		this.gameEngine = gameEngine;
+
+// 	public TestClient(GameEngine gameEngine) {
+// 		this.gameEngine = gameEngine;
+// 	}
+
+	public void printMenu() {
+		System.out.println("   Welcome to Mini Chess Game!     ");
+		System.out.println("MENU (ENTER NUMBER FOR MENU CHOICE)");
+		System.out.println("1.Register New Player");
+		System.out.println("2.Start Game (Must have 2 registered players)");
+		System.out.println("3.Exit");
 	}
+
+public void InitialiseGame(String database,GameEngine gameengine) {
+
+Scanner scanner = new Scanner(System.in);
+String input;
+
+while(true) {
+
+	input = null;
+	printMenu();
+	input = scanner.nextLine();
+	
+	
+switch(input) {
+	
+case "1" : {
+	
+	String ID;
+	String Name;
+	String Password = null;
+	int Score = 0;
+	
+	System.out.println("Type ID: ");
+	ID = scanner.nextLine();
+	System.out.println("Type Name:");
+	Name = scanner.nextLine();
+	System.out.println("Type Password:");
+	Password = scanner.nextLine();
+	
+	Player playerInput = new BasePlayer(ID,Password.hashCode(),Name,Score);
+	
+	
+	gameengine.getPlayerManager().addPlayer(playerInput);
+	
+	System.out.println("Returning to Main Menu!");
+	
+	break;
+}
+
+case "2" : {
+
+System.out.println("Player 1, Enter your ID:");
+String IDP1 = scanner.nextLine();
+System.out.println("Type Password:");
+String PasswordP1 = scanner.nextLine();
+
+gameengine.login(IDP1, PasswordP1);	
+
 
 	public void printMenu() {
 		System.out.println("   Welcome to Mini Chess Game!     ");
@@ -127,15 +184,18 @@ public class TestClient {
 		password = scanner.nextLine();
 		Player playerInput = new BasePlayer(iD, password.hashCode(), name, score);
 
-		try {
-			gameEngine.getPlayerManager().addPlayer(playerInput);
-		} catch (IllegalArgumentException e) {
-			System.err.println(e.getMessage());
-			registerPlayer();
-		}
 
-		System.out.println("Success. Returning to Main Menu!");
-		return true;
-	}
+ 		try {
+ 			gameEngine.getPlayerManager().addPlayer(playerInput);
+ 		} catch (IllegalArgumentException e) {
+ 			System.err.println(e.getMessage());
+ 			registerPlayer();
+ 		}
+
+ 		System.out.println("Success. Returning to Main Menu!");
+ 		return true;
+ 	}
+
+
 
 }

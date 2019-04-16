@@ -18,6 +18,7 @@ public class Bishop extends AbstractPiece {
 	@Override
 	public boolean checkMovement(GameBoardImpl gameBoard, int x, int y) {
 
+
 		// check if piece is same color
 		if (sameTeam(gameBoard, x, y)) {
 			return false;
