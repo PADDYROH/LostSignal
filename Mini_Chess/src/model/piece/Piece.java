@@ -4,7 +4,9 @@ import model.GameBoardImpl;
 
 public interface Piece {
 
-	public abstract boolean checkMovement(GameBoardImpl gameBoard, int x, int y);
+	public boolean checkMovement(GameBoardImpl gameBoard, int x, int y);
+
+	public boolean validMove(GameBoardImpl gameBoard, int x, int y);
 
 	public abstract String getColor();
 

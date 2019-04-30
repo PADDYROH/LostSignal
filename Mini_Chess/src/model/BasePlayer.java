@@ -13,16 +13,9 @@ public class BasePlayer implements Player {
 		this.playerPasswordHash = playerPasswordHash;
 		this.playerPoints = playerPoints;
 		this.playerName = playerName;
-		
-
 	}
 
-	@Override
-	public void login() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public void setName(String name) {
 
@@ -57,5 +50,7 @@ public class BasePlayer implements Player {
 	public int getPasswordHash() {
 		return playerPasswordHash;
 	}
+	
+	
 
 }

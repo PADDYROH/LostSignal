@@ -18,16 +18,84 @@ public class Rook extends AbstractPiece {
 	@Override
 	public boolean checkMovement(GameBoardImpl gameBoard, int x, int y) {
 
-		if (gameBoard.getChessBoard()[x][y] != null) {
+		
+		// check if piece is same color
+		if (sameTeam(gameBoard, x, y)) {
 			return false;
 		}
-		
-		if (posX - x == -1 || posX - x == -2 && posY == y) {
+
+		// keeps x and y with in bounds
+		if (!inBoardLimits(x, y)) {
+			return false;
+		}
+
+		// checks if move is valid
+		if (validMove(gameBoard, x, y)) {
+
+			if (gameBoard.getChessBoard()[x][y] != null) {
+				if (!sameTeam(gameBoard, x, y)) {
+
+					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setCOLOR(null);
+					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosX(-1);
+					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosY(-1);
+
+				}
+			}
+
 			posX = x;
+			posY = y;
 			return true;
 		}
-		if (posY - y == -1 || posY - y == -2 && posX == x) {
-			posY = y;
+
+		return false;
+	}
+
+	@Override
+	public boolean validMove(GameBoardImpl gameBoard, int x, int y) {
+
+		if (posX + 1 == x && posY == y || posY + 1 == y && posX == x) {
+			return true;
+		}
+
+		if (posX - 1 == x && posY == y || posY - 1 == y && posX == x) {
+			return true;
+		}
+
+		if (posX + 2 == x && posY == y) {
+
+			if (gameBoard.getChessBoard()[posX + 1][y] != null) {
+
+				return false;
+			}
+
+			return true;
+		}
+
+		if (posY + 2 == y && posX == x) {
+
+			if (gameBoard.getChessBoard()[x][posY + 1] != null) {
+
+				return false;
+			}
+			return true;
+		}
+
+		if (posX - 2 == x && posY == y) {
+
+			if (gameBoard.getChessBoard()[posX - 1][y] != null) {
+
+				return false;
+			}
+
+			return true;
+		}
+
+		if (posY - 2 == y && posX == x) {
+
+			if (gameBoard.getChessBoard()[x][posY - 1] != null) {
+
+				return false;
+			}
 			return true;
 		}
 
