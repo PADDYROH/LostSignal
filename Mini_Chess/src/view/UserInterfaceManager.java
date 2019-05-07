@@ -1,6 +1,5 @@
 package view;
 
-import model.GameEngine;
 
 public interface UserInterfaceManager {
 	// print out the board
