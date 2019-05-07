@@ -52,6 +52,7 @@ import model.GameEngine;
 import model.GameEngineImpl;
 import model.piece.Piece;
 import view.CLIManager;
+import view.GUIManager;
 import view.UserInterfaceManager;
 
 public class Driver {
@@ -61,7 +62,9 @@ public class Driver {
 		
 		GameEngine gE = new GameEngineImpl();
 		UserInterfaceManager cLIM = new CLIManager(gE);
+		UserInterfaceManager gUIM = new GUIManager(gE);
 		gE.addUIManager(cLIM);
+		gE.addUIManager(gUIM);
 		
 		TestClient tC = new TestClient(gE);
 		tC.initialiseGame();
