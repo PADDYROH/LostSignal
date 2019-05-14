@@ -21,6 +21,10 @@ public class Knight extends AbstractPiece {
 			return false;
 		}
 
+		if (posX == x && posY == y) {
+			return false;
+		}
+
 		// keeps x and y with in bounds
 		if (!inBoardLimits(x, y)) {
 			return false;

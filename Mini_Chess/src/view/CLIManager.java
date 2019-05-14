@@ -15,13 +15,13 @@ public class CLIManager implements UserInterfaceManager {
 	@Override
 	public void updateBoard(boolean successfulMove) {
 		GameBoard chessBoard = mainEngine.getGameBoard();
+		System.out.print("      0       1       2       3       4      5  ");
 		for (int column = 0; column < chessBoard.getChessBoard().length; column++) {
 
 			System.out.println("");
-			System.out.println("_____________________________________________");
-
+			System.out.println("________________________________________________");
+			System.out.print(column + "  ");
 			for (int row = 0; row < chessBoard.getChessBoard().length; row++) {
-
 				if (chessBoard.getChessBoard()[row][column] != null) {
 					if(chessBoard.getChessBoard()[row][column].length() < 3) {
 						System.out.print("| " + chessBoard.getChessBoard()[row][column] + "    ");	

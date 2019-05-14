@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.piece.Piece;
+
 public class GameBoardImplTest {
 
 	GameBoardImpl gb;
@@ -20,6 +22,13 @@ public class GameBoardImplTest {
 	@Test
 	public void testGameBoard() {
 		assertEquals(12, gb.getPieces().size());
+	}
+
+	// test piece can't move to its own pos
+	@Test
+	public void moveToSamePosition() {
+		assertEquals(false, gb.movePiece("r1", 0, 0));
+
 	}
 
 	// Attempt to move a rook by two cells
@@ -92,18 +101,12 @@ public class GameBoardImplTest {
 	}
 
 	// Attempt to move a knight piece over another piece succeeds @Test
-	public void moveKnightOverOtherPiece() {
-		gb.movePiece("K1", 1, 2);
-		assertEquals("K1", gb.getChessBoard()[1][2]);
-	}
-
-	// Attempt to move a bishop piece diagonally bypassing other pieces fails.
 	@Test
-	public void checkForBlockingPiecesBishop() {
+	public void knightJumpOverPiece() {
 		gb.movePiece("r1", 0, 1);
 		gb.movePiece("r1", 2, 1);
 		gb.movePiece("K1", 1, 2);
-		
+
 		assertEquals("K1", gb.getChessBoard()[1][2]);
 	}
 
@@ -121,4 +124,48 @@ public class GameBoardImplTest {
 
 	}
 
+	// Attempt to move a bishop piece in diagonal directions bypassing
+	// other pieces fails
+	@Test
+	public void checkForBlockingPiecesBishop() {
+
+		gb.movePiece("r2", 5, 2);
+		gb.movePiece("r2", 3, 2);
+		gb.movePiece("b1", 2, 1);
+
+		assertEquals(false, gb.movePiece("b1", 4, 3));
+
+	}
+	
+	// Attempt to get the piece in a position that has no piece returns null
+	@Test
+	public void checkNullPiece() {
+		assertEquals(gb.getPiece(3, 3), null);
+	}
+	
+	@Test
+	public void checkMoveOffBoard() {
+		gb.movePiece("r2", 6, 0);
+		
+		assertEquals(gb.getPiece(5, 0), gb.getPieces().get("r2"));
+	}
+	
+	@Test
+	public void checkMoveToOccupiedPosition() {
+		gb.movePiece("r2", 4, 0);
+		assertEquals(gb.getPiece(5, 0), gb.getPieces().get("r2"));
+	}
+
+	@Test
+	public void checkInitialBoard() {
+		if (!(gb.getPiece(0, 0) instanceof Piece)) {
+			fail("Board failed to initialize.");
+		}
+		if (!(gb.getPiece(5, 0) instanceof Piece)) {
+			fail("Board failed to initialize.");
+		}
+		if (gb.getPiece(3, 3) != null) {
+			fail("Board failed to initialize.");
+		}
+	}
 }
