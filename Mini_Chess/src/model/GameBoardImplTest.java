@@ -5,7 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.piece.Bishop;
+import model.piece.Knight;
 import model.piece.Piece;
+import model.piece.Rook;
 
 public class GameBoardImplTest {
 
@@ -136,20 +139,20 @@ public class GameBoardImplTest {
 		assertEquals(false, gb.movePiece("b1", 4, 3));
 
 	}
-	
+
 	// Attempt to get the piece in a position that has no piece returns null
 	@Test
 	public void checkNullPiece() {
 		assertEquals(gb.getPiece(3, 3), null);
 	}
-	
+
 	@Test
 	public void checkMoveOffBoard() {
 		gb.movePiece("r2", 6, 0);
-		
+
 		assertEquals(gb.getPiece(5, 0), gb.getPieces().get("r2"));
 	}
-	
+
 	@Test
 	public void checkMoveToOccupiedPosition() {
 		gb.movePiece("r2", 4, 0);
@@ -168,4 +171,79 @@ public class GameBoardImplTest {
 			fail("Board failed to initialize.");
 		}
 	}
+
+	// place a bishop on-top of a rook  - should keep a rook on the board with bishop attributes 
+	@Test
+	public void mergeBishopToRook() {
+		gb.movePiece("r1", 0, 1);
+		gb.movePiece("b1", 0, 1);
+
+		assertEquals(true, gb.getPiece(0, 1) instanceof Rook);
+
+	}
+	// place a rook on-top of a bishop  - should keep a bishop on the board with rook attributes 
+
+	@Test
+	public void mergeRookToBishop() {
+		gb.movePiece("b1", 0, 1);
+		gb.movePiece("r1", 0, 1);
+
+		assertEquals(true, gb.getPiece(0, 1) instanceof Bishop);
+	}
+
+	@Test
+	public void mergeKinghtToRook() {
+		gb.movePiece("k1", 1, 2);
+		gb.movePiece("r1", 0, 2);
+		gb.movePiece("r1", 1, 2);
+
+		assertEquals(true, gb.getPiece(1, 2) instanceof Knight);
+
+	}
+
+	@Test
+	public void mergeRookToKnight() {
+
+		gb.movePiece("r1", 0, 2);
+		gb.movePiece("r1", 1, 2);
+		gb.movePiece("k1", 1, 2);
+
+		assertEquals(true, gb.getPiece(1, 2) instanceof Rook);
+
+	}
+
+	// place a Rook on-top of a Rook
+	@Test
+	public void mergeRookToRook() {
+		gb.movePiece("r1", 0, 1);
+		gb.movePiece("r1", 2, 1);
+		gb.movePiece("r2", 5, 1);
+
+		assertEquals(false, gb.movePiece("r2", 5, 2));
+
+	}
+
+	@Test
+	public void mergeBishopToKnight() {
+		gb.movePiece("b1", 0, 1);
+		gb.movePiece("k1", 0, 1);
+		assertEquals(true, gb.getPiece(1, 2) instanceof Bishop);
+	}
+
+	@Test
+	public void mergeKnightToBishop() {
+		gb.movePiece("k1", 0, 1);
+		gb.movePiece("b1", 0, 1);
+		assertEquals(true, gb.getPiece(1, 2) instanceof Knight);
+	}
+
+	@Test
+	public void KnightToKnight() {
+		gb.movePiece("k1", 0, 1);
+		gb.movePiece("k2", 2, 2);
+
+		assertEquals(false, gb.movePiece("k2", 0, 1));
+
+	}
+
 }
