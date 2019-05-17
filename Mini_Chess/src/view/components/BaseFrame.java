@@ -12,6 +12,9 @@ import view.model.GUIModel;
 public class BaseFrame extends JFrame{
 	private UserInterfaceManager uIManager;
 	private GUIModel gUIModel;
+	private BasePlayerPanel mainPlayerPanel;
+	private BaseBoardPanel mainBoardPanel;
+	private BaseMenuBar mainMenuBar;
 	
 	public BaseFrame(UserInterfaceManager uIManager, GUIModel gUIModel) {
 		super("Mini Chess");
@@ -24,8 +27,19 @@ public class BaseFrame extends JFrame{
 		setLayout(new BorderLayout());
 		//set frame icon
 		
-		add(new JLabel("HELLO THERE."), BorderLayout.NORTH);
-		add(new JLabel("GENERAL KENOBI."), BorderLayout.SOUTH);
+		//add(new JLabel("HELLO THERE."), BorderLayout.NORTH);
+		//add(new JLabel("GENERAL KENOBI."), BorderLayout.SOUTH);
+		
+		mainPlayerPanel = new BasePlayerPanel();
+		add(mainPlayerPanel, BorderLayout.WEST);
+		
+		mainBoardPanel = new BaseBoardPanel();
+		add(mainPlayerPanel, BorderLayout.CENTER);
+		
+		mainMenuBar = new BaseMenuBar();
+		add(mainMenuBar, BorderLayout.NORTH);
+		
+		// may put status panel here??
 		
 		
 		setVisible(true);
