@@ -33,11 +33,11 @@ public class BaseFrame extends JFrame{
 		mainPlayerPanel = new BasePlayerPanel();
 		add(mainPlayerPanel, BorderLayout.WEST);
 		
-		mainBoardPanel = new BaseBoardPanel();
-		add(mainPlayerPanel, BorderLayout.CENTER);
+		mainBoardPanel = new BaseBoardPanel(this);
+		add(mainBoardPanel, BorderLayout.CENTER);
 		
-		mainMenuBar = new BaseMenuBar();
-		add(mainMenuBar, BorderLayout.NORTH);
+		mainMenuBar = new BaseMenuBar(this);
+		setJMenuBar(mainMenuBar);
 		
 		// may put status panel here??
 		
