@@ -13,6 +13,8 @@ public class GameEngineImpl implements GameEngine {
 	// private static int MAX_PLAYERS = 2;
 	private static int BOARD_ROWS = 6;
 	private static int BOARD_COLS = 6;
+	private static int POINTS_PER_PIECE = 5;
+	private static int MAX_POINTS = 30;
 	private Player whitePlayer;
 	private Player blackPlayer;
 	private int whitePlayerPoints;

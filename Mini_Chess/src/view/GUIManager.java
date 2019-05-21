@@ -2,6 +2,7 @@ package view;
 
 import model.GameEngine;
 import view.components.BaseFrame;
+import view.components.Tile;
 import view.model.GUIModel;
 
 public class GUIManager implements UserInterfaceManager {
@@ -33,6 +34,16 @@ public class GUIManager implements UserInterfaceManager {
 	public void endGame() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void selectPiece(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Tile[][] getTiles() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
