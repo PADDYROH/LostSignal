@@ -104,6 +104,7 @@ public class GameEngineImpl implements GameEngine {
 				for (UserInterfaceManager uIM : userInterfaceManagers) {
 					uIM.updateBoard(true);
 				}
+
 				return true;
 			}
 		} else {
@@ -177,7 +178,7 @@ public class GameEngineImpl implements GameEngine {
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateCurrentPlayers();
 		}
-		if(whitePlayer != null && blackPlayer != null) {
+		if (whitePlayer != null && blackPlayer != null) {
 			for (UserInterfaceManager uIM : userInterfaceManagers) {
 				uIM.updateBoard(true);
 			}

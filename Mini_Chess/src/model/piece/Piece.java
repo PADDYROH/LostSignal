@@ -22,5 +22,5 @@ public interface Piece {
 
 	public void setPosY(int posY);
 
-
+	boolean pieceMovement(GameBoardImpl gameBoard, int x, int y);
 }

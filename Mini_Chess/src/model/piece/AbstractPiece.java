@@ -9,7 +9,6 @@ public abstract class AbstractPiece implements Piece {
 	private int move2Spaces;
 	protected int posX;
 	protected int posY;
-	protected Piece mergedPiece;
 
 	public AbstractPiece(String COLOR, int posX, int posY) {
 
@@ -63,39 +62,6 @@ public abstract class AbstractPiece implements Piece {
 
 	}
 
-	@Override
-	public boolean checkMovement(GameBoardImpl gameBoard, int x, int y) {
-		System.out.println("soadjfngjksdfnsjkdfngsjkdfgsdjkfgnds");
-		// check if piece is same color
-		if (sameTeam(gameBoard, x, y)) {
-			return false;
-		}
-		// keeps x and y with in bounds
-		if (!inBoardLimits(x, y)) {
-			return false;
-		}
-		// checks if move is valid
-		if (validMove(gameBoard, x, y)) {
-
-			if (gameBoard.getChessBoard()[x][y] != null) {
-				if (!sameTeam(gameBoard, x, y)) {
-
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setCOLOR(null);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosX(-1);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosY(-1);
-
-				} else {
-					System.out.println(gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).getClass());
-				}
-			}
-			this.posX = x;
-			this.posY = y;
-			return true;
-		}
-
-		return false;
-	}
-
 	public boolean sameTeam(GameBoardImpl gameBoard, int x, int y) {
 
 		if (!inBoardLimits(x, y)) {
@@ -115,5 +81,6 @@ public abstract class AbstractPiece implements Piece {
 		return false;
 
 	}
+
 
 }
