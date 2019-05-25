@@ -13,8 +13,11 @@ public class BaseFrame extends JFrame{
 	private UserInterfaceManager uIManager;
 	private GUIModel gUIModel;
 	private BasePlayerPanel mainPlayerPanel;
+	
+
 	private BaseBoardPanel mainBoardPanel;
 	private BaseMenuBar mainMenuBar;
+	private StatusPanel mainStatusPanel;
 	
 	public BaseFrame(UserInterfaceManager uIManager, GUIModel gUIModel) {
 		super("Mini Chess");
@@ -30,18 +33,44 @@ public class BaseFrame extends JFrame{
 		//add(new JLabel("HELLO THERE."), BorderLayout.NORTH);
 		//add(new JLabel("GENERAL KENOBI."), BorderLayout.SOUTH);
 		
-		mainPlayerPanel = new BasePlayerPanel();
+		mainPlayerPanel = new BasePlayerPanel(this);
 		add(mainPlayerPanel, BorderLayout.WEST);
 		
 		mainBoardPanel = new BaseBoardPanel(this);
 		add(mainBoardPanel, BorderLayout.CENTER);
 		
+		mainStatusPanel = new StatusPanel(this);
+		add(mainStatusPanel, BorderLayout.SOUTH);
+		
 		mainMenuBar = new BaseMenuBar(this);
 		setJMenuBar(mainMenuBar);
-		
-		// may put status panel here??
-		
+			
 		
 		setVisible(true);
 	}
+	
+	public UserInterfaceManager getUIManager() {
+		return uIManager;
+	}
+
+	public GUIModel getGUIModel() {
+		return gUIModel;
+	}
+
+	public BasePlayerPanel getMainPlayerPanel() {
+		return mainPlayerPanel;
+	}
+
+	public BaseBoardPanel getMainBoardPanel() {
+		return mainBoardPanel;
+	}
+
+	public BaseMenuBar getMainMenuBar() {
+		return mainMenuBar;
+	}
+
+	public StatusPanel getMainStatusPanel() {
+		return mainStatusPanel;
+	}
+	
 }
