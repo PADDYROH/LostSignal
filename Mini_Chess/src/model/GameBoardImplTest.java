@@ -172,7 +172,8 @@ public class GameBoardImplTest {
 		}
 	}
 
-	// place a bishop on-top of a rook  - should keep a rook on the board with bishop attributes 
+	// place a bishop on-top of a rook - should keep a rook on the board with bishop
+	// attributes
 	@Test
 	public void mergeBishopToRook() {
 		gb.movePiece("r1", 0, 1);
@@ -181,7 +182,8 @@ public class GameBoardImplTest {
 		assertEquals(true, gb.getPiece(0, 1) instanceof Rook);
 
 	}
-	// place a rook on-top of a bishop  - should keep a bishop on the board with rook attributes 
+	// place a rook on-top of a bishop - should keep a bishop on the board with rook
+	// attributes
 
 	@Test
 	public void mergeRookToBishop() {
@@ -246,4 +248,33 @@ public class GameBoardImplTest {
 
 	}
 
+	@Test
+	public void moveKnightBishop() {
+
+		gb.movePiece("k1", 0, 1);
+		gb.movePiece("b1", 0, 1);
+		assertEquals(true, gb.movePiece("b1", 1, 1));
+
+	}
+
+	@Test
+	public void moveRookKnight() {
+
+		gb.movePiece("r1", 0, 2);
+		gb.movePiece("r1", 1, 2);
+		gb.movePiece("k1", 1, 2);
+
+		assertEquals(true, gb.movePiece("r1", 0, 3));
+
+	}
+
+	@Test
+	public void moveBishopRook() {
+
+		gb.movePiece("b1", 0, 1);
+		gb.movePiece("r1", 0, 1);
+
+		assertEquals(true, gb.movePiece("r1", 0, 3));
+
+	}
 }

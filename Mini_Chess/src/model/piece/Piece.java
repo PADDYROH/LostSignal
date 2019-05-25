@@ -22,4 +22,5 @@ public interface Piece {
 
 	public void setPosY(int posY);
 
+
 }
