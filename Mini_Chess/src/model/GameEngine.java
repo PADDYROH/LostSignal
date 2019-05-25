@@ -46,8 +46,8 @@ public interface GameEngine {
 
 	public abstract int getMaxTurns();
 
-	Piece selectPiece(int xPos, int yPos);
+	public abstract Piece selectPiece(int xPos, int yPos);
 
-	boolean checkMove(int xSource, int ySource, int xTarg, int yTarg);
+	public abstract boolean checkMove(int xSource, int ySource, int xTarg, int yTarg);
 
 }

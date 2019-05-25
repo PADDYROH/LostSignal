@@ -26,7 +26,7 @@ public class BaseBoardPanel extends JPanel {
 		//setBackground(new Color(50, 50, 50));
 		//setForeground(new Color(0, 0, 255));
 		setLayout(new GridLayout(6, 6));
-		setBorder(BorderFactory.createLineBorder(new Color(25, 250, 0)));
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 //		for(int r = 0; r < 6; r++) {
 //			for(int c = 0; c < 6; c++) {

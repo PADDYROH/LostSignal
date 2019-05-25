@@ -68,7 +68,7 @@ public class GUIModel {
 	}
 
 	public boolean isGameStarted() {
-		return mainEngine.getMaxTurns() > 0;
+		return (mainEngine.getMaxTurns() > 0) && (mainEngine.getWhitePlayer() != null) && (mainEngine.getBlackPlayer() != null);
 	}
 
 }

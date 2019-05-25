@@ -8,7 +8,7 @@ public class ExitListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		System.exit(0);
 	}
 
 }
