@@ -210,4 +210,29 @@ public class GameEngineImpl implements GameEngine {
 	public int getMaxTurns() {
 		return maxTurns;
 	}
+	
+	@Override
+	public Piece selectPiece(int xPos, int yPos) {
+		Piece tempPiece = mainBoard.getPiece(xPos, yPos);
+		boolean isSelectable = false;
+		if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
+			isSelectable = true;
+		} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
+			isSelectable = true;
+		}
+		return isSelectable ? tempPiece : null;
+	}
+	
+	@Override
+	public boolean checkMove(int xSource, int ySource, int xTarg, int yTarg) {
+		Piece tempPiece = mainBoard.getPiece(xSource, ySource);
+		boolean playerMatches = false;
+		if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
+			playerMatches = true;
+		} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
+			playerMatches = true;
+		}
+		
+		return playerMatches && tempPiece.validMove(mainBoard, xTarg, yTarg);
+	}
 }

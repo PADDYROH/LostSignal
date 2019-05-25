@@ -36,8 +36,9 @@ public class TileListener implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		mainTile.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
-		
+		if(mainTile.getMainBoardPanel().getMainFrame().getGUIModel().isGameStarted()) {
+			mainTile.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
+		}
 	}
 
 	@Override
