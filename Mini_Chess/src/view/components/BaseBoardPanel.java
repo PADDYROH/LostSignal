@@ -9,7 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.piece.Bishop;
 import model.piece.Piece;
+import model.piece.Rook;
 
 public class BaseBoardPanel extends JPanel {
 	private BaseFrame mainFrame;
@@ -23,23 +25,38 @@ public class BaseBoardPanel extends JPanel {
 		setLayout(new GridLayout(6, 6));
 		setBorder(BorderFactory.createLineBorder(new Color(25, 250, 0)));
 		
+//		for(int r = 0; r < 6; r++) {
+//			for(int c = 0; c < 6; c++) {
+//				Tile tempTile = new Tile();
+//				if((r + c) % 2 == 0) {
+//					tempTile.setBackground(Color.GRAY);
+//				} else {
+//					tempTile.setBackground(Color.WHITE);
+//				}
+//				tileArray[r][c] = tempTile;
+//				add(tempTile);
+//			}
+//		}
+	
 		for(int r = 0; r < 6; r++) {
 			for(int c = 0; c < 6; c++) {
-				Tile tempTile = new Tile();
+				Tile tile; 
 				if((r + c) % 2 == 0) {
-					tempTile.setBackground(Color.GRAY);
+					tile = new Tile(this, c, r, Color.GRAY);
 				} else {
-					tempTile.setBackground(Color.WHITE);
+					tile = new Tile(this, c, r, Color.WHITE);
 				}
-				tileArray[r][c] = tempTile;
-				add(tempTile);
+				tileArray[c][r] = tile;
+				add(tileArray[c][r]);
 			}
 		}
-		// make this take an array of strings, gotten from viewmodel
+		// could take array of strings or something from gui model, eliminate that connection to engine
 		updateTiles();
+		
 		
 	}
 	
+	// change this to take array of string filepaths from gui model
 	public void updateTiles() {
 //		tileArray[0][0].setIcon(new ImageIcon("pieceImages" + File.separator + "BR.png"));
 //		tileArray[0][0].revalidate();
@@ -49,21 +66,46 @@ public class BaseBoardPanel extends JPanel {
 //		repaint();
 		for(int r = 0; r < 6; r++) {
 			for(int c = 0; c < 6; c++) {
-				JLabel tempLabel = new JLabel();
-				if((r + c) % 2 == 0) {
-					tempLabel.setBackground(Color.GRAY);
-				} else {
-					tempLabel.setBackground(Color.WHITE);
-				}
-				if(mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(r,c) instanceof)
+				
+				tileArray[c][r].setImage(pieceToImageIcon(mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(c,r)));
 				//tileArray[r][c] = tempLabel;
-				add(tempLabel);
+				//add(tile);
 			}
 		}
+		repaint();
+		revalidate();
 	}
 	
-	public String pieceToImageIcon(Piece piece) {
-		if(mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(r,c) instanceof)
+	public ImageIcon pieceToImageIcon(Piece piece) {
+		String path = "";
+		if(piece != null) {
+			String color;
+			String type;
+			if(piece.getColor() == "white") {
+				color = "W";
+			} else {
+				color = "B"; 
+			}
+			if(piece instanceof Rook) {
+				type = "R";
+			} else if (piece instanceof Bishop) {
+				type = "B";
+			} else {
+				type = "K";
+			}
+			
+			path = "pieceImages" + File.separator + color + type + ".png";
+		}
+		return new ImageIcon(path);
+	
+	}
+	
+	public BaseFrame getMainFrame() {
+		return mainFrame;
+	}
+	
+	public Tile[][] getTiles(){
+		return tileArray;
 	}
 
 }

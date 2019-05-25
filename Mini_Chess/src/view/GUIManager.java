@@ -16,11 +16,13 @@ public class GUIManager implements UserInterfaceManager {
 		gUIModel = new GUIModel(mainEngine);
 		mainFrame = new BaseFrame(this, gUIModel);
 		//add frame to VM
+		gUIModel.setMainFrame(mainFrame);
 	}
 	
 	@Override
 	public void updateBoard(boolean successfulMove) {
 		// TODO Auto-generated method stub
+		gUIModel.updateBoard();
 
 	}
 
