@@ -13,7 +13,7 @@ public class GUIManager implements UserInterfaceManager {
 
 	public GUIManager(GameEngine mainEngine) {
 		this.mainEngine = mainEngine;
-		gUIModel = new GUIModel();
+		gUIModel = new GUIModel(mainEngine);
 		mainFrame = new BaseFrame(this, gUIModel);
 		//add frame to VM
 	}
