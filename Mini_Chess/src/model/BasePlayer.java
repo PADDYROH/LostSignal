@@ -15,11 +15,17 @@ public class BasePlayer implements Player {
 		this.playerName = playerName;
 	}
 
-	
 	@Override
 	public void setName(String name) {
 
 		this.playerName = name;
+	}
+
+	@Override
+	public String toString() {
+
+		return (String.format(" playerID=%s, playerName=%s, playerPoints=%s ", playerID, playerName, playerPoints));
+
 	}
 
 	@Override
@@ -45,12 +51,10 @@ public class BasePlayer implements Player {
 	public String getName() {
 		return playerName;
 	}
-	
+
 	@Override
 	public int getPasswordHash() {
 		return playerPasswordHash;
 	}
-	
-	
 
 }
