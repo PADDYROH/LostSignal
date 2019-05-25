@@ -5,8 +5,6 @@ import model.GameBoardImpl;
 public abstract class AbstractPiece implements Piece {
 
 	private String COLOR;
-	private int move1Spaces;
-	private int move2Spaces;
 	private int posX;
 	private int posY;
 
@@ -61,7 +59,6 @@ public abstract class AbstractPiece implements Piece {
 		return true;
 
 	}
-	
 
 	public boolean sameTeam(GameBoardImpl gameBoard, int x, int y) {
 
