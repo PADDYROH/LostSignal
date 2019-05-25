@@ -25,7 +25,7 @@
 // 	public void checkmovemnentBishopReturnsFalse() {
 // 		assertEquals(true, rook.checkMovement(gb, 0, 0));
 // 	}
-	
+
 // 	// CHECK MOVEMENT FOR ROOK IS TRUE - VALID MOVEMENT 
 // 	@Test
 // 	public void checkmovemnentBishopReturnsTrue() {
@@ -59,8 +59,7 @@ public class RookTest {
 	public void checkMovemnentRookInvalid() {
 		assertEquals(false, gameBoard.getPieces().get("r1").checkMovement(gameBoard, 0, 0));
 	}
-	
-	
+
 	// CHECK MOVEMENT FOR ROOK IS TRUE - VALID MOVEMENT
 	@Test
 	public void checkMovemnentRookValid() {
@@ -68,4 +67,3 @@ public class RookTest {
 	}
 
 }
-
