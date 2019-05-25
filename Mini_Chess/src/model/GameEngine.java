@@ -44,4 +44,6 @@ public interface GameEngine {
 	
 	public abstract void endGame();
 
+	public abstract int getMaxTurns();
+
 }

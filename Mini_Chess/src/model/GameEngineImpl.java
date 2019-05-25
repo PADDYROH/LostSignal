@@ -205,4 +205,9 @@ public class GameEngineImpl implements GameEngine {
 	public int getBlackPlayerPoints() {
 		return blackPlayerPoints;
 	}
+	
+	@Override
+	public int getMaxTurns() {
+		return maxTurns;
+	}
 }
