@@ -51,6 +51,11 @@ public class BasePlayer implements Player {
 		return playerPasswordHash;
 	}
 	
-	
+	@Override
+	public String toString() {
+		String retVal = "";
+		retVal = String.format("ID: %s\nName: %s\nAll-Time Points:%s\n", playerID, playerName, playerPoints);
+		return retVal;
+	}
 
 }

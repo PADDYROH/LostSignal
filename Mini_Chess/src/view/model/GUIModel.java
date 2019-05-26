@@ -71,4 +71,9 @@ public class GUIModel {
 		return (mainEngine.getMaxTurns() > 0) && (mainEngine.getWhitePlayer() != null) && (mainEngine.getBlackPlayer() != null);
 	}
 
+	public void updateCurrentPlayers() {
+		mainFrame.getMainPlayerPanel().updatePlayerList();
+		
+	}
+
 }
