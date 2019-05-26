@@ -33,7 +33,8 @@ public class Knight extends AbstractPiece {
 
 				} else {
 					// check that piece on same team isn't of same type
-					if (this.equals(gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]))) {
+					if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass()
+							.equals(this.getClass())) {
 						return false;
 					}
 					if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).getMergedPiece() != null) {
@@ -61,9 +62,19 @@ public class Knight extends AbstractPiece {
 	public boolean validMove(GameBoardImpl gameBoard, int x, int y) {
 		boolean validMove = false;
 		if (mergedPiece == null) {
+			if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]) != null) {
+				if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass().equals(this.getClass())) {
+					return false;
+				}
+			}
+
 			validMove = pieceMovement(gameBoard, x, y);
 		} else {
 			if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]) != null) {
+				if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass().equals(this.getClass())
+						&& (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getColor() == this.getColor()) {
+					return false;
+				}
 				if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).getColor() == this.getColor()) {
 
 					return false;
