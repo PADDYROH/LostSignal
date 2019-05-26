@@ -197,11 +197,11 @@ public class Rook extends AbstractPiece {
 	}
 
 	@Override
-	public void split(GameBoardImpl gameBoard) {
+	public boolean split(GameBoardImpl gameBoard) {
 
 		gameBoard.getPieces().get(mergedID).setCOLOR(this.COLOR);
 		this.mergedPiece = null;
-
+		return true;
 	}
 
 }
