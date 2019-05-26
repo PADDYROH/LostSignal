@@ -67,7 +67,7 @@ public class GameBoardImpl implements GameBoard {
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "white") {
 				whitePieces++;
-				if(value.getMergedPiece() != null) {
+				if (value.getMergedPiece() != null) {
 					whitePieces++;
 				}
 			}
@@ -81,7 +81,7 @@ public class GameBoardImpl implements GameBoard {
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "black") {
 				blackPieces++;
-				if(value.getMergedPiece() != null) {
+				if (value.getMergedPiece() != null) {
 					blackPieces++;
 				}
 			}
@@ -104,8 +104,12 @@ public class GameBoardImpl implements GameBoard {
 
 	public boolean movePiece(String id, int x, int y) {
 
+		boolean split = false;
 		if (pieces.get(id).getColor() == null) {
 			pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
+			split = true;
+
+			return true;
 		}
 
 		if (pieces.get(id).checkMovement(this, x, y)) {
@@ -114,9 +118,13 @@ public class GameBoardImpl implements GameBoard {
 			this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
 
 			// set starting pos to null
-			this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
+			if (!split) {
+				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
+
+			}
 
 			// update x and y in pieces map
+
 			pieces.get(id).setPosX(x);
 			pieces.get(id).setPosY(y);
 
