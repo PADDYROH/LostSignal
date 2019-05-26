@@ -34,20 +34,36 @@ public class GUIModel {
 	}
 
 	public void selectTile(int xPos, int yPos) {
-		// TODO Auto-generated method stub
-		// System.out.println("hey boy");
-		if (selected == null) {
-			// System.out.println(mainEngine.getGameBoard().getChessBoard()[xPos][yPos]);
-			
-			selected = mainEngine.selectPiece(xPos, yPos);
+		selectTile(xPos, yPos, false);
 
+	}
+	
+	public void selectTile(int xPos, int yPos, boolean isSplit) {
+		if(!isSplit) {
+			// TODO Auto-generated method stub
+			// System.out.println("hey boy");
+			if (selected == null) {
+				// System.out.println(mainEngine.getGameBoard().getChessBoard()[xPos][yPos]);
+				
+				selected = mainEngine.selectPiece(xPos, yPos, false);
+
+			} else {
+				// System.out.println(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()]);
+				mainEngine.movePiece(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()],
+						xPos, yPos);
+				selected = null;
+			}
+
+		
 		} else {
-			// System.out.println(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()]);
-			mainEngine.movePiece(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()],
-					xPos, yPos);
-			selected = null;
+			if(selected == null) {
+				selected = mainEngine.selectPiece(xPos, yPos, true);
+			} else {
+				mainEngine.movePiece(mainEngine.getGameBoard().getPiece(xPos, yPos).getMergedID(),
+						xPos, yPos);
+				selected = null;
+			}
 		}
-
 		for (int r = 0; r < 6; r++) {
 			for (int c = 0; c < 6; c++) {
 				if (selected != null && mainEngine.checkMove(xPos, yPos, c, r)) {
@@ -59,7 +75,6 @@ public class GUIModel {
 
 			}
 		}
-
 	}
 
 	public void updateBoard() {

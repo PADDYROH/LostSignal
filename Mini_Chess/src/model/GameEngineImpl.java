@@ -116,7 +116,7 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void endGame() {
-		calculatePlayerPoints(currentPlayer);
+		//calculatePlayerPoints(currentPlayer);
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateBoard(true);
 			uIM.endGame();
@@ -213,7 +213,7 @@ public class GameEngineImpl implements GameEngine {
 	}
 	
 	@Override
-	public Piece selectPiece(int xPos, int yPos) {
+	public Piece selectPiece(int xPos, int yPos, boolean ignoreColour) {
 		Piece tempPiece = mainBoard.getPiece(xPos, yPos);
 		boolean isSelectable = false;
 		if(tempPiece != null) {
@@ -222,6 +222,9 @@ public class GameEngineImpl implements GameEngine {
 			} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
 				isSelectable = true;
 			}
+		}
+		if(ignoreColour) {
+			isSelectable = true;
 		}
 		
 		return isSelectable ? tempPiece : null;
