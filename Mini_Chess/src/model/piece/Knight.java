@@ -12,6 +12,7 @@ public class Knight extends AbstractPiece {
 
 	public Knight(String COLOR, int posX, int posY) {
 		super(COLOR, posX, posY);
+		mergedPiece = null;
 		this.posX = posX;
 		this.posY = posY;
 	}
@@ -143,6 +144,14 @@ public class Knight extends AbstractPiece {
 	public void setPosX(int posX) {
 		this.posX = posX;
 		super.setPosX(posX);
+	}
+
+	@Override
+	public void split(GameBoardImpl gameBoard) {
+
+		gameBoard.getPieces().get(mergedID).setCOLOR(this.COLOR);
+		this.mergedPiece = null;
+
 	}
 
 }

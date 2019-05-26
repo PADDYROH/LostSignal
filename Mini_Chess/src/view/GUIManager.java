@@ -22,13 +22,16 @@ public class GUIManager implements UserInterfaceManager {
 	@Override
 	public void updateBoard(boolean successfulMove) {
 		// TODO Auto-generated method stub
+		// make take boolean so knows whether to update status bar
 		gUIModel.updateBoard();
+		gUIModel.updateCurrentPlayers();
 
 	}
 
 	@Override
 	public void updateCurrentPlayers() {
 		// TODO Auto-generated method stub
+		gUIModel.updateCurrentPlayers();
 
 	}
 
@@ -41,11 +44,6 @@ public class GUIManager implements UserInterfaceManager {
 	public void selectPiece(String string) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	public Tile[][] getTiles() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

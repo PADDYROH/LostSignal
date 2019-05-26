@@ -12,8 +12,6 @@ public interface GameBoard {
 
 	public Map<String, Piece> getPieces();
 
-
-
 	public void setPieces(Map<String, Piece> pieces);
 
 	public boolean movePiece(String id, int x, int y);
@@ -21,7 +19,5 @@ public interface GameBoard {
 	public int calculateNumberBlackPieces();
 
 	public int calculateNumberWhitePieces();
-
-	public boolean movePiece(String string, int i, int j, boolean b);
 
 }

@@ -13,6 +13,7 @@ public class Bishop extends AbstractPiece {
 
 	public Bishop(String COLOR, int posX, int posY) {
 		super(COLOR, posX, posY);
+		mergedPiece = null;
 		this.posX = posX;
 		this.posY = posY;
 	}
@@ -83,7 +84,8 @@ public class Bishop extends AbstractPiece {
 					return false;
 				}
 			}
-			if (gameBoard.getPieces().get(mergedID).pieceMovement(gameBoard, x, y)== true || this.pieceMovement(gameBoard, x, y) == true) {
+			if (gameBoard.getPieces().get(mergedID).pieceMovement(gameBoard, x, y) == true
+					|| this.pieceMovement(gameBoard, x, y) == true) {
 
 				validMove = true;
 			} else {
@@ -92,7 +94,6 @@ public class Bishop extends AbstractPiece {
 		}
 		return validMove;
 	}
-
 
 	public void splitPiece(GameBoardImpl gameBoard, Piece piece, int x, int y) {
 		// possibly can be checked inside the gui but probs here aswell to be safe
@@ -176,14 +177,25 @@ public class Bishop extends AbstractPiece {
 		this.mergedPiece = p;
 
 	}
+
 	@Override
 	public void setPosY(int posY) {
 		this.posY = posY;
 		super.setPosY(posY);
 	}
+
 	@Override
 	public void setPosX(int posX) {
 		this.posX = posX;
 		super.setPosX(posX);
 	}
+
+	@Override
+	public void split(GameBoardImpl gameBoard) {
+
+		gameBoard.getPieces().get(mergedID).setCOLOR(this.COLOR);
+		this.mergedPiece = null;
+
+	}
+
 }
