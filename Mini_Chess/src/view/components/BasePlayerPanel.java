@@ -56,9 +56,13 @@ public class BasePlayerPanel extends  JPanel {
 		Player blackPlayer = mainFrame.getGUIModel().getMainEngine().getBlackPlayer();
 		if(whitePlayer != null) {
 			whitePlayerLabel.setText("White Player\n" + whitePlayer.toString() + "Current Points: " + mainFrame.getGUIModel().getMainEngine().getWhitePlayerPoints());
+		} else {
+			whitePlayerLabel.setText("White Player\n");
 		}
 		if(blackPlayer != null) {
 			blackPlayerLabel.setText("Black Player\n" + blackPlayer.toString() + "Current Points: " + mainFrame.getGUIModel().getMainEngine().getBlackPlayerPoints());
+		} else {
+			blackPlayerLabel.setText("Black Player\n");
 		}
 		
 		revalidate();

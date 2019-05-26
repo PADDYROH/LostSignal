@@ -50,4 +50,10 @@ public interface GameEngine {
 
 	public abstract boolean checkMove(int xSource, int ySource, int xTarg, int yTarg);
 
+	public abstract void logoutWhitePlayer();
+
+	public abstract void logoutBlackPlayer();
+
+	void swapPlayers();
+
 }

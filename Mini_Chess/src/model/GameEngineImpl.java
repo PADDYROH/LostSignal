@@ -70,10 +70,10 @@ public class GameEngineImpl implements GameEngine {
 	@Override
 	public boolean movePiece(String pieceID, int xCo, int yCo) {
 		// check piece belongs to current player
-		//String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
+		// String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
 		Piece tempPiece = mainBoard.getPieces().get(pieceID);
 		// change to checkMove()
-		if (checkMove(tempPiece.getPosX(),tempPiece.getPosY(), xCo, yCo)) {
+		if (checkMove(tempPiece.getPosX(), tempPiece.getPosY(), xCo, yCo)) {
 			// try to move piece
 			if (!mainBoard.movePiece(pieceID, xCo, yCo)) {
 				for (UserInterfaceManager uIM : userInterfaceManagers) {
@@ -116,7 +116,7 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void endGame() {
-		//calculatePlayerPoints(currentPlayer);
+		// calculatePlayerPoints(currentPlayer);
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateBoard(true);
 			uIM.endGame();
@@ -180,7 +180,7 @@ public class GameEngineImpl implements GameEngine {
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateCurrentPlayers();
 		}
-		if(whitePlayer != null && blackPlayer != null) {
+		if (whitePlayer != null && blackPlayer != null) {
 			for (UserInterfaceManager uIM : userInterfaceManagers) {
 				uIM.updateBoard(true);
 			}
@@ -206,37 +206,81 @@ public class GameEngineImpl implements GameEngine {
 	public int getBlackPlayerPoints() {
 		return blackPlayerPoints;
 	}
-	
+
 	@Override
 	public int getMaxTurns() {
 		return maxTurns;
 	}
-	
+
 	@Override
 	public Piece selectPiece(int xPos, int yPos) {
 		Piece tempPiece = mainBoard.getPiece(xPos, yPos);
 		boolean isSelectable = false;
-		if(tempPiece != null) {
-			if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
+		if (tempPiece != null) {
+			if (tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
 				isSelectable = true;
 			} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
 				isSelectable = true;
 			}
 		}
-		
+
 		return isSelectable ? tempPiece : null;
 	}
-	
+
 	@Override
 	public boolean checkMove(int xSource, int ySource, int xTarg, int yTarg) {
 		Piece tempPiece = mainBoard.getPiece(xSource, ySource);
 		boolean playerMatches = false;
-		if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
+		if (tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
 			playerMatches = true;
 		} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
 			playerMatches = true;
 		}
-		
+
 		return playerMatches && tempPiece.validMove(mainBoard, xTarg, yTarg);
+	}
+
+	@Override
+	public void logoutWhitePlayer() {
+		whitePlayer = blackPlayer;
+		blackPlayer = null;
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateCurrentPlayers();
+		}
+
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateBoard(true);
+
+		}
+
+	}
+
+	@Override
+	public void logoutBlackPlayer() {
+		blackPlayer = null;
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateCurrentPlayers();
+		}
+
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateBoard(true);
+
+		}
+
+	}
+	
+	@Override
+	public void swapPlayers() {
+		Player temp = whitePlayer;
+		whitePlayer = blackPlayer;
+		blackPlayer = temp;
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateCurrentPlayers();
+		}
+
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateBoard(true);
+
+		}
 	}
 }
