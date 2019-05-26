@@ -116,4 +116,10 @@ public class GameBoardImpl implements GameBoard {
 		return false;
 
 	}
+
+	@Override
+	public boolean movePiece(String string, int i, int j, boolean b) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

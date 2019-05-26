@@ -22,4 +22,6 @@ public interface GameBoard {
 
 	public int calculateNumberWhitePieces();
 
+	public boolean movePiece(String string, int i, int j, boolean b);
+
 }
