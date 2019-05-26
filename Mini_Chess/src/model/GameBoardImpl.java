@@ -104,6 +104,10 @@ public class GameBoardImpl implements GameBoard {
 
 	public boolean movePiece(String id, int x, int y) {
 
+		if (pieces.get(id).getColor() == null) {
+			pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
+		}
+
 		if (pieces.get(id).checkMovement(this, x, y)) {
 
 			// move the piece
@@ -119,14 +123,6 @@ public class GameBoardImpl implements GameBoard {
 			if (pieces.get(id).getMergedPiece() != null) {
 				pieces.get(pieces.get(id).getMergedID()).setPosX(x);
 				pieces.get(pieces.get(id).getMergedID()).setPosY(y);
-
-				System.out.print("hash map id " + pieces.get(pieces.get(id).getMergedID()).getPosX() + ",");
-				System.out.print(pieces.get(pieces.get(id).getMergedID()).getPosY());
-				System.out.println();
-				System.out.print(pieces.get(id).getPosX());
-				System.out.print(pieces.get(id).getPosY());
-				System.out.println();
-
 			}
 
 			return true;
@@ -136,9 +132,4 @@ public class GameBoardImpl implements GameBoard {
 
 	}
 
-	@Override
-	public boolean movePiece(String string, int i, int j, boolean b) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
