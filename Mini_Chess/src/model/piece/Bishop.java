@@ -64,6 +64,12 @@ public class Bishop extends AbstractPiece {
 	public boolean validMove(GameBoardImpl gameBoard, int x, int y) {
 		boolean validMove = false;
 		if (mergedPiece == null) {
+			if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]) != null) {
+				if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass().equals(this.getClass())) {
+					return false;
+				}
+			}
+
 			validMove = pieceMovement(gameBoard, x, y);
 		} else {
 			if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]) != null) {
