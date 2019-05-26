@@ -1,8 +1,13 @@
 package view.model;
 
 import java.awt.Color;
+import java.io.File;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import model.GameBoardImpl;
 import model.GameEngine;
@@ -76,6 +81,7 @@ public class GUIModel {
 
 	public void updateBoard() {
 		mainFrame.getMainBoardPanel().updateTiles();
+		mainFrame.getMainStatusPanel().updateInfo();
 
 	}
 
@@ -86,7 +92,30 @@ public class GUIModel {
 
 	public void updateCurrentPlayers() {
 		mainFrame.getMainPlayerPanel().updatePlayerList();
+		mainFrame.getMainStatusPanel().updateInfo();
 
 	}
+
+	public void endGame() {
+		JPanel winPanel = new JPanel();
+		String message = "";
+				
+		if (mainEngine.getBlackPlayerPoints() > mainEngine.getWhitePlayerPoints()) {
+			message += String.format("The winner is: %s(%s) with %d points!", mainEngine.getBlackPlayer().getName(),
+					mainEngine.getBlackPlayer().getID(), mainEngine.getBlackPlayerPoints());
+		} else if (mainEngine.getBlackPlayerPoints() < mainEngine.getWhitePlayerPoints()) {
+			message += String.format("The winner is: %s(%s) with %d points!", mainEngine.getWhitePlayer().getName(),
+					mainEngine.getWhitePlayer().getID(), mainEngine.getWhitePlayerPoints());
+		} else {
+			message += String.format("It's a draw! Both players have %d points!", mainEngine.getBlackPlayerPoints());
+		}
+		
+		winPanel.add(new JLabel(new ImageIcon("pieceImages" + File.separator + "win.png")));
+		winPanel.add(new JLabel(message));
+		
+		JOptionPane.showMessageDialog(null, winPanel, "Game Over!", JOptionPane.DEFAULT_OPTION);
+		
+	}
+	
 
 }

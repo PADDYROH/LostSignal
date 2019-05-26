@@ -38,6 +38,7 @@ public class GUIManager implements UserInterfaceManager {
 	@Override
 	public void endGame() {
 		// TODO Auto-generated method stub
+		gUIModel.endGame();
 
 	}
 

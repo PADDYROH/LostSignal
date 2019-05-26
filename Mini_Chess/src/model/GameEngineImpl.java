@@ -103,9 +103,10 @@ public class GameEngineImpl implements GameEngine {
 
 				if (numTurns >= maxTurns) {
 					endGame();
-				}
-				for (UserInterfaceManager uIM : userInterfaceManagers) {
-					uIM.updateBoard(true);
+				} else {
+					for (UserInterfaceManager uIM : userInterfaceManagers) {
+						uIM.updateBoard(true);
+					}
 				}
 				return true;
 			}
@@ -274,6 +275,7 @@ public class GameEngineImpl implements GameEngine {
 		Player temp = whitePlayer;
 		whitePlayer = blackPlayer;
 		blackPlayer = temp;
+		currentPlayer = whitePlayer;
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateCurrentPlayers();
 		}
@@ -282,5 +284,11 @@ public class GameEngineImpl implements GameEngine {
 			uIM.updateBoard(true);
 
 		}
+	}
+
+	@Override
+	public int getNumTurns() {
+		// TODO Auto-generated method stub
+		return numTurns;
 	}
 }

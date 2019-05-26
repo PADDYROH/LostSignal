@@ -54,6 +54,8 @@ public interface GameEngine {
 
 	public abstract void logoutBlackPlayer();
 
-	void swapPlayers();
+	public abstract void swapPlayers();
+
+	public abstract int getNumTurns();
 
 }
