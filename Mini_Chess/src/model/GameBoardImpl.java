@@ -105,22 +105,26 @@ public class GameBoardImpl implements GameBoard {
 	public boolean movePiece(String id, int x, int y) {
 
 		boolean split = false;
+	
 		if (pieces.get(id).getColor() == null) {
 			pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
 			split = true;
 
-			return true;
+			//return true;
 		}
 
 		if (pieces.get(id).checkMovement(this, x, y)) {
 
 			// move the piece
-			this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
-
+			
+			
 			// set starting pos to null
 			if (!split) {
+				this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
 				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
 
+			} else {
+				this.chessBoard[x][y] = id;
 			}
 
 			// update x and y in pieces map
@@ -136,7 +140,7 @@ public class GameBoardImpl implements GameBoard {
 			return true;
 
 		}
-		return false;
+		return false || split;
 
 	}
 
