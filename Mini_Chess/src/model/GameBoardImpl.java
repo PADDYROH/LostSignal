@@ -110,6 +110,19 @@ public class GameBoardImpl implements GameBoard {
 			pieces.get(id).setPosX(x);
 			pieces.get(id).setPosY(y);
 
+			if (pieces.get(id).getMergedPiece() != null) {
+				pieces.get(pieces.get(id).getMergedID()).setPosX(x);
+				pieces.get(pieces.get(id).getMergedID()).setPosY(y);
+
+				System.out.print("hash map id " + pieces.get(pieces.get(id).getMergedID()).getPosX() + ",");
+				System.out.print(pieces.get(pieces.get(id).getMergedID()).getPosY());
+				System.out.println();
+				System.out.print(pieces.get(id).getPosX());
+				System.out.print(pieces.get(id).getPosY());
+				System.out.println();
+
+			}
+
 			return true;
 
 		}

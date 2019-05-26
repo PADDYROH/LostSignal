@@ -26,4 +26,8 @@ public interface Piece {
 
 	public Object getMergedPiece();
 
+	public void setMergedPiece(Piece p);
+
+	public String getMergedID();
+
 }
