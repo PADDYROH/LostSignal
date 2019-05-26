@@ -13,6 +13,8 @@ public class GameEngineImpl implements GameEngine {
 	// private static int MAX_PLAYERS = 2;
 	private static int BOARD_ROWS = 6;
 	private static int BOARD_COLS = 6;
+	private static int POINTS_PER_PIECE = 5;
+	private static int MAX_POINTS = 30;
 	private Player whitePlayer;
 	private Player blackPlayer;
 	private int whitePlayerPoints;
@@ -202,5 +204,35 @@ public class GameEngineImpl implements GameEngine {
 	@Override
 	public int getBlackPlayerPoints() {
 		return blackPlayerPoints;
+	}
+	
+	@Override
+	public int getMaxTurns() {
+		return maxTurns;
+	}
+	
+	@Override
+	public Piece selectPiece(int xPos, int yPos) {
+		Piece tempPiece = mainBoard.getPiece(xPos, yPos);
+		boolean isSelectable = false;
+		if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
+			isSelectable = true;
+		} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
+			isSelectable = true;
+		}
+		return isSelectable ? tempPiece : null;
+	}
+	
+	@Override
+	public boolean checkMove(int xSource, int ySource, int xTarg, int yTarg) {
+		Piece tempPiece = mainBoard.getPiece(xSource, ySource);
+		boolean playerMatches = false;
+		if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
+			playerMatches = true;
+		} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
+			playerMatches = true;
+		}
+		
+		return playerMatches && tempPiece.validMove(mainBoard, xTarg, yTarg);
 	}
 }

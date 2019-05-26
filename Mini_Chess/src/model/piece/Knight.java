@@ -6,44 +6,55 @@ public class Knight extends AbstractPiece {
 
 	private int posX;
 	private int posY;
+	private Piece mergedPiece;
+	private String mergedID;
+	private String COLOR;
 
 	public Knight(String COLOR, int posX, int posY) {
 		super(COLOR, posX, posY);
-
 		this.posX = posX;
 		this.posY = posY;
 	}
 
 	@Override
 	public boolean checkMovement(GameBoardImpl gameBoard, int x, int y) {
-		// check if piece is same color
-		if (sameTeam(gameBoard, x, y)) {
-			return false;
-		}
-
-		if (posX == x && posY == y) {
-			return false;
-		}
-
 		// keeps x and y with in bounds
 		if (!inBoardLimits(x, y)) {
 			return false;
 		}
-
+		// checks if move is valid
 		if (validMove(gameBoard, x, y)) {
 
 			if (gameBoard.getChessBoard()[x][y] != null) {
+				Piece piece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
+
 				if (!sameTeam(gameBoard, x, y)) {
 
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setCOLOR(null);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosX(-1);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosY(-1);
+					piece.setCOLOR(null);
+					piece.setPosX(-1);
+					piece.setPosY(-1);
 
+				} else {
+					// check that piece on same team isn't of same type
+					if (piece.getClass().equals(this.getClass()) && piece.getColor().equals(this.getColor())) {
+						return false;
+					}
+
+					if (piece.getMergedPiece() != null && piece.getColor().equals(this.getColor())) {
+						return false;
+					}
+					if (this.mergedPiece != null) {
+						return false;
+					}
+					mergedPiece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
+					mergedID = gameBoard.getChessBoard()[x][y];
+					piece.setCOLOR(null);
+					piece.setPosX(-1);
+					piece.setPosY(-1);
 				}
 			}
-
-			posX = x;
-			posY = y;
+			this.posX = x;
+			this.posY = y;
 			return true;
 		}
 
@@ -52,6 +63,34 @@ public class Knight extends AbstractPiece {
 
 	@Override
 	public boolean validMove(GameBoardImpl gameBoard, int x, int y) {
+
+		Piece piece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
+
+		boolean validMove = false;
+		if (mergedPiece == null) {
+			if (piece != null) {
+				if (piece.getClass().equals(this.getClass()) && piece.getColor().equals(this.getColor())) {
+					return false;
+				}
+			}
+
+			validMove = pieceMovement(gameBoard, x, y);
+		} else {
+			if (piece != null) {
+				if (piece.getColor() == this.getColor()) {
+					return false;
+				}
+			}
+			if (mergedPiece.pieceMovement(gameBoard, x, y) == true || this.pieceMovement(gameBoard, x, y) == true) {
+
+				validMove = true;
+			}
+		}
+		return validMove;
+	}
+
+	@Override
+	public boolean pieceMovement(GameBoardImpl gameBoard, int x, int y) {
 
 		if (posX - 1 == x && posY + 2 == y || posX + 1 == x && posY + 2 == y) {
 			return true;
@@ -70,6 +109,10 @@ public class Knight extends AbstractPiece {
 		}
 
 		return false;
+	}
+
+	public Piece getMergedPiece() {
+		return mergedPiece;
 	}
 
 }
