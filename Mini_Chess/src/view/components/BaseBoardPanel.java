@@ -2,8 +2,11 @@ package view.components;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -23,7 +26,7 @@ public class BaseBoardPanel extends JPanel {
 		//setBackground(new Color(50, 50, 50));
 		//setForeground(new Color(0, 0, 255));
 		setLayout(new GridLayout(6, 6));
-		setBorder(BorderFactory.createLineBorder(new Color(25, 250, 0)));
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 //		for(int r = 0; r < 6; r++) {
 //			for(int c = 0; c < 6; c++) {
@@ -66,8 +69,17 @@ public class BaseBoardPanel extends JPanel {
 //		repaint();
 		for(int r = 0; r < 6; r++) {
 			for(int c = 0; c < 6; c++) {
-				
-				tileArray[c][r].setImage(pieceToImageIcon(mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(c,r)));
+				Piece basePiece = mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(c,r);
+				Piece mergedPiece = null;//tempPiece.getMergedPiece();
+				ImageIcon baseIcon = pieceToImageIcon(basePiece);
+				ImageIcon mergedIcon = null;
+				if(mergedPiece != null) {
+					mergedIcon = pieceToImageIcon(mergedPiece);
+				}
+				if(basePiece == null) {
+					baseIcon = null;
+				}
+				tileArray[c][r].setImage(baseIcon, mergedIcon);
 				//tileArray[r][c] = tempLabel;
 				//add(tile);
 			}
@@ -77,6 +89,11 @@ public class BaseBoardPanel extends JPanel {
 	}
 	
 	public ImageIcon pieceToImageIcon(Piece piece) {
+		return new ImageIcon(pieceToPath(piece));
+	
+	}
+	
+	private String pieceToPath(Piece piece) {
 		String path = "";
 		if(piece != null) {
 			String color;
@@ -96,8 +113,7 @@ public class BaseBoardPanel extends JPanel {
 			
 			path = "pieceImages" + File.separator + color + type + ".png";
 		}
-		return new ImageIcon(path);
-	
+		return path;
 	}
 	
 	public BaseFrame getMainFrame() {
@@ -107,5 +123,7 @@ public class BaseBoardPanel extends JPanel {
 	public Tile[][] getTiles(){
 		return tileArray;
 	}
+	
+	
 
 }
