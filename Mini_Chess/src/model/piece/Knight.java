@@ -40,19 +40,20 @@ public class Knight extends AbstractPiece {
 						return false;
 					}
 
-					if (piece.getMergedPiece() != null && piece.getColor().equals(this.getColor())) {
+					if (piece.getMergedPiece() != null) {
 						return false;
 					}
 					if (this.mergedPiece != null) {
 						return false;
+					} else {
+						mergedID = gameBoard.getChessBoard()[x][y];
+						mergedPiece = gameBoard.getPieces().get(mergedID);
+						mergedPiece.setCOLOR(null);
 					}
-					mergedPiece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
-					mergedID = gameBoard.getChessBoard()[x][y];
-					piece.setCOLOR(null);
-					piece.setPosX(-1);
-					piece.setPosY(-1);
+
 				}
 			}
+
 			this.posX = x;
 			this.posY = y;
 			return true;
@@ -84,11 +85,12 @@ public class Knight extends AbstractPiece {
 			if (mergedPiece.pieceMovement(gameBoard, x, y) == true || this.pieceMovement(gameBoard, x, y) == true) {
 
 				validMove = true;
+			} else {
+				validMove = false;
 			}
 		}
 		return validMove;
 	}
-
 	@Override
 	public boolean pieceMovement(GameBoardImpl gameBoard, int x, int y) {
 
@@ -111,8 +113,22 @@ public class Knight extends AbstractPiece {
 		return false;
 	}
 
+	@Override
 	public Piece getMergedPiece() {
 		return mergedPiece;
+	}
+
+	@Override
+	public String getMergedID() {
+		// TODO Auto-generated method stub
+		return this.mergedID;
+	}
+
+	@Override
+	public void setMergedPiece(Piece p) {
+
+		this.mergedPiece = p;
+
 	}
 
 }
