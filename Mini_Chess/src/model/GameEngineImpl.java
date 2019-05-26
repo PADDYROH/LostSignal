@@ -71,6 +71,7 @@ public class GameEngineImpl implements GameEngine {
 	public boolean movePiece(String pieceID, int xCo, int yCo) {
 		// check piece belongs to current player
 		String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
+		// change to checkMove()
 		if ((pieceColor.equals("black") && currentPlayer.getID().equals(blackPlayer.getID()))
 				|| (pieceColor.equals("white") && currentPlayer.getID().equals(whitePlayer.getID()))) {
 			// try to move piece
@@ -215,11 +216,14 @@ public class GameEngineImpl implements GameEngine {
 	public Piece selectPiece(int xPos, int yPos) {
 		Piece tempPiece = mainBoard.getPiece(xPos, yPos);
 		boolean isSelectable = false;
-		if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
-			isSelectable = true;
-		} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
-			isSelectable = true;
+		if(tempPiece != null) {
+			if(tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
+				isSelectable = true;
+			} else if (tempPiece.getColor().equals("black") && currentPlayer == blackPlayer) {
+				isSelectable = true;
+			}
 		}
+		
 		return isSelectable ? tempPiece : null;
 	}
 	

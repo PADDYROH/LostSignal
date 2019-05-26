@@ -13,6 +13,8 @@ public class BaseFileMenu extends JMenu {
 	private RegisterMenuItem registerMenuItem;
 	private LoginMenuItem loginMenuItem;
 	private StartMenuItem startMenuItem;
+	private LogoutMenuItem logoutWhiteMenuItem;
+	private LogoutMenuItem logoutBlackMenuItem;
 
 	public BaseFileMenu(BaseFrame mainFrame) {
 		// TODO Auto-generated constructor stub
@@ -23,6 +25,8 @@ public class BaseFileMenu extends JMenu {
 		registerMenuItem = new RegisterMenuItem(mainFrame);
 		loginMenuItem = new LoginMenuItem(mainFrame);
 		startMenuItem = new StartMenuItem(mainFrame);
+		logoutWhiteMenuItem = new LogoutMenuItem(mainFrame, true);
+		logoutBlackMenuItem = new LogoutMenuItem(mainFrame, false);
 		
 		exitMenuItem = new JMenuItem("Exit");
 		// font
@@ -31,6 +35,8 @@ public class BaseFileMenu extends JMenu {
 		add(startMenuItem);
 		add(loginMenuItem);
 		add(registerMenuItem);
+		add(logoutWhiteMenuItem);
+		add(logoutBlackMenuItem);
 		add(exitMenuItem);
 		
 		

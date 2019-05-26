@@ -13,6 +13,7 @@ public class Bishop extends AbstractPiece {
 
 	public Bishop(String COLOR, int posX, int posY) {
 		super(COLOR, posX, posY);
+		mergedPiece = null;
 		this.posX = posX;
 		this.posY = posY;
 	}

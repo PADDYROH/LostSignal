@@ -67,41 +67,41 @@ class GUIModelTestMerged {
 	//
 	// }
 
-	@Test
-	void testSelectRookKnight() {
-		gUIM.selectPiece("r1w");
-		Tile[][] tiles = gUIM.getTiles();
-		List<Tile> greenList = new ArrayList<Tile>();
-		
-		greenList.add(tiles[3][3]);
-		greenList.add(tiles[3][2]);
-		greenList.add(tiles[3][1]);
-		greenList.add(tiles[3][4]);
-		greenList.add(tiles[2][1]);
-		greenList.add(tiles[2][3]);
-		greenList.add(tiles[1][2]);
-		greenList.add(tiles[1][3]);
-		greenList.add(tiles[1][4]);
-		greenList.add(tiles[4][1]);
-		greenList.add(tiles[4][3]);
-		greenList.add(tiles[5][2]);
-		greenList.add(tiles[5][3]);
-		greenList.add(tiles[5][4]);
-		
-		for(int r = 0; r < tiles.length; r++) {
-			for(int c = 0; c < tiles[r].length; c++) {
-				if(greenList.contains(tiles[r][c])) {
-					assertEquals(tiles[r][c].getBackground(), Color.GREEN);
-				} else if (r == 2 && c == 3) {
-					assertEquals(tiles[r][c].getBackground(), Color.GRAY);
-				} else {
-					assertEquals(tiles[r][c].getBackground(), Color.RED);
-				}
-			}
-		}		
-
-
-	}
+//	@Test
+//	void testSelectRookKnight() {
+//		gUIM.selectPiece("r1w");
+//		Tile[][] tiles = gUIM.getTiles();
+//		List<Tile> greenList = new ArrayList<Tile>();
+//		
+//		greenList.add(tiles[3][3]);
+//		greenList.add(tiles[3][2]);
+//		greenList.add(tiles[3][1]);
+//		greenList.add(tiles[3][4]);
+//		greenList.add(tiles[2][1]);
+//		greenList.add(tiles[2][3]);
+//		greenList.add(tiles[1][2]);
+//		greenList.add(tiles[1][3]);
+//		greenList.add(tiles[1][4]);
+//		greenList.add(tiles[4][1]);
+//		greenList.add(tiles[4][3]);
+//		greenList.add(tiles[5][2]);
+//		greenList.add(tiles[5][3]);
+//		greenList.add(tiles[5][4]);
+//		
+//		for(int r = 0; r < tiles.length; r++) {
+//			for(int c = 0; c < tiles[r].length; c++) {
+//				if(greenList.contains(tiles[r][c])) {
+//					assertEquals(tiles[r][c].getBackground(), Color.GREEN);
+//				} else if (r == 2 && c == 3) {
+//					assertEquals(tiles[r][c].getBackground(), Color.GRAY);
+//				} else {
+//					assertEquals(tiles[r][c].getBackground(), Color.RED);
+//				}
+//			}
+//		}		
+//
+//
+//	}
 
 	@Test
 	void testSelectRookBishop() {

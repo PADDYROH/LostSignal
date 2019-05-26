@@ -12,6 +12,7 @@ public class Rook extends AbstractPiece {
 
 	public Rook(String COLOR, int posX, int posY) {
 		super(COLOR, posX, posY);
+		mergedPiece = null;
 		this.posX = posX;
 		this.posY = posY;
 	}
