@@ -67,6 +67,9 @@ public class GameBoardImpl implements GameBoard {
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "white") {
 				whitePieces++;
+				if(value.getMergedPiece() != null) {
+					whitePieces++;
+				}
 			}
 		}
 
@@ -74,14 +77,17 @@ public class GameBoardImpl implements GameBoard {
 	}
 
 	public int calculateNumberBlackPieces() {
-		int whitePieces = 0;
+		int blackPieces = 0;
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "black") {
-				whitePieces++;
+				blackPieces++;
+				if(value.getMergedPiece() != null) {
+					blackPieces++;
+				}
 			}
 		}
 
-		return whitePieces;
+		return blackPieces;
 	}
 
 	public String[][] getChessBoard() {

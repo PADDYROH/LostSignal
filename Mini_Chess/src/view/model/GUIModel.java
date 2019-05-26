@@ -34,17 +34,30 @@ public class GUIModel {
 	}
 
 	public void selectTile(int xPos, int yPos) {
+		selectTile(xPos, yPos, false);
+
+	}
+
+	public void selectTile(int xPos, int yPos, boolean isSplit) {
+
 		// TODO Auto-generated method stub
 		// System.out.println("hey boy");
 		if (selected == null) {
 			// System.out.println(mainEngine.getGameBoard().getChessBoard()[xPos][yPos]);
-			
+
 			selected = mainEngine.selectPiece(xPos, yPos);
 
 		} else {
 			// System.out.println(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()]);
-			mainEngine.movePiece(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()],
-					xPos, yPos);
+			if(isSplit && mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY()).getMergedPiece() != null) {
+				mainEngine.movePiece(mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY()).getMergedID(),
+						xPos, yPos);
+				System.out.println("huge sack");
+			} else {
+				mainEngine.movePiece(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()],
+						xPos, yPos);
+			}
+			
 			selected = null;
 		}
 
@@ -59,7 +72,6 @@ public class GUIModel {
 
 			}
 		}
-
 	}
 
 	public void updateBoard() {
@@ -68,12 +80,13 @@ public class GUIModel {
 	}
 
 	public boolean isGameStarted() {
-		return (mainEngine.getMaxTurns() > 0) && (mainEngine.getWhitePlayer() != null) && (mainEngine.getBlackPlayer() != null);
+		return (mainEngine.getMaxTurns() > 0) && (mainEngine.getWhitePlayer() != null)
+				&& (mainEngine.getBlackPlayer() != null);
 	}
 
 	public void updateCurrentPlayers() {
 		mainFrame.getMainPlayerPanel().updatePlayerList();
-		
+
 	}
 
 }

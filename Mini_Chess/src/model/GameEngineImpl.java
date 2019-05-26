@@ -70,10 +70,10 @@ public class GameEngineImpl implements GameEngine {
 	@Override
 	public boolean movePiece(String pieceID, int xCo, int yCo) {
 		// check piece belongs to current player
-		String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
+		//String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
+		Piece tempPiece = mainBoard.getPieces().get(pieceID);
 		// change to checkMove()
-		if ((pieceColor.equals("black") && currentPlayer.getID().equals(blackPlayer.getID()))
-				|| (pieceColor.equals("white") && currentPlayer.getID().equals(whitePlayer.getID()))) {
+		if (checkMove(tempPiece.getPosX(),tempPiece.getPosY(), xCo, yCo)) {
 			// try to move piece
 			if (!mainBoard.movePiece(pieceID, xCo, yCo)) {
 				for (UserInterfaceManager uIM : userInterfaceManagers) {
@@ -116,7 +116,7 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public void endGame() {
-		calculatePlayerPoints(currentPlayer);
+		//calculatePlayerPoints(currentPlayer);
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateBoard(true);
 			uIM.endGame();
