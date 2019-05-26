@@ -71,7 +71,8 @@ public class Knight extends AbstractPiece {
 			validMove = pieceMovement(gameBoard, x, y);
 		} else {
 			if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]) != null) {
-				if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass().equals(this.getClass())) {
+				if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass().equals(this.getClass())
+						&& (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getColor() == this.getColor()) {
 					return false;
 				}
 				if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).getColor() == this.getColor()) {
