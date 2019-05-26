@@ -70,12 +70,17 @@ public class BaseBoardPanel extends JPanel {
 		for(int r = 0; r < 6; r++) {
 			for(int c = 0; c < 6; c++) {
 				Piece basePiece = mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(c,r);
-				Piece mergedPiece = null;//tempPiece.getMergedPiece();
+				Piece mergedPiece = null;
+				if(basePiece != null) {
+					mergedPiece = basePiece.getMergedPiece();
+				}
+				
 				ImageIcon baseIcon = pieceToImageIcon(basePiece);
 				ImageIcon mergedIcon = null;
 				if(mergedPiece != null) {
-					mergedIcon = pieceToImageIcon(mergedPiece);
+					mergedIcon = pieceToImageIcon(mergedPiece, basePiece.getColor());
 				}
+				
 				if(basePiece == null) {
 					baseIcon = null;
 				}
@@ -88,20 +93,20 @@ public class BaseBoardPanel extends JPanel {
 		revalidate();
 	}
 	
-	public ImageIcon pieceToImageIcon(Piece piece) {
-		return new ImageIcon(pieceToPath(piece));
-	
+	private ImageIcon pieceToImageIcon(Piece piece, String color) {
+		// TODO Auto-generated method stub
+		return new ImageIcon(pieceToPath(piece, color));
 	}
-	
-	private String pieceToPath(Piece piece) {
+
+	private String pieceToPath(Piece piece, String color) {
 		String path = "";
 		if(piece != null) {
-			String color;
+			String colorCode;
 			String type;
-			if(piece.getColor() == "white") {
-				color = "W";
+			if(color == "white") {
+				colorCode = "W";
 			} else {
-				color = "B"; 
+				colorCode = "B"; 
 			}
 			if(piece instanceof Rook) {
 				type = "R";
@@ -111,9 +116,42 @@ public class BaseBoardPanel extends JPanel {
 				type = "K";
 			}
 			
-			path = "pieceImages" + File.separator + color + type + ".png";
+			path = "pieceImages" + File.separator + colorCode + type + ".png";
 		}
 		return path;
+	}
+
+	public ImageIcon pieceToImageIcon(Piece piece) {
+		return new ImageIcon(pieceToPath(piece));
+	
+	}
+	
+	private String pieceToPath(Piece piece) {
+//		String path = "";
+//		if(piece != null) {
+//			String color;
+//			String type;
+//			if(piece.getColor() == "white") {
+//				color = "W";
+//			} else {
+//				color = "B"; 
+//			}
+//			if(piece instanceof Rook) {
+//				type = "R";
+//			} else if (piece instanceof Bishop) {
+//				type = "B";
+//			} else {
+//				type = "K";
+//			}
+//			
+//			path = "pieceImages" + File.separator + color + type + ".png";
+//		}
+		String path = "";
+		if(piece != null) {
+			path = pieceToPath(piece, piece.getColor());
+		}
+		return path;
+		
 	}
 	
 	public BaseFrame getMainFrame() {

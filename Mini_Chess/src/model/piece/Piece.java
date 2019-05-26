@@ -24,6 +24,6 @@ public interface Piece {
 
 	boolean pieceMovement(GameBoardImpl gameBoard, int x, int y);
 
-	public Object getMergedPiece();
+	public Piece getMergedPiece();
 
 }
