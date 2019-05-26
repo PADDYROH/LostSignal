@@ -8,6 +8,7 @@ public class Knight extends AbstractPiece {
 	private int posY;
 	private Piece mergedPiece;
 	private String mergedID;
+	private String COLOR;
 
 	public Knight(String COLOR, int posX, int posY) {
 		super(COLOR, posX, posY);
@@ -25,19 +26,21 @@ public class Knight extends AbstractPiece {
 		if (validMove(gameBoard, x, y)) {
 
 			if (gameBoard.getChessBoard()[x][y] != null) {
+				Piece piece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
+
 				if (!sameTeam(gameBoard, x, y)) {
 
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setCOLOR(null);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosX(-1);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosY(-1);
+					piece.setCOLOR(null);
+					piece.setPosX(-1);
+					piece.setPosY(-1);
 
 				} else {
 					// check that piece on same team isn't of same type
-					if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass()
-							.equals(this.getClass())) {
+					if (piece.getClass().equals(this.getClass()) && piece.getColor().equals(this.getColor())) {
 						return false;
 					}
-					if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).getMergedPiece() != null) {
+
+					if (piece.getMergedPiece() != null && piece.getColor().equals(this.getColor())) {
 						return false;
 					}
 					if (this.mergedPiece != null) {
@@ -45,9 +48,9 @@ public class Knight extends AbstractPiece {
 					}
 					mergedPiece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
 					mergedID = gameBoard.getChessBoard()[x][y];
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setCOLOR(null);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosX(-1);
-					gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).setPosY(-1);
+					piece.setCOLOR(null);
+					piece.setPosX(-1);
+					piece.setPosY(-1);
 				}
 			}
 			this.posX = x;
@@ -60,23 +63,21 @@ public class Knight extends AbstractPiece {
 
 	@Override
 	public boolean validMove(GameBoardImpl gameBoard, int x, int y) {
+
+		Piece piece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
+
 		boolean validMove = false;
 		if (mergedPiece == null) {
-			if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]) != null) {
-				if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass().equals(this.getClass())) {
+			if (piece != null) {
+				if (piece.getClass().equals(this.getClass()) && piece.getColor().equals(this.getColor())) {
 					return false;
 				}
 			}
 
 			validMove = pieceMovement(gameBoard, x, y);
 		} else {
-			if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]) != null) {
-				if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass().equals(this.getClass())
-						&& (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getColor() == this.getColor()) {
-					return false;
-				}
-				if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).getColor() == this.getColor()) {
-
+			if (piece != null) {
+				if (piece.getColor() == this.getColor()) {
 					return false;
 				}
 			}
@@ -86,25 +87,6 @@ public class Knight extends AbstractPiece {
 			}
 		}
 		return validMove;
-	}
-
-	public void splitPiece(GameBoardImpl gameBoard, Piece piece, int x, int y) {
-		// possibly can be checked inside the gui but probs here aswell to be safe
-		if (mergedPiece != null) {
-			if (piece.equals(mergedPiece)) {
-				gameBoard.getPieces().get(mergedID).setCOLOR(this.getColor());
-				gameBoard.getPieces().get(mergedID).setPosX(x);
-				gameBoard.getPieces().get(mergedID).setPosY(y);
-			} else {
-
-				gameBoard.getPieces().get(mergedID).setCOLOR(this.getColor());
-				gameBoard.getPieces().get(mergedID).setPosX(this.getPosX());
-				gameBoard.getPieces().get(mergedID).setPosY(this.getPosY());
-
-				this.setPosX(x);
-				this.setPosY(y);
-			}
-		}
 	}
 
 	@Override
