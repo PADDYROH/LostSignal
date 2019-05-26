@@ -34,7 +34,8 @@ public class Rook extends AbstractPiece {
 
 				} else {
 					// check that piece on same team isn't of same type
-					if (this.equals(gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]))) {
+					if ((gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y])).getClass()
+							.equals(this.getClass())) {
 						return false;
 					}
 					if (gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]).getMergedPiece() != null) {
