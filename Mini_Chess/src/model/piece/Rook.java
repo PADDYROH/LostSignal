@@ -82,7 +82,8 @@ public class Rook extends AbstractPiece {
 					return false;
 				}
 			}
-			if (mergedPiece.pieceMovement(gameBoard, x, y) == true || this.pieceMovement(gameBoard, x, y) == true) {
+			if (gameBoard.getPieces().get(mergedID).pieceMovement(gameBoard, x, y) == true
+					|| this.pieceMovement(gameBoard, x, y) == true) {
 
 				validMove = true;
 			} else {
@@ -180,6 +181,18 @@ public class Rook extends AbstractPiece {
 
 		this.mergedPiece = p;
 
+	}
+
+	@Override
+	public void setPosY(int posY) {
+		this.posY = posY;
+		super.setPosY(posY);
+	}
+
+	@Override
+	public void setPosX(int posX) {
+		this.posX = posX;
+		super.setPosX(posX);
 	}
 
 }
