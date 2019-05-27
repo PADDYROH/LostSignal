@@ -57,7 +57,7 @@ public class GUIModel {
 			if(isSplit && mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY()).getMergedPiece() != null) {
 				mainEngine.movePiece(mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY()).getMergedID(),
 						xPos, yPos);
-				System.out.println("huge sack");
+				
 			} else {
 				mainEngine.movePiece(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()],
 						xPos, yPos);
