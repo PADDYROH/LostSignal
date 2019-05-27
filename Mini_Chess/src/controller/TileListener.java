@@ -32,7 +32,7 @@ public class TileListener implements MouseListener {
 		if(mainTile.getMainBoardPanel().getMainFrame().getGUIModel().isGameStarted()) {
 			if(SwingUtilities.isRightMouseButton(e)) {
 				mainTile.getMainBoardPanel().getMainFrame().getGUIModel().selectTile(mainTile.getXPos(), mainTile.getYPos(), true);
-				System.out.println("big sack");
+				
 			} else {
 				mainTile.getMainBoardPanel().getMainFrame().getGUIModel().selectTile(mainTile.getXPos(), mainTile.getYPos());
 			}

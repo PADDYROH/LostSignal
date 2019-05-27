@@ -30,7 +30,11 @@ public class MaxTurnGetter {
 		int result = JOptionPane.showConfirmDialog(null, panel, "Register Player", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
 		if (result == JOptionPane.OK_OPTION) {
-			turns = Integer.parseInt(numberField.getText());
+			try {
+				turns = Integer.parseInt(numberField.getText());
+			} catch (NumberFormatException e) {
+				turns = 0;
+			}
 		}
 		return turns;
 	}
