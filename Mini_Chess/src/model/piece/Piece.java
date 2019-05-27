@@ -30,6 +30,6 @@ public interface Piece {
 
 	public String getMergedID();
 
-	public void split(GameBoardImpl gameBoard);
+	public boolean split(GameBoardImpl gameBoard);
 
 }
