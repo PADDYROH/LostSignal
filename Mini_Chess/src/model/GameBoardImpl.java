@@ -106,6 +106,7 @@ public class GameBoardImpl implements GameBoard {
 
 		boolean split = false;
 
+
 		if (pieces.get(id).getColor() == null) {
 			if (pieces.get(id).checkMovement(this, x, y)) {
 				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
@@ -115,6 +116,7 @@ public class GameBoardImpl implements GameBoard {
 				return false;
 			}
 
+
 		}
 
 		if (pieces.get(id).checkMovement(this, x, y) || split) {
@@ -122,11 +124,13 @@ public class GameBoardImpl implements GameBoard {
 
 			// set starting pos to null
 			if (!split) {
+
 				this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
 				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
 
 			} else {
 				this.chessBoard[x][y] = id;
+
 			}
 
 			// update x and y in pieces map
