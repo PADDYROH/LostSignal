@@ -4,9 +4,12 @@ import model.GameBoardImpl;
 
 public abstract class Piece {
 
-	private String COLOR;
+	// define the movement length of a pice
 	protected static final int MOVE_BY_ONE = 1;
 	protected static final int MOVE_BY_TWO = 2;
+	// define the board limits
+	private static final int BOARD_LIMIT = 5;
+	private String COLOR;
 	protected int posX;
 	protected int posY;
 	private Piece mergedPiece;
@@ -99,27 +102,6 @@ public abstract class Piece {
 		return validMove;
 	}
 
-	public void splitPiece(GameBoardImpl gameBoard, Piece piece, int x, int y) {
-		// possibly can be checked inside the gui but probs here aswell to be safe
-
-		if (mergedPiece != null) {
-			if (piece.equals(mergedPiece)) {
-				gameBoard.getPieces().get(mergedID).setCOLOR(this.getColor());
-				gameBoard.getPieces().get(mergedID).setPosX(x);
-				gameBoard.getPieces().get(mergedID).setPosY(y);
-			} else {
-
-				gameBoard.getPieces().get(mergedID).setCOLOR(this.getColor());
-				gameBoard.getPieces().get(mergedID).setPosX(this.getPosX());
-				gameBoard.getPieces().get(mergedID).setPosY(this.getPosY());
-
-				this.setPosX(x);
-				this.setPosY(y);
-
-			}
-		}
-	}
-
 	public String getColor() {
 		return this.COLOR;
 	}
@@ -157,7 +139,7 @@ public abstract class Piece {
 	}
 
 	public boolean inBoardLimits(int x, int y) {
-		if (x > 5 || x < 0 || y > 5 || y < 0) {
+		if (x > BOARD_LIMIT || BOARD_LIMIT < 0 || y > BOARD_LIMIT || y < 0) {
 			return false;
 		}
 
