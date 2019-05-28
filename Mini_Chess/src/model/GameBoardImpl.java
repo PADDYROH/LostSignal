@@ -2,7 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
-import model.piece.AbstractPiece;
+import model.piece.Piece;
 import model.piece.Bishop;
 import model.piece.Knight;
 import model.piece.Piece;
@@ -130,7 +130,15 @@ public class GameBoardImpl implements GameBoard {
 
 			// set starting pos to null
 			if (!split) {
+
+				System.out.println(chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]);
+
+				System.out.println(pieces.get(id).getPosX() + " ," + pieces.get(id).getPosY());
+
+				System.out.println(chessBoard[0][5]);
+
 				this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
+
 				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
 
 			} else if (!moveOuter) {
@@ -149,6 +157,19 @@ public class GameBoardImpl implements GameBoard {
 			if (pieces.get(id).getMergedPiece() != null && !split) {
 				pieces.get(pieces.get(id).getMergedID()).setPosX(x);
 				pieces.get(pieces.get(id).getMergedID()).setPosY(y);
+			}
+
+			for (Piece p : pieces.values()) {
+				if (p != null) {
+					System.out.print(p.getClass());
+					System.out.println(p.toString());
+					if (p.getMergedPiece() != null) {
+						System.out.print(p.getMergedPiece().toString());
+
+					}
+					System.out.println();
+				}
+
 			}
 
 			return true;
