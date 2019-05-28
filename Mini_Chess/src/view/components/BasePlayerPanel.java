@@ -2,6 +2,7 @@ package view.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -30,8 +31,9 @@ public class BasePlayerPanel extends  JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK, 1), (new EmptyBorder(10, 10, 10, 10))));
 		
+		
 		JLabel heading = new JLabel("Summary");
-		heading.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+		heading.setBorder(BorderFactory.createEmptyBorder(5, 40, 5, 0));
 		//heading.setFont(FontTools.HEADING_2);
 		add(heading);
 		
@@ -45,13 +47,13 @@ public class BasePlayerPanel extends  JPanel {
 		playerPanel.setLayout(new GridLayout(2,1));
 		
 		whitePlayerPanel = new JPanel();
-		whitePlayerLabel = new JLabel("White Player");
+		whitePlayerLabel = new JLabel("White Player         ");
 		whitePlayerPanel.setLayout(new BoxLayout(whitePlayerPanel, BoxLayout.Y_AXIS));
 		whitePlayerPanel.setBorder(BorderFactory.createMatteBorder(2,0,2,0, Color.BLACK));
 		whitePlayerPanel.add(whitePlayerLabel);
 		
 		blackPlayerPanel = new JPanel();
-		blackPlayerLabel = new JLabel("Black Player");
+		blackPlayerLabel = new JLabel("Black Player         ");
 		blackPlayerPanel.setLayout(new BoxLayout(blackPlayerPanel, BoxLayout.Y_AXIS));
 		//blackPlayerPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		blackPlayerPanel.add(blackPlayerLabel);
@@ -94,6 +96,7 @@ public class BasePlayerPanel extends  JPanel {
 				}
 				details[3] = "Current Points: " + tempPoints;
 				tempPanel.add(new JLabel(" "));
+				
 				for(int c = 0; c < details.length; c++) {
 					tempPanel.add(new JLabel(details[c]));
 				}

@@ -4,6 +4,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import controller.ExitListener;
+import controller.FileMenuListener;
 
 
 public class BaseFileMenu extends JMenu {
@@ -11,6 +12,8 @@ public class BaseFileMenu extends JMenu {
 	private JMenuItem exitMenuItem;
 	private BaseFrame mainFrame;
 	private RegisterMenuItem registerMenuItem;
+	
+
 	private LoginMenuItem loginMenuItem;
 	private StartMenuItem startMenuItem;
 	private LogoutMenuItem logoutWhiteMenuItem;
@@ -22,7 +25,7 @@ public class BaseFileMenu extends JMenu {
 		super("File");
 		this.mainFrame = mainFrame;
 		// set font?
-		
+		addMenuListener(new FileMenuListener(mainFrame.getGUIModel()));
 		registerMenuItem = new RegisterMenuItem(mainFrame);
 		loginMenuItem = new LoginMenuItem(mainFrame);
 		startMenuItem = new StartMenuItem(mainFrame);
@@ -41,10 +44,31 @@ public class BaseFileMenu extends JMenu {
 		add(logoutWhiteMenuItem);
 		add(logoutBlackMenuItem);
 		add(exitMenuItem);
-		
-		
+	
 	}
 
-	
+	public RegisterMenuItem getRegisterMenuItem() {
+		return registerMenuItem;
+	}
+
+	public LoginMenuItem getLoginMenuItem() {
+		return loginMenuItem;
+	}
+
+	public StartMenuItem getStartMenuItem() {
+		return startMenuItem;
+	}
+
+	public LogoutMenuItem getLogoutWhiteMenuItem() {
+		return logoutWhiteMenuItem;
+	}
+
+	public LogoutMenuItem getLogoutBlackMenuItem() {
+		return logoutBlackMenuItem;
+	}
+
+	public SwapMenuItem getSwapMenuItem() {
+		return swapMenuItem;
+	}
 
 }

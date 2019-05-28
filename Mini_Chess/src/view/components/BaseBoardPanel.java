@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import model.piece.Bishop;
 import model.piece.Piece;
 import model.piece.Rook;
+import view.utilities.PieceIconTools;
 
 public class BaseBoardPanel extends JPanel {
 	private BaseFrame mainFrame;
@@ -23,23 +24,10 @@ public class BaseBoardPanel extends JPanel {
 	public BaseBoardPanel(BaseFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		tileArray = new Tile[6][6];
-		//setBackground(new Color(50, 50, 50));
-		//setForeground(new Color(0, 0, 255));
+		
 		setLayout(new GridLayout(6, 6));
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
-//		for(int r = 0; r < 6; r++) {
-//			for(int c = 0; c < 6; c++) {
-//				Tile tempTile = new Tile();
-//				if((r + c) % 2 == 0) {
-//					tempTile.setBackground(Color.GRAY);
-//				} else {
-//					tempTile.setBackground(Color.WHITE);
-//				}
-//				tileArray[r][c] = tempTile;
-//				add(tempTile);
-//			}
-//		}
 	
 		for(int r = 0; r < 6; r++) {
 			for(int c = 0; c < 6; c++) {
@@ -61,12 +49,7 @@ public class BaseBoardPanel extends JPanel {
 	
 	// change this to take array of string filepaths from gui model
 	public void updateTiles() {
-//		tileArray[0][0].setIcon(new ImageIcon("pieceImages" + File.separator + "BR.png"));
-//		tileArray[0][0].revalidate();
-//		tileArray[0][0].repaint();
-//		add(new JLabel(new ImageIcon("pieceImages" + File.separator + "BR.png")));
-//		revalidate();
-//		repaint();
+
 		for(int r = 0; r < 6; r++) {
 			for(int c = 0; c < 6; c++) {
 				Piece basePiece = mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(c,r);
@@ -75,85 +58,24 @@ public class BaseBoardPanel extends JPanel {
 					mergedPiece = basePiece.getMergedPiece();
 				}
 				
-				ImageIcon baseIcon = pieceToImageIcon(basePiece);
+				ImageIcon baseIcon = PieceIconTools.pieceToImageIcon(basePiece);
 				ImageIcon mergedIcon = null;
 				if(mergedPiece != null) {
-					mergedIcon = pieceToImageIcon(mergedPiece, basePiece.getColor());
+					mergedIcon = PieceIconTools.pieceToImageIcon(mergedPiece, basePiece.getColor());
 				}
 				
 				if(basePiece == null) {
 					baseIcon = null;
 				}
 				tileArray[c][r].setImage(baseIcon, mergedIcon);
-				//tileArray[r][c] = tempLabel;
-				//add(tile);
+				
 			}
 		}
 		repaint();
 		revalidate();
 	}
 	
-	private ImageIcon pieceToImageIcon(Piece piece, String color) {
-		// TODO Auto-generated method stub
-		return new ImageIcon(pieceToPath(piece, color));
-	}
-
-	private String pieceToPath(Piece piece, String color) {
-		String path = "";
-		if(piece != null) {
-			String colorCode;
-			String type;
-			if(color == "white") {
-				colorCode = "W";
-			} else {
-				colorCode = "B"; 
-			}
-			if(piece instanceof Rook) {
-				type = "R";
-			} else if (piece instanceof Bishop) {
-				type = "B";
-			} else {
-				type = "K";
-			}
-			
-			path = "pieceImages" + File.separator + colorCode + type + ".png";
-		}
-		return path;
-	}
-
-	public ImageIcon pieceToImageIcon(Piece piece) {
-		return new ImageIcon(pieceToPath(piece));
-	
-	}
-	
-	private String pieceToPath(Piece piece) {
-//		String path = "";
-//		if(piece != null) {
-//			String color;
-//			String type;
-//			if(piece.getColor() == "white") {
-//				color = "W";
-//			} else {
-//				color = "B"; 
-//			}
-//			if(piece instanceof Rook) {
-//				type = "R";
-//			} else if (piece instanceof Bishop) {
-//				type = "B";
-//			} else {
-//				type = "K";
-//			}
-//			
-//			path = "pieceImages" + File.separator + color + type + ".png";
-//		}
-		String path = "";
-		if(piece != null) {
-			path = pieceToPath(piece, piece.getColor());
-		}
-		return path;
 		
-	}
-	
 	public BaseFrame getMainFrame() {
 		return mainFrame;
 	}
