@@ -9,6 +9,7 @@ public abstract class Piece {
 	protected static final int MOVE_BY_TWO = 2;
 	// define the board limits
 	private static final int BOARD_LIMIT = 5;
+
 	private String COLOR;
 	protected int posX;
 	protected int posY;
