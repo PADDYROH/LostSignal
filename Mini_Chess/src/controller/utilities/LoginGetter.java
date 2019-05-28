@@ -11,13 +11,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.Player;
+import view.components.BaseFrame;
 
 public class LoginGetter {
 	private JTextField idField;
 	private JPasswordField passwordField;
 	private JPanel panel;
+	private BaseFrame mainFrame;
 	
-	public LoginGetter() {
+	public LoginGetter(BaseFrame mainFrame) {
+		this.mainFrame = mainFrame;
 		idField = new JTextField();
 		passwordField = new JPasswordField();
 		panel = new JPanel();
@@ -39,11 +42,13 @@ public class LoginGetter {
 		panel.add(passwordLabel);
 		panel.add(passwordField);
 		
-		int result = JOptionPane.showConfirmDialog(null, panel, "Login Player", JOptionPane.OK_CANCEL_OPTION,
+		int result = JOptionPane.showConfirmDialog(mainFrame, panel, "Login Player", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
 		if(result == JOptionPane.OK_OPTION) {
 			details[0] = idField.getText();
 			details[1] = String.valueOf(passwordField.getPassword());
+		} else {
+			details = null;
 		}
 		
 		return details;

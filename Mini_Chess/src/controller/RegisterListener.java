@@ -23,11 +23,16 @@ public class RegisterListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		RegistrationGetter rG = new RegistrationGetter();
+		RegistrationGetter rG = new RegistrationGetter(mainFrame);
 		
 		Player newPlayer = rG.registerPlayer();
 		if(newPlayer != null) {
-			mainEngine.getPlayerManager().addPlayer(newPlayer);
+			try {
+				mainEngine.getPlayerManager().addPlayer(newPlayer);
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(mainFrame, "Registration failed, " + e1.getMessage());
+			}
 		} else {
 			// JOptionPane.showMessageDialog(null, "Registration Failed");
 		}

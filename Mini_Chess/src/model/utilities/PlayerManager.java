@@ -67,7 +67,7 @@ public class PlayerManager {
 			players.put(p.getID(), p);
 			savePlayers();
 		} else {
-			throw new IllegalArgumentException("Player ID Already Exists!");
+			throw new IllegalArgumentException("player ID already exists!");
 		}
 	}
 

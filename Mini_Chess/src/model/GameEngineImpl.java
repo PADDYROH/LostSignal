@@ -122,12 +122,17 @@ public class GameEngineImpl implements GameEngine {
 			uIM.updateBoard(true);
 			uIM.endGame();
 		}
+		// updatePlayerPoints 
 		whitePlayer.setPoints(whitePlayer.getPoints() + whitePlayerPoints);
 		blackPlayer.setPoints(blackPlayer.getPoints() + blackPlayerPoints);
+		// save to file
 		playerManager.savePlayers();
 		currentPlayer = null;
 		whitePlayer = null;
 		blackPlayer = null;
+		for (UserInterfaceManager uIM : userInterfaceManagers) {
+			uIM.updateCurrentPlayers();
+		}
 		numTurns = 0;
 		maxTurns = 0;
 		mainBoard = new GameBoardImpl();

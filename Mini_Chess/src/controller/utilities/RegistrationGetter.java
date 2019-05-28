@@ -12,15 +12,16 @@ import javax.swing.JTextField;
 
 import model.BasePlayer;
 import model.Player;
-
+import view.components.BaseFrame;
 
 public class RegistrationGetter {
 	private JTextField iDField;
 	private JTextField nameField;
 	private JPasswordField passwordField;
 	private JPanel panel;
+	private BaseFrame mainFrame;
 	
-	public RegistrationGetter() {
+	public RegistrationGetter(BaseFrame mainFrame) {
 		nameField = new JTextField();
 		passwordField = new JPasswordField();
 		iDField = new JTextField();

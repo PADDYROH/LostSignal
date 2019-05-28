@@ -105,7 +105,7 @@ class GUIModelTestMerged {
 
 	@Test
 	void testSelectRookBishop() {
-		gUIM.selectPiece("");
+		//gUIM.selectPiece("");
 	}
 
 	@Test

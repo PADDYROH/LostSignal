@@ -149,7 +149,6 @@ public class GUIModel {
 		winPanel.add(new JLabel(message));
 
 		JOptionPane.showMessageDialog(null, winPanel, "Game Over!", JOptionPane.DEFAULT_OPTION);
-
 	}
 
 }
