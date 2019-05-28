@@ -16,7 +16,20 @@ public class PlayerTest{
 		player = new BasePlayer("100", "password123".hashCode(), "johnny the goose", 100);
 		// public BasePlayer(String playerID, int playerPasswordHash, String playerName,int playerPoints) {
 	}
+	
+	@Test
+	public void testgetID() {
+		assertEquals("100", player.getID());
+	}
 
+	@Test
+	public void testgetGetName() {
+		// when
+		player.setName("joe");
+		// then
+		assertEquals("joe", player.getName());
+	}
+	
 	@Test
 	public void testSetGetName() {
 		// when
@@ -25,6 +38,10 @@ public class PlayerTest{
 		assertEquals("joe", player.getName());
 	}
 
+	@Test
+	public void testCheckPasswordHash() {
+		assertEquals("password123".hashCode(), player.getPasswordHash());
+	}
 
 	@Test
 	public void testGetPoints() {
@@ -42,14 +59,6 @@ public class PlayerTest{
 		assertEquals(500, player.getPoints());
 	}
 
-	@Test
-	public void testCheckPasswordHash() {
-		assertEquals("password123".hashCode(), player.getPasswordHash());
-	}
-
-	@Test
-	public void testgetID() {
-		assertEquals("100", player.getID());
-	}
+	
 
 }
