@@ -2,7 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
-import model.piece.AbstractPiece;
+import model.piece.Piece;
 import model.piece.Bishop;
 import model.piece.Knight;
 import model.piece.Piece;
