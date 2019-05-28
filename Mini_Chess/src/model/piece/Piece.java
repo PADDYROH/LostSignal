@@ -5,7 +5,8 @@ import model.GameBoardImpl;
 public abstract class Piece {
 
 	private String COLOR;
-
+	protected static final int MOVE_BY_ONE = 1;
+	protected static final int MOVE_BY_TWO = 2;
 	protected int posX;
 	protected int posY;
 	private Piece mergedPiece;
@@ -16,21 +17,6 @@ public abstract class Piece {
 		this.posX = posX;
 		this.posY = posY;
 		this.COLOR = COLOR;
-
-	}
-
-	public Piece getMergedPiece() {
-		return mergedPiece;
-	}
-
-	public String getMergedID() {
-		// TODO Auto-generated method stub
-		return this.mergedID;
-	}
-
-	public void setMergedPiece(Piece p) {
-
-		this.mergedPiece = p;
 
 	}
 
@@ -145,31 +131,6 @@ public abstract class Piece {
 
 	}
 
-	public String getCOLOR() {
-		return COLOR;
-	}
-
-	public void setCOLOR(String cOLOR) {
-		COLOR = cOLOR;
-	}
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public boolean inBoardLimits(int x, int y) {
-		if (x > 5 || x < 0 || y > 5 || y < 0) {
-			return false;
-		}
-
-		return true;
-
-	}
-
 	public boolean sameTeam(GameBoardImpl gameBoard, int x, int y) {
 
 		if (!inBoardLimits(x, y)) {
@@ -191,8 +152,17 @@ public abstract class Piece {
 	}
 
 	public boolean pieceMovement(GameBoardImpl gameBoard, int x, int y) {
-		// TODO Auto-generated method stub
+		// NOTE: piece must overide for movement logic
 		return false;
+	}
+
+	public boolean inBoardLimits(int x, int y) {
+		if (x > 5 || x < 0 || y > 5 || y < 0) {
+			return false;
+		}
+
+		return true;
+
 	}
 
 	public void setPosX(int posX) {
@@ -201,6 +171,37 @@ public abstract class Piece {
 
 	public void setPosY(int posY) {
 		this.posY = posY;
+	}
+
+	public Piece getMergedPiece() {
+		return mergedPiece;
+	}
+
+	public String getMergedID() {
+		// TODO Auto-generated method stub
+		return this.mergedID;
+	}
+
+	public void setMergedPiece(Piece p) {
+
+		this.mergedPiece = p;
+
+	}
+
+	public String getCOLOR() {
+		return COLOR;
+	}
+
+	public void setCOLOR(String cOLOR) {
+		COLOR = cOLOR;
+	}
+
+	public int getPosX() {
+		return posX;
+	}
+
+	public int getPosY() {
+		return posY;
 	}
 
 }

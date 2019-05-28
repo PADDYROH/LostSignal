@@ -12,15 +12,15 @@ public class Bishop extends Piece {
 	@Override
 	public boolean pieceMovement(GameBoardImpl gameBoard, int x, int y) {
 
-		if (posX + 1 == x && posY + 1 == y || posX - 1 == x && posY - 1 == y) {
+		if (posX + MOVE_BY_ONE == x && posY + MOVE_BY_ONE == y || posX - MOVE_BY_ONE == x && posY - MOVE_BY_ONE == y) {
 			return true;
 		}
 
-		if (posX - 1 == x && posY + 1 == y || posX + 1 == x && posY - 1 == y) {
+		if (posX - MOVE_BY_ONE == x && posY + MOVE_BY_ONE == y || posX + MOVE_BY_ONE == x && posY - MOVE_BY_ONE == y) {
 			return true;
 		}
 
-		if (posX + 2 == x && posY + 2 == y) {
+		if (posX + MOVE_BY_TWO == x && posY + MOVE_BY_TWO == y) {
 
 			if (gameBoard.getChessBoard()[posX + 1][posY + 1] != null) {
 				return false;
@@ -28,23 +28,23 @@ public class Bishop extends Piece {
 			return true;
 		}
 
-		if (posX + 2 == x && posY - 2 == y) {
+		if (posX + MOVE_BY_TWO == x && posY - MOVE_BY_TWO == y) {
 
-			if (gameBoard.getChessBoard()[posX + 1][posY - 1] != null) {
+			if (gameBoard.getChessBoard()[posX + MOVE_BY_ONE][posY - MOVE_BY_ONE] != null) {
 				return false;
 			}
 			return true;
 		}
 
-		if (posX - 2 == x && posY - 2 == y) {
-			if (gameBoard.getChessBoard()[posX - 1][posY - 1] != null) {
+		if (posX - MOVE_BY_TWO == x && posY - MOVE_BY_TWO == y) {
+			if (gameBoard.getChessBoard()[posX - MOVE_BY_ONE][posY - MOVE_BY_ONE] != null) {
 				return false;
 			}
 			return true;
 		}
 
-		if (posX - 2 == x && posY + 2 == y) {
-			if (gameBoard.getChessBoard()[posX - 1][posY + 1] != null) {
+		if (posX - MOVE_BY_TWO == x && posY + MOVE_BY_TWO == y) {
+			if (gameBoard.getChessBoard()[posX - MOVE_BY_ONE][posY + MOVE_BY_ONE] != null) {
 				return false;
 			}
 			return true;

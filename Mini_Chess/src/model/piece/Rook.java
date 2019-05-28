@@ -12,17 +12,17 @@ public class Rook extends Piece {
 	@Override
 	public boolean pieceMovement(GameBoardImpl gameBoard, int x, int y) {
 
-		if (posX + 1 == x && posY == y || posY + 1 == y && posX == x) {
+		if (posX + MOVE_BY_ONE == x && posY == y || posY + MOVE_BY_ONE == y && posX == x) {
 			return true;
 		}
 
-		if (posX - 1 == x && posY == y || posY - 1 == y && posX == x) {
+		if (posX - MOVE_BY_ONE == x && posY == y || posY - MOVE_BY_ONE == y && posX == x) {
 			return true;
 		}
 
-		if (posX + 2 == x && posY == y) {
+		if (posX + MOVE_BY_TWO == x && posY == y) {
 
-			if (gameBoard.getChessBoard()[posX + 1][y] != null) {
+			if (gameBoard.getChessBoard()[posX + MOVE_BY_ONE][y] != null) {
 
 				return false;
 			}
@@ -30,18 +30,18 @@ public class Rook extends Piece {
 			return true;
 		}
 
-		if (posY + 2 == y && posX == x) {
+		if (posY + MOVE_BY_TWO == y && posX == x) {
 
-			if (gameBoard.getChessBoard()[x][posY + 1] != null) {
+			if (gameBoard.getChessBoard()[x][posY + MOVE_BY_ONE] != null) {
 
 				return false;
 			}
 			return true;
 		}
 
-		if (posX - 2 == x && posY == y) {
+		if (posX - MOVE_BY_TWO == x && posY == y) {
 
-			if (gameBoard.getChessBoard()[posX - 1][y] != null) {
+			if (gameBoard.getChessBoard()[posX - MOVE_BY_ONE][y] != null) {
 
 				return false;
 			}
@@ -49,9 +49,9 @@ public class Rook extends Piece {
 			return true;
 		}
 
-		if (posY - 2 == y && posX == x) {
+		if (posY - MOVE_BY_TWO == y && posX == x) {
 
-			if (gameBoard.getChessBoard()[x][posY - 1] != null) {
+			if (gameBoard.getChessBoard()[x][posY - MOVE_BY_ONE] != null) {
 
 				return false;
 			}
