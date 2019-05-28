@@ -87,8 +87,8 @@ public class Tile extends JPanel {
 		Image tempImage = icon.getImage();
 		int newWidth = (int) (icon.getIconWidth() * 0.5);
 		int newHeight = (int) (icon.getIconHeight() * 0.5);
-		System.out.println(icon.getIconWidth());
-		System.out.println(icon.getIconHeight());
+//		System.out.println(icon.getIconWidth());
+//		System.out.println(icon.getIconHeight());
 		Image scaledImage = tempImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 		return new ImageIcon(scaledImage);
 	}

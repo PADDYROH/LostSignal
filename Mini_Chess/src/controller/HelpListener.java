@@ -37,7 +37,7 @@ public class HelpListener implements ActionListener {
 		validMove.setBorder(BorderFactory.createLineBorder(new Color(0, 120, 255), 3));
 		helpPanel.add(validMove);
 		JLabel badMove = new JLabel("Valid move, but is likely to lose you a piece in the next player's turn.");
-		badMove.setBorder(BorderFactory.createLineBorder(new Color(255, 0, 255), 3));
+		badMove.setBorder(BorderFactory.createLineBorder(new Color(255, 128, 0), 3));
 		helpPanel.add(badMove);
 		helpPanel.add(new JLabel(" "));
 		helpPanel.add(new JLabel("Merge a piece by moving a piece onto another piece of the same colour."));
