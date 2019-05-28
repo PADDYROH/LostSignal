@@ -105,17 +105,23 @@ public class GameBoardImpl implements GameBoard {
 	public boolean movePiece(String id, int x, int y) {
 
 		boolean split = false;
-
+		boolean moveOuter = false;
+		String innerId = null;
 
 		if (pieces.get(id).getColor() == null) {
 			if (pieces.get(id).checkMovement(this, x, y)) {
 				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
 				split = true;
-
+			} else if (pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()])
+					.checkMovement(this, x, y)) {
+				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
+				split = true;
+				innerId = id;
+				id = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
+				moveOuter = true;
 			} else {
 				return false;
 			}
-
 
 		}
 
@@ -124,11 +130,13 @@ public class GameBoardImpl implements GameBoard {
 
 			// set starting pos to null
 			if (!split) {
-
 				this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
 				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
 
+			} else if (!moveOuter) {
+				this.chessBoard[x][y] = id;
 			} else {
+				chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = innerId;
 				this.chessBoard[x][y] = id;
 
 			}
@@ -138,7 +146,7 @@ public class GameBoardImpl implements GameBoard {
 			pieces.get(id).setPosX(x);
 			pieces.get(id).setPosY(y);
 
-			if (pieces.get(id).getMergedPiece() != null) {
+			if (pieces.get(id).getMergedPiece() != null && !split) {
 				pieces.get(pieces.get(id).getMergedID()).setPosX(x);
 				pieces.get(pieces.get(id).getMergedID()).setPosY(y);
 			}
