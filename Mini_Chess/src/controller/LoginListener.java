@@ -23,30 +23,33 @@ public class LoginListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		LoginGetter lG = new LoginGetter();
-		String[] details = lG.getLogin();
-		if(details != null) {
-			int numPlayersOriginal = 0;
-			if(mainEngine.getWhitePlayer() != null) {
-				numPlayersOriginal++;
+		if(mainEngine.getWhitePlayer() == null || mainEngine.getBlackPlayer() == null) {
+			LoginGetter lG = new LoginGetter();
+			String[] details = lG.getLogin();
+			if(details != null) {
+				int numPlayersOriginal = 0;
+				if(mainEngine.getWhitePlayer() != null) {
+					numPlayersOriginal++;
+				}
+				if(mainEngine.getBlackPlayer() != null) {
+					numPlayersOriginal++;
+				}
+				mainEngine.login(details[0], details[1]);
+				int numPlayersNow = 0;
+				if(mainEngine.getWhitePlayer() != null) {
+					numPlayersNow++;
+				}
+				if(mainEngine.getBlackPlayer() != null) {
+					numPlayersNow++;
+				}
+				if(numPlayersOriginal == numPlayersNow) {
+					JOptionPane.showMessageDialog(null, "Login Failed");
+				}
+			} else {
+				// JOptionPane.showMessageDialog(mainFrame, "Registration Failed");
 			}
-			if(mainEngine.getBlackPlayer() != null) {
-				numPlayersOriginal++;
-			}
-			mainEngine.login(details[0], details[1]);
-			int numPlayersNow = 0;
-			if(mainEngine.getWhitePlayer() != null) {
-				numPlayersNow++;
-			}
-			if(mainEngine.getBlackPlayer() != null) {
-				numPlayersNow++;
-			}
-			if(numPlayersOriginal == numPlayersNow) {
-				JOptionPane.showMessageDialog(null, "Login Failed");
-			}
-		} else {
-			// JOptionPane.showMessageDialog(mainFrame, "Registration Failed");
 		}
+		
 	}
 
 }

@@ -15,21 +15,35 @@ public class BasePlayer implements Player {
 		this.playerName = playerName;
 	}
 
-	@Override
-	public String getID() {
-
-		return this.playerID;
-	}
-	
-	@Override
-	public String getName() {
-		return playerName;
-	}
 	
 	@Override
 	public void setName(String name) {
 
 		this.playerName = name;
+	}
+
+	@Override
+	public int getPoints() {
+
+		return this.playerPoints;
+	}
+
+	@Override
+	public void setPoints(int points) {
+
+		this.playerPoints = points;
+
+	}
+
+	@Override
+	public String getID() {
+
+		return this.playerID;
+	}
+
+	@Override
+	public String getName() {
+		return playerName;
 	}
 	
 	@Override
@@ -38,16 +52,10 @@ public class BasePlayer implements Player {
 	}
 	
 	@Override
-	public int getPoints() {
-
-		return this.playerPoints;
-	}
-	
-	@Override
-	public void setPoints(int points) {
-
-		this.playerPoints = points;
-
+	public String toString() {
+		String retVal = "";
+		retVal = String.format("ID: %s\nName: %s\nAll-Time Points:%s\n", playerID, playerName, playerPoints);
+		return retVal;
 	}
 
 }

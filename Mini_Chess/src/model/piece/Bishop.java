@@ -13,6 +13,7 @@ public class Bishop extends AbstractPiece {
 
 	public Bishop(String COLOR, int posX, int posY) {
 		super(COLOR, posX, posY);
+		mergedPiece = null;
 		this.posX = posX;
 		this.posY = posY;
 	}
@@ -41,19 +42,20 @@ public class Bishop extends AbstractPiece {
 						return false;
 					}
 
-					if (piece.getMergedPiece() != null && piece.getColor().equals(this.getColor())) {
+					if (piece.getMergedPiece() != null) {
 						return false;
 					}
 					if (this.mergedPiece != null) {
 						return false;
+					} else {
+						mergedID = gameBoard.getChessBoard()[x][y];
+						mergedPiece = gameBoard.getPieces().get(mergedID);
+						mergedPiece.setCOLOR(null);
 					}
-					mergedPiece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
-					mergedID = gameBoard.getChessBoard()[x][y];
-					piece.setCOLOR(null);
-					piece.setPosX(-1);
-					piece.setPosY(-1);
+
 				}
 			}
+
 			this.posX = x;
 			this.posY = y;
 			return true;
@@ -82,9 +84,12 @@ public class Bishop extends AbstractPiece {
 					return false;
 				}
 			}
-			if (mergedPiece.pieceMovement(gameBoard, x, y) == true || this.pieceMovement(gameBoard, x, y) == true) {
+			if (gameBoard.getPieces().get(mergedID).pieceMovement(gameBoard, x, y) == true
+					|| this.pieceMovement(gameBoard, x, y) == true) {
 
 				validMove = true;
+			} else {
+				validMove = false;
 			}
 		}
 		return validMove;
@@ -160,4 +165,36 @@ public class Bishop extends AbstractPiece {
 		return mergedPiece;
 	}
 
+	@Override
+	public String getMergedID() {
+		// TODO Auto-generated method stub
+		return this.mergedID;
+	}
+
+	@Override
+	public void setMergedPiece(Piece p) {
+
+		this.mergedPiece = p;
+
+	}
+
+	@Override
+	public void setPosY(int posY) {
+		this.posY = posY;
+		super.setPosY(posY);
+	}
+
+	@Override
+	public void setPosX(int posX) {
+		this.posX = posX;
+		super.setPosX(posX);
+	}
+
+	@Override
+	public boolean split(GameBoardImpl gameBoard) {
+
+		gameBoard.getPieces().get(mergedID).setCOLOR(getColor());
+		this.mergedPiece = null;
+		return true;
+	}
 }

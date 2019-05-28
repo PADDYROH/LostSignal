@@ -67,6 +67,9 @@ public class GameBoardImpl implements GameBoard {
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "white") {
 				whitePieces++;
+				if (value.getMergedPiece() != null) {
+					whitePieces++;
+				}
 			}
 		}
 
@@ -74,14 +77,17 @@ public class GameBoardImpl implements GameBoard {
 	}
 
 	public int calculateNumberBlackPieces() {
-		int whitePieces = 0;
+		int blackPieces = 0;
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "black") {
-				whitePieces++;
+				blackPieces++;
+				if (value.getMergedPiece() != null) {
+					blackPieces++;
+				}
 			}
 		}
 
-		return whitePieces;
+		return blackPieces;
 	}
 
 	public String[][] getChessBoard() {
@@ -98,28 +104,50 @@ public class GameBoardImpl implements GameBoard {
 
 	public boolean movePiece(String id, int x, int y) {
 
-		if (pieces.get(id).checkMovement(this, x, y)) {
+		boolean split = false;
 
+
+		if (pieces.get(id).getColor() == null) {
+			if (pieces.get(id).checkMovement(this, x, y)) {
+				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
+				split = true;
+
+			} else {
+				return false;
+			}
+
+
+		}
+
+		if (pieces.get(id).checkMovement(this, x, y) || split) {
 			// move the piece
-			this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
 
 			// set starting pos to null
-			this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
+			if (!split) {
+
+				this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
+				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
+
+			} else {
+				this.chessBoard[x][y] = id;
+
+			}
 
 			// update x and y in pieces map
+
 			pieces.get(id).setPosX(x);
 			pieces.get(id).setPosY(y);
+
+			if (pieces.get(id).getMergedPiece() != null) {
+				pieces.get(pieces.get(id).getMergedID()).setPosX(x);
+				pieces.get(pieces.get(id).getMergedID()).setPosY(y);
+			}
 
 			return true;
 
 		}
-		return false;
+		return false || split;
 
 	}
 
-	@Override
-	public boolean movePiece(String string, int i, int j, boolean b) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

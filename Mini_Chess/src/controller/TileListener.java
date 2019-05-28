@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import view.components.Tile;
@@ -29,7 +30,12 @@ public class TileListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(mainTile.getMainBoardPanel().getMainFrame().getGUIModel().isGameStarted()) {
-			mainTile.getMainBoardPanel().getMainFrame().getGUIModel().selectTile(mainTile.getXPos(), mainTile.getYPos());
+			if(SwingUtilities.isRightMouseButton(e)) {
+				mainTile.getMainBoardPanel().getMainFrame().getGUIModel().selectTile(mainTile.getXPos(), mainTile.getYPos(), true);
+				
+			} else {
+				mainTile.getMainBoardPanel().getMainFrame().getGUIModel().selectTile(mainTile.getXPos(), mainTile.getYPos());
+			}
 		}
 		
 	}
