@@ -54,15 +54,17 @@ public class GUIModel {
 
 		} else {
 			// System.out.println(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()]);
-			if(isSplit && mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY()).getMergedPiece() != null) {
-				mainEngine.movePiece(mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY()).getMergedID(),
-						xPos, yPos);
-				
+			if (isSplit && mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY())
+					.getMergedPiece() != null) {
+				mainEngine.movePiece(
+						mainEngine.getGameBoard().getPiece(selected.getPosX(), selected.getPosY()).getMergedID(), xPos,
+						yPos);
+
 			} else {
 				mainEngine.movePiece(mainEngine.getGameBoard().getChessBoard()[selected.getPosX()][selected.getPosY()],
 						xPos, yPos);
 			}
-			
+
 			selected = null;
 		}
 
@@ -71,6 +73,27 @@ public class GUIModel {
 				if (selected != null && mainEngine.checkMove(xPos, yPos, c, r)) {
 					mainFrame.getMainBoardPanel().getTiles()[c][r]
 							.updateBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+					
+					for (Piece p : mainEngine.getGameBoard().getPieces().values()) {
+						if(p.getColor() != null) {
+							if(!p.getColor().equals(mainEngine.getGameBoard().getPiece(xPos, yPos).getColor())) {
+								if(p.validMove((GameBoardImpl) mainEngine.getGameBoard(), xPos, yPos)) {
+									mainFrame.getMainBoardPanel().getTiles()[c][r]
+											.updateBorder(BorderFactory.createLineBorder(Color.RED, 3));
+								}
+							}
+						}
+						
+//						if (!p.getColor().equals(mainEngine.getGameBoard().getPiece(xPos, yPos).getColor())) {
+//							if (p.getPosX() != -1 && p.getPosY() != -1) {
+//								if (p.validMove((GameBoardImpl) mainEngine.getGameBoard(), xPos, yPos)) {
+//									mainFrame.getMainBoardPanel().getTiles()[c][r]
+//											.updateBorder(BorderFactory.createLineBorder(Color.RED, 3));
+//								}
+//							}
+//						}
+					}
+
 				} else {
 					mainFrame.getMainBoardPanel().getTiles()[c][r].updateBorder(null);
 				}
@@ -99,7 +122,7 @@ public class GUIModel {
 	public void endGame() {
 		JPanel winPanel = new JPanel();
 		String message = "";
-				
+
 		if (mainEngine.getBlackPlayerPoints() > mainEngine.getWhitePlayerPoints()) {
 			message += String.format("The winner is: %s(%s) with %d points!", mainEngine.getBlackPlayer().getName(),
 					mainEngine.getBlackPlayer().getID(), mainEngine.getBlackPlayerPoints());
@@ -109,13 +132,12 @@ public class GUIModel {
 		} else {
 			message += String.format("It's a draw! Both players have %d points!", mainEngine.getBlackPlayerPoints());
 		}
-		
+
 		winPanel.add(new JLabel(new ImageIcon("pieceImages" + File.separator + "win.png")));
 		winPanel.add(new JLabel(message));
-		
+
 		JOptionPane.showMessageDialog(null, winPanel, "Game Over!", JOptionPane.DEFAULT_OPTION);
-		
+
 	}
-	
 
 }
