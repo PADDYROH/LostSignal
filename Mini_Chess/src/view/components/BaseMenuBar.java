@@ -10,6 +10,7 @@ public class BaseMenuBar extends JMenuBar {
 	public BaseMenuBar(BaseFrame mainFrame) {
 		fileMenu = new BaseFileMenu(mainFrame);
 		add(fileMenu);
+		add(new BaseHelpMenu(mainFrame));
 		
 	}
 	
