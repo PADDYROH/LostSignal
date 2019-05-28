@@ -77,9 +77,6 @@ public abstract class Piece {
 
 				}
 			}
-
-			this.posX = x;
-			this.posY = y;
 			return true;
 		}
 
