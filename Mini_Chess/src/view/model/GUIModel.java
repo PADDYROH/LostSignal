@@ -84,14 +84,14 @@ public class GUIModel {
 				
 				if (selected != null && mainEngine.checkMove(xPos, yPos, c, r) && !checkMerged) {
 					mainFrame.getMainBoardPanel().getTiles()[c][r]
-							.updateBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+							.updateBorder(BorderFactory.createLineBorder(new Color(0, 120, 255), 3));
 					
 					for (Piece p : mainEngine.getGameBoard().getPieces().values()) {
 						if(p.getColor() != null) {
 							if(!p.getColor().equals(mainEngine.getGameBoard().getPiece(xPos, yPos).getColor())) {
 								if(p.validMove((GameBoardImpl) mainEngine.getGameBoard(), c, r)) {
 									mainFrame.getMainBoardPanel().getTiles()[c][r]
-											.updateBorder(BorderFactory.createLineBorder(Color.RED, 3));
+											.updateBorder(BorderFactory.createLineBorder(new Color(255, 128, 0), 3));
 								}
 							}
 						}
