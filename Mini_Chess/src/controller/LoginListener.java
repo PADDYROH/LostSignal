@@ -24,7 +24,7 @@ public class LoginListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(mainEngine.getWhitePlayer() == null || mainEngine.getBlackPlayer() == null) {
-			LoginGetter lG = new LoginGetter();
+			LoginGetter lG = new LoginGetter(mainFrame);
 			String[] details = lG.getLogin();
 			if(details != null) {
 				int numPlayersOriginal = 0;
@@ -43,11 +43,13 @@ public class LoginListener implements ActionListener {
 					numPlayersNow++;
 				}
 				if(numPlayersOriginal == numPlayersNow) {
-					JOptionPane.showMessageDialog(null, "Login Failed");
+					JOptionPane.showMessageDialog(mainFrame, "Login failed. Invalid credentials or player already logged in.");
 				}
 			} else {
-				// JOptionPane.showMessageDialog(mainFrame, "Registration Failed");
+				
 			}
+		} else {
+			JOptionPane.showMessageDialog(mainFrame, "Already 2 players logged in!");
 		}
 		
 	}

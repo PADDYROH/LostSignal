@@ -21,7 +21,7 @@ public class SwapListener implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		if(mainFrame.getGUIModel().isGameStarted()) {
-			
+			JOptionPane.showMessageDialog(mainFrame, "Game has already started!");
 		} else {
 			mainEngine.swapPlayers();
 		}
