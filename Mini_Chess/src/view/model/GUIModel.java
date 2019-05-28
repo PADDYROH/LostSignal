@@ -6,6 +6,7 @@ import java.io.File;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -13,6 +14,11 @@ import model.GameBoardImpl;
 import model.GameEngine;
 import model.piece.Piece;
 import view.components.BaseFrame;
+import view.components.LoginMenuItem;
+import view.components.LogoutMenuItem;
+import view.components.RegisterMenuItem;
+import view.components.StartMenuItem;
+import view.components.SwapMenuItem;
 
 public class GUIModel {
 	private GameEngine mainEngine;
@@ -84,14 +90,14 @@ public class GUIModel {
 				
 				if (selected != null && mainEngine.checkMove(xPos, yPos, c, r) && !checkMerged) {
 					mainFrame.getMainBoardPanel().getTiles()[c][r]
-							.updateBorder(BorderFactory.createLineBorder(new Color(0, 120, 255), 3));
+							.updateBorder(BorderFactory.createLineBorder(new Color(0, 120, 255), 5));
 					
 					for (Piece p : mainEngine.getGameBoard().getPieces().values()) {
 						if(p.getColor() != null) {
 							if(!p.getColor().equals(mainEngine.getGameBoard().getPiece(xPos, yPos).getColor())) {
 								if(p.validMove((GameBoardImpl) mainEngine.getGameBoard(), c, r)) {
 									mainFrame.getMainBoardPanel().getTiles()[c][r]
-											.updateBorder(BorderFactory.createLineBorder(new Color(255, 128, 0), 3));
+											.updateBorder(BorderFactory.createLineBorder(new Color(255, 128, 0), 5));
 								}
 							}
 						}
@@ -150,5 +156,32 @@ public class GUIModel {
 
 		JOptionPane.showMessageDialog(null, winPanel, "Game Over!", JOptionPane.DEFAULT_OPTION);
 	}
-
+	
+	public void updateMenu() {
+		//mainFrame.getMainMenuBar().getFileMenu().getRegisterMenuItem().setEnabled(true);
+		mainFrame.getMainMenuBar().getFileMenu().getLoginMenuItem().setEnabled(true);
+		mainFrame.getMainMenuBar().getFileMenu().getStartMenuItem().setEnabled(true);
+		mainFrame.getMainMenuBar().getFileMenu().getLogoutWhiteMenuItem().setEnabled(true);
+		mainFrame.getMainMenuBar().getFileMenu().getLogoutBlackMenuItem().setEnabled(true);
+		mainFrame.getMainMenuBar().getFileMenu().getSwapMenuItem().setEnabled(true);
+		
+		if(mainEngine.getWhitePlayer() != null && mainEngine.getBlackPlayer() != null) {
+			mainFrame.getMainMenuBar().getFileMenu().getLoginMenuItem().setEnabled(false);
+			
+		}
+		if(mainEngine.getWhitePlayer() == null && mainEngine.getBlackPlayer() == null || isGameStarted()) {
+			mainFrame.getMainMenuBar().getFileMenu().getSwapMenuItem().setEnabled(false);
+		}
+		if(isGameStarted() || mainEngine.getWhitePlayer() == null || mainEngine.getBlackPlayer() == null) {
+			mainFrame.getMainMenuBar().getFileMenu().getStartMenuItem().setEnabled(false);
+		}
+		if(mainEngine.getWhitePlayer() == null) {
+			mainFrame.getMainMenuBar().getFileMenu().getLogoutWhiteMenuItem().setEnabled(false);
+		}
+		if(mainEngine.getBlackPlayer() == null) {
+			mainFrame.getMainMenuBar().getFileMenu().getLogoutBlackMenuItem().setEnabled(false);
+		}
+		mainFrame.repaint();
+		mainFrame.revalidate();
+	}
 }
