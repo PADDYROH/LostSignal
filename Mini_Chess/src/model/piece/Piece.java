@@ -12,7 +12,7 @@ public abstract class Piece {
 	private String mergedID;
 
 	public Piece(String COLOR, int posX, int posY) {
-
+		this.mergedPiece = null;
 		this.posX = posX;
 		this.posY = posY;
 		this.COLOR = COLOR;
