@@ -15,6 +15,7 @@ public class StartListener implements ActionListener {
 
 	private BaseFrame mainFrame;
 	private GameEngine mainEngine;
+	private static int DEFAULT_TURNS;
 
 	public StartListener(BaseFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -37,7 +38,7 @@ public class StartListener implements ActionListener {
 				JLabel temp = new JLabel("Invalid input. Setting max turns to 10.");
 				temp.setFont(GUIModel.normalFont);
 				JOptionPane.showMessageDialog(mainFrame, temp);
-				finalTurns = 10;
+				finalTurns = DEFAULT_TURNS;
 			}
 			mainEngine.setMaxTurns(finalTurns);
 			mainFrame.getGUIModel().updateBoard();
