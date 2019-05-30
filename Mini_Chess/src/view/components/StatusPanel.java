@@ -43,7 +43,7 @@ public class StatusPanel extends JPanel {
 		infoPanel.setBackground(null);
 		//label1.setFont(FontTools.STATUS);
 		add(infoPanel);
-		updateInfo();
+	//	updateInfo();
 //		label1.setText("Welcome");
 //		label1.setHorizontalAlignment(SwingConstants.LEFT);
 //		label1.setBorder(border1);
@@ -57,16 +57,12 @@ public class StatusPanel extends JPanel {
 //	}
 	
 	public void updateInfo() {
-		String tempID = "";
-		Player tempPlayer = mainFrame.getGUIModel().getMainEngine().getCurrentPlayer();
-		if(tempPlayer != null) {
-			tempID = tempPlayer.getName() + "(" + tempPlayer.getID() + ")";
-		}
-		currentPlayerLabel.setText("Current Player: " + tempID);
+		String[] statusDetails = mainFrame.getGUIModel().getStatusDetails();
+		currentPlayerLabel.setText(statusDetails[0]);
 		
-		numTurnsLabel.setText("Turns Played: " + mainFrame.getGUIModel().getMainEngine().getNumTurns()/2);
+		numTurnsLabel.setText(statusDetails[1]);
 		
-		maxTurnsLabel.setText("Max Turns: " + + mainFrame.getGUIModel().getMainEngine().getMaxTurns()/2);
+		maxTurnsLabel.setText(statusDetails[2]);
 		revalidate();
 		repaint();
 	}

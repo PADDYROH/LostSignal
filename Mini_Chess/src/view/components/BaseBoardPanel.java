@@ -42,39 +42,11 @@ public class BaseBoardPanel extends JPanel {
 			}
 		}
 		// could take array of strings or something from gui model, eliminate that connection to engine
-		updateTiles();
+		//mainFrame.getGUIModel().updateTiles();
 		
 		
 	}
-	
-	// change this to take array of string filepaths from gui model
-	public void updateTiles() {
-
-		for(int r = 0; r < 6; r++) {
-			for(int c = 0; c < 6; c++) {
-				Piece basePiece = mainFrame.getGUIModel().getMainEngine().getGameBoard().getPiece(c,r);
-				Piece mergedPiece = null;
-				if(basePiece != null) {
-					mergedPiece = basePiece.getMergedPiece();
-				}
-				
-				ImageIcon baseIcon = PieceIconTools.pieceToImageIcon(basePiece);
-				ImageIcon mergedIcon = null;
-				if(mergedPiece != null) {
-					mergedIcon = PieceIconTools.pieceToImageIcon(mergedPiece, basePiece.getColor());
-				}
-				
-				if(basePiece == null) {
-					baseIcon = null;
-				}
-				tileArray[c][r].setImage(baseIcon, mergedIcon);
-				
-			}
-		}
-		repaint();
-		revalidate();
-	}
-	
+		
 		
 	public BaseFrame getMainFrame() {
 		return mainFrame;

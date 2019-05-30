@@ -1,7 +1,8 @@
-1,48690,johnny,465
-2,48690,freddy,385
+1,48690,johnny,530
+2,48690,freddy,445
 123,48690,2,0
 3,48690,john,0
 4,48690,epic,0
 5,48690,jones,0
 something,1216985755,mateo,30
+jim,1632578,johnson,0

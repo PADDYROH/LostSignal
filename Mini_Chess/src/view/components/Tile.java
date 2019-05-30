@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import controller.TileListener;
+import view.utilities.PieceIconTools;
 
 public class Tile extends JPanel {
 	private JLabel label;
@@ -53,8 +54,8 @@ public class Tile extends JPanel {
 			setImage(icon2);
 		}
 		else {
-			label.setIcon(getScaledImage(icon));
-			label2.setIcon(getScaledImage(icon2));
+			label.setIcon(PieceIconTools.getScaledImage(icon));
+			label2.setIcon(PieceIconTools.getScaledImage(icon2));
 			add(label2);
 			repaint();
 			revalidate();
@@ -82,14 +83,5 @@ public class Tile extends JPanel {
 		return defaultBorder;
 	}
 	
-	private ImageIcon getScaledImage(ImageIcon icon) {
-		//ImageIcon inputImage = new ImageIcon(getFilePath(card));
-		Image tempImage = icon.getImage();
-		int newWidth = (int) (icon.getIconWidth() * 0.5);
-		int newHeight = (int) (icon.getIconHeight() * 0.5);
-//		System.out.println(icon.getIconWidth());
-//		System.out.println(icon.getIconHeight());
-		Image scaledImage = tempImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-		return new ImageIcon(scaledImage);
-	}
+
 }

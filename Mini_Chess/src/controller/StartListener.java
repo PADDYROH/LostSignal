@@ -28,7 +28,7 @@ public class StartListener implements ActionListener {
 			MaxTurnGetter mTG2 = new MaxTurnGetter(mainFrame);
 			int turns1 = mTG1.getTurns("Player 1");
 			int turns2 = mTG2.getTurns("Player 2");
-			int finalTurns = (turns1 + turns2);
+			int finalTurns = ((turns1 + turns2)/2) * 2;
 			if(turns1 <= 0 || turns2 <= 0) {
 				JOptionPane.showMessageDialog(mainFrame, "Invalid input. Setting max turns to 10.");
 				finalTurns = 10;

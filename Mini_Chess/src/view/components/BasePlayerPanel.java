@@ -76,29 +76,19 @@ public class BasePlayerPanel extends  JPanel {
 		
 		blackPlayerPanel.removeAll();
 		blackPlayerPanel.add(blackPlayerLabel);
-		Player[] tempPlayers = new Player[2];
-		tempPlayers[0] = mainFrame.getGUIModel().getMainEngine().getWhitePlayer();
-		tempPlayers[1] = mainFrame.getGUIModel().getMainEngine().getBlackPlayer();
-		
-		for(int i = 0; i < tempPlayers.length; i++) {
-			Player tempPlayer = tempPlayers[i];
+		//Player[] tempPlayers = new Player[2];
+//		tempPlayers[0] = mainFrame.getGUIModel().getMainEngine().getWhitePlayer();
+//		tempPlayers[1] = mainFrame.getGUIModel().getMainEngine().getBlackPlayer();
+		String[][] details = mainFrame.getGUIModel().getPlayerDetails();
+		for(int i = 0; i < details.length; i++) {
+			//Player tempPlayer = tempPlayers[i];
 			JPanel tempPanel = i == 0 ? whitePlayerPanel : blackPlayerPanel;
-			if(tempPlayer != null) {
-				String[] details = new String[4];
-				details[0] = "ID: " + tempPlayer.getID();
-				details[1] = "Name: " + tempPlayer.getName();
-				details[2] = "Total Points: " + tempPlayer.getPoints();
-				int tempPoints = 0;
-				if(i == 0) {
-					tempPoints = mainFrame.getGUIModel().getMainEngine().getWhitePlayerPoints();
-				} else {
-					tempPoints = mainFrame.getGUIModel().getMainEngine().getBlackPlayerPoints();
-				}
-				details[3] = "Current Points: " + tempPoints;
+			if(details[i] != null) {
+
 				tempPanel.add(new JLabel(" "));
 				
-				for(int c = 0; c < details.length; c++) {
-					tempPanel.add(new JLabel(details[c]));
+				for(int c = 0; c < details[i].length; c++) {
+					tempPanel.add(new JLabel(details[i][c]));
 				}
 			} 
 		}

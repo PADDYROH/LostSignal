@@ -7,12 +7,12 @@ import view.model.GUIModel;
 
 public class GUIManager implements UserInterfaceManager {
 
-	private GameEngine mainEngine;
+	//private GameEngine mainEngine;
 	private GUIModel gUIModel;
 	private BaseFrame mainFrame;
 
 	public GUIManager(GameEngine mainEngine) {
-		this.mainEngine = mainEngine;
+		//this.mainEngine = mainEngine;
 		gUIModel = new GUIModel(mainEngine);
 		mainFrame = new BaseFrame(this, gUIModel);
 		//add frame to VM
