@@ -1,20 +1,10 @@
 package model;
 
-import java.util.Map;
-
 import model.piece.Piece;
 import model.utilities.PlayerManager;
 import view.UserInterfaceManager;
 
 public interface GameEngine {
-
-	// public abstract void addPlayer(Player p);
-
-	// public abstract Player getPlayer(String id);
-
-	// public abstract Map<String, Player> getAllPlayers();
-
-	// public abstract boolean removePlayer(Player p);
 
 	public abstract Player getCurrentPlayer();
 
@@ -41,7 +31,7 @@ public interface GameEngine {
 	public abstract int getWhitePlayerPoints();
 
 	public abstract int getBlackPlayerPoints();
-	
+
 	public abstract void endGame();
 
 	public abstract int getMaxTurns();

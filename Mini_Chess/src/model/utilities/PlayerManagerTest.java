@@ -2,6 +2,8 @@ package model.utilities;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +19,10 @@ public class PlayerManagerTest {
 	Map<String, Player> players;
 	@Before
 	public void setUp() throws Exception {
-		pm = new PlayerManager("players.txt");
+		PrintWriter writer = new PrintWriter(new File("players1.txt"));
+		writer.print("");
+		writer.close();
+		pm = new PlayerManager("players1.txt");
 		players = new HashMap<String, Player>();
 		players.put("001", new BasePlayer("001", "password1".hashCode(), "John F. Kennedy", 0));
 		players.put("002", new BasePlayer("002", "password2".hashCode(), "Jimmy Barnes", 250));

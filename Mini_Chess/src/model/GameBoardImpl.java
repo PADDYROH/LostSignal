@@ -60,7 +60,8 @@ public class GameBoardImpl implements GameBoard {
 		boolean split = false;
 		boolean moveOuter = false;
 		String innerId = null;
-// check if color is null this will indicate that the inner piece from a merged piece is to be moved
+		// check if color is null this will indicate that the inner piece from a merged
+		// piece is to be moved
 		if (pieces.get(id).getColor() == null) {
 
 			if (pieces.get(id).checkMovement(this, x, y)) {
@@ -116,7 +117,7 @@ public class GameBoardImpl implements GameBoard {
 	}
 
 	public int calculateNumberWhitePieces() {
-// calculating the number of pieces this is used in the end game conditions 
+		// calculating the number of pieces this is used in the end game conditions
 		int whitePieces = 0;
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "white") {
