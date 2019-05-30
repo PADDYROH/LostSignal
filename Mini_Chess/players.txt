@@ -1,3 +1,2 @@
-5,48690,extra boy,0
-6,48690,number 6ixmo,0
-7,99162322,longest boy in the world,0
+1,48690,johnny,535
+2,48690,freddy,450

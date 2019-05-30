@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Map;
-
 import model.piece.Piece;
 import model.utilities.PlayerManager;
 import view.UserInterfaceManager;
