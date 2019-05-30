@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import view.components.BaseFrame;
+import view.model.GUIModel;
 
 public class MaxTurnGetter {
 	private JTextField numberField;
@@ -30,6 +31,7 @@ public class MaxTurnGetter {
 		// set font
 		panel.add(numLabel);
 		panel.add(numberField);
+		GUIModel.updateFonts(panel);
 		int turns = 0;
 		int result = JOptionPane.showConfirmDialog(mainFrame, panel, "Choose Max Turns", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());

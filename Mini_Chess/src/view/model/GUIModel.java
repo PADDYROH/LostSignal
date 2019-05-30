@@ -1,6 +1,9 @@
 package view.model;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
 import java.io.File;
 
 import javax.swing.BorderFactory;
@@ -27,6 +30,7 @@ public class GUIModel {
 	private GameEngine mainEngine;
 	private BaseFrame mainFrame;
 	private Piece selected;
+	public final static Font normalFont = new Font("Century Gothic", Font.PLAIN, 20);
 
 	public GUIModel(GameEngine mainEngine) {
 		// TODO Auto-generated constructor stub
@@ -42,6 +46,16 @@ public class GUIModel {
 		mainFrame = newFrame;
 		updateTiles();
 		mainFrame.getMainStatusPanel().updateInfo();
+		updateFonts(mainFrame);
+	}
+	
+	public static void updateFonts(Component c) {
+		c.setFont(GUIModel.normalFont);
+		if(c instanceof Container) {
+			for(Component child : ((Container) c).getComponents()) {
+				updateFonts(child);
+			}
+		}
 	}
 
 	public GameEngine getMainEngine() {
@@ -130,7 +144,7 @@ public class GUIModel {
 	public void updateBoard() {
 		updateTiles();
 		mainFrame.getMainStatusPanel().updateInfo();
-
+		updateFonts(mainFrame);
 	}
 
 	public boolean isGameStarted() {
@@ -141,7 +155,7 @@ public class GUIModel {
 	public void updateCurrentPlayers() {
 		mainFrame.getMainPlayerPanel().updatePlayerList();
 		mainFrame.getMainStatusPanel().updateInfo();
-
+		updateFonts(mainFrame);
 	}
 
 	public void endGame() {
@@ -160,8 +174,9 @@ public class GUIModel {
 
 		winPanel.add(new JLabel(new ImageIcon("pieceImages" + File.separator + "win.png")));
 		winPanel.add(new JLabel(message));
-
+		updateFonts(winPanel);
 		JOptionPane.showMessageDialog(null, winPanel, "Game Over!", JOptionPane.DEFAULT_OPTION);
+		updateFonts(mainFrame);
 	}
 
 	public void updateMenu() {
@@ -188,6 +203,7 @@ public class GUIModel {
 		if (mainEngine.getBlackPlayer() == null) {
 			mainFrame.getMainMenuBar().getFileMenu().getLogoutBlackMenuItem().setEnabled(false);
 		}
+		updateFonts(mainFrame);
 		mainFrame.repaint();
 		mainFrame.revalidate();
 	}
@@ -215,6 +231,7 @@ public class GUIModel {
 
 			}
 		}
+		updateFonts(mainFrame);
 		mainFrame.getMainBoardPanel().repaint();
 		mainFrame.getMainBoardPanel().revalidate();
 	}

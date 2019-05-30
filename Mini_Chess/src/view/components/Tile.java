@@ -33,8 +33,10 @@ public class Tile extends JPanel {
 		setLayout(new GridLayout(1,1));
 		label = new JLabel();
 		add(label);
+		label.setHorizontalAlignment(JLabel.CENTER);
 		label2 = new JLabel();
 		add(label2);
+		label2.setHorizontalAlignment(JLabel.CENTER);
 		setBackground(defaultColor);
 		this.addMouseListener(new TileListener(this));
 	}

@@ -5,6 +5,7 @@ import javax.swing.JMenuItem;
 
 import controller.ExitListener;
 import controller.FileMenuListener;
+import view.model.GUIModel;
 
 
 public class BaseFileMenu extends JMenu {
@@ -25,17 +26,30 @@ public class BaseFileMenu extends JMenu {
 		super("File");
 		this.mainFrame = mainFrame;
 		// set font?
+		setFont(GUIModel.normalFont);
 		addMenuListener(new FileMenuListener(mainFrame.getGUIModel()));
 		registerMenuItem = new RegisterMenuItem(mainFrame);
+		registerMenuItem.setFont(GUIModel.normalFont);
+		
 		loginMenuItem = new LoginMenuItem(mainFrame);
+		loginMenuItem.setFont(GUIModel.normalFont);
+		
 		startMenuItem = new StartMenuItem(mainFrame);
+		startMenuItem.setFont(GUIModel.normalFont);
+		
 		logoutWhiteMenuItem = new LogoutMenuItem(mainFrame, true);
+		logoutWhiteMenuItem.setFont(GUIModel.normalFont);
+		
 		logoutBlackMenuItem = new LogoutMenuItem(mainFrame, false);
+		logoutBlackMenuItem.setFont(GUIModel.normalFont);
+		
 		swapMenuItem = new SwapMenuItem(mainFrame);
+		swapMenuItem.setFont(GUIModel.normalFont);
 		
 		exitMenuItem = new JMenuItem("Exit");
 		// font
 		exitMenuItem.addActionListener(new ExitListener());
+		exitMenuItem.setFont(GUIModel.normalFont);
 		
 		add(startMenuItem);
 		add(loginMenuItem);

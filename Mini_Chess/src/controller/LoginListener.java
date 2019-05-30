@@ -3,12 +3,14 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import controller.utilities.LoginGetter;
 import model.GameEngine;
 import model.Player;
 import view.components.BaseFrame;
+import view.model.GUIModel;
 
 public class LoginListener implements ActionListener {
 	private BaseFrame mainFrame;
@@ -43,13 +45,17 @@ public class LoginListener implements ActionListener {
 					numPlayersNow++;
 				}
 				if(numPlayersOriginal == numPlayersNow) {
-					JOptionPane.showMessageDialog(mainFrame, "Login failed. Invalid credentials or player already logged in.");
+					JLabel temp = new JLabel("Login failed. Invalid credentials or player already logged in.");
+					temp.setFont(GUIModel.normalFont);
+					JOptionPane.showMessageDialog(mainFrame, temp);
 				}
 			} else {
 				
 			}
 		} else {
-			JOptionPane.showMessageDialog(mainFrame, "Already 2 players logged in!");
+			JLabel temp = new JLabel("Already 2 players logged in!");
+			temp.setFont(GUIModel.normalFont);
+			JOptionPane.showMessageDialog(mainFrame, temp);
 		}
 		
 	}

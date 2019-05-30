@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import view.components.BaseFrame;
+import view.model.GUIModel;
 
 public class HelpListener implements ActionListener {
 	private JPanel helpPanel = new JPanel();
@@ -43,6 +44,7 @@ public class HelpListener implements ActionListener {
 		helpPanel.add(new JLabel("Merge a piece by moving a piece onto another piece of the same colour."));
 		helpPanel.add(new JLabel("Split a piece by selecting a piece as normal, and right clicking on another square."));
 		helpPanel.add(new JLabel("            The splitting is determined by which of the 2 merged pieces can move to the selected location."));
+		GUIModel.updateFonts(helpPanel);
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

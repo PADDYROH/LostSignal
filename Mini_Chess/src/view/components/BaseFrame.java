@@ -25,7 +25,7 @@ public class BaseFrame extends JFrame{
 		this.gUIModel = gUIModel;
 		
 		setSize(1000,1000);
-		setMinimumSize(new Dimension(900,900));
+		setMinimumSize(new Dimension(1100,900));
 		setMaximumSize(new Dimension(1100, 1100));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());

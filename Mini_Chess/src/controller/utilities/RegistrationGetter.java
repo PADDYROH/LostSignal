@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import model.BasePlayer;
 import model.Player;
 import view.components.BaseFrame;
+import view.model.GUIModel;
 
 public class RegistrationGetter {
 	private JTextField iDField;
@@ -48,20 +49,26 @@ public class RegistrationGetter {
 		// set font
 		panel.add(passwordLabel);
 		panel.add(passwordField);
-
+		GUIModel.updateFonts(panel);
 		// show a dialog with the created panel to the user
 		int result = JOptionPane.showConfirmDialog(null, panel, "Register Player", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
 		if (result == JOptionPane.OK_OPTION) {
 			if(iDField.getText().length() < 1) {
-				JOptionPane.showMessageDialog(null, "User ID must be entered!");
+				JLabel temp = new JLabel("User ID must be entered!");
+				temp.setFont(GUIModel.normalFont);
+				JOptionPane.showMessageDialog(null, temp);
 				return null;
 			} 
 			if(nameField.getText().length() < 1) {
-				JOptionPane.showMessageDialog(null, "Name must be entered!");
+				JLabel temp = new JLabel("Name must be entered!");
+				temp.setFont(GUIModel.normalFont);
+				JOptionPane.showMessageDialog(null, temp);
 				return null;
 			} 
 			if(passwordField.getPassword().length < 1) {
+				JLabel temp = new JLabel("Password must be entered!");
+				temp.setFont(GUIModel.normalFont);
 				JOptionPane.showMessageDialog(null, "Password must be entered!");
 				return null;
 			}

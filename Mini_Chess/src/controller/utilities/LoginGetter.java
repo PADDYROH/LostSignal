@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import model.Player;
 import view.components.BaseFrame;
+import view.model.GUIModel;
 
 public class LoginGetter {
 	private JTextField idField;
@@ -41,7 +42,7 @@ public class LoginGetter {
 		// fonts
 		panel.add(passwordLabel);
 		panel.add(passwordField);
-		
+		GUIModel.updateFonts(panel);
 		int result = JOptionPane.showConfirmDialog(mainFrame, panel, "Login Player", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
 		if(result == JOptionPane.OK_OPTION) {

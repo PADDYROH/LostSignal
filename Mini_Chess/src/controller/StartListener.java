@@ -3,11 +3,13 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import controller.utilities.MaxTurnGetter;
 import model.GameEngine;
 import view.components.BaseFrame;
+import view.model.GUIModel;
 
 public class StartListener implements ActionListener {
 
@@ -30,15 +32,21 @@ public class StartListener implements ActionListener {
 			int turns2 = mTG2.getTurns("Player 2");
 			int finalTurns = ((turns1 + turns2)/2) * 2;
 			if(turns1 <= 0 || turns2 <= 0) {
-				JOptionPane.showMessageDialog(mainFrame, "Invalid input. Setting max turns to 10.");
+				JLabel temp = new JLabel("Invalid input. Setting max turns to 10.");
+				temp.setFont(GUIModel.normalFont);
+				JOptionPane.showMessageDialog(mainFrame, temp);
 				finalTurns = 10;
 			} 
 			mainEngine.setMaxTurns(finalTurns);
 			mainFrame.getGUIModel().updateBoard();
 		} else if (mainFrame.getGUIModel().getMainEngine().getBlackPlayer() == null || mainFrame.getGUIModel().getMainEngine().getWhitePlayer() == null){
-			JOptionPane.showMessageDialog(mainFrame, "2 players must be logged in first.");
+			JLabel temp = new JLabel("2 players must be logged in first.");
+			temp.setFont(GUIModel.normalFont);
+			JOptionPane.showMessageDialog(mainFrame, temp);
 		} else {
-			JOptionPane.showMessageDialog(mainFrame, "Game has already started!");
+			JLabel temp = new JLabel("Game has already started!");
+			temp.setFont(GUIModel.normalFont);
+			JOptionPane.showMessageDialog(mainFrame, temp);
 		}
 		
 
