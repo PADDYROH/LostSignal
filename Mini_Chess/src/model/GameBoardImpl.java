@@ -56,13 +56,68 @@ public class GameBoardImpl implements GameBoard {
 
 	}
 
-	public Piece getPiece(int x, int y) {
-		String id = this.chessBoard[x][y];
-		return pieces.get(id);
+	public boolean movePiece(String id, int x, int y) {
+
+		boolean split = false;
+		boolean moveOuter = false;
+		String innerId = null;
+// check if color is null this will indicate that the inner piece from a merged piece is to be moved
+		if (pieces.get(id).getColor() == null) {
+
+			if (pieces.get(id).checkMovement(this, x, y)) {
+				// call split on the outer piece that is why the string at the x and y is called
+				// NOTE: split is only ever called on the outer piece
+				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
+				split = true;
+				// if not a inner piece then check the outer piece
+			} else if (pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()])
+					.checkMovement(this, x, y)) {
+				// using the string in on the chess board find the piece in the hashmap
+				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
+				split = true;
+				innerId = id;
+				id = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
+				moveOuter = true;
+			} else {
+				return false;
+			}
+
+		}
+
+		if (pieces.get(id).checkMovement(this, x, y) || split) {
+			// below are the movements for a regular piece
+			if (!split) {
+
+				this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
+				// set the previous position to null
+				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
+				// setting positions for inner piece if split
+			} else if (!moveOuter) {
+				this.chessBoard[x][y] = id;
+			} else {
+				// setting positions for the inner piece if split
+				chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = innerId;
+				this.chessBoard[x][y] = id;
+
+			}
+			// update x and y in pieces map
+			pieces.get(id).setPosX(x);
+			pieces.get(id).setPosY(y);
+
+			if (pieces.get(id).getMergedPiece() != null && !split) {
+				pieces.get(pieces.get(id).getMergedID()).setPosX(x);
+				pieces.get(pieces.get(id).getMergedID()).setPosY(y);
+			}
+
+			return true;
+
+		}
+		return false || split;
+
 	}
 
 	public int calculateNumberWhitePieces() {
-
+// calculating the number of pieces this is used in the end game conditions 
 		int whitePieces = 0;
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "white") {
@@ -77,6 +132,8 @@ public class GameBoardImpl implements GameBoard {
 	}
 
 	public int calculateNumberBlackPieces() {
+		// calculating the number of pieces this is used in the end game conditions
+
 		int blackPieces = 0;
 		for (Piece value : pieces.values()) {
 			if (value.getColor() == "black") {
@@ -102,62 +159,9 @@ public class GameBoardImpl implements GameBoard {
 		this.pieces = pieces;
 	}
 
-	public boolean movePiece(String id, int x, int y) {
-
-		boolean split = false;
-		boolean moveOuter = false;
-		String innerId = null;
-
-		if (pieces.get(id).getColor() == null) {
-			if (pieces.get(id).checkMovement(this, x, y)) {
-				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
-				split = true;
-			} else if (pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()])
-					.checkMovement(this, x, y)) {
-				pieces.get(this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()]).split(this);
-				split = true;
-				innerId = id;
-				id = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
-				moveOuter = true;
-			} else {
-				return false;
-			}
-
-		}
-
-		if (pieces.get(id).checkMovement(this, x, y) || split) {
-			// move the piece
-
-			// set starting pos to null
-			if (!split) {
-
-				this.chessBoard[x][y] = chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()];
-
-				this.chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = null;
-
-			} else if (!moveOuter) {
-				this.chessBoard[x][y] = id;
-			} else {
-				chessBoard[pieces.get(id).getPosX()][pieces.get(id).getPosY()] = innerId;
-				this.chessBoard[x][y] = id;
-
-			}
-
-			// update x and y in pieces map
-
-			pieces.get(id).setPosX(x);
-			pieces.get(id).setPosY(y);
-
-			if (pieces.get(id).getMergedPiece() != null && !split) {
-				pieces.get(pieces.get(id).getMergedID()).setPosX(x);
-				pieces.get(pieces.get(id).getMergedID()).setPosY(y);
-			}
-
-			return true;
-
-		}
-		return false || split;
-
+	public Piece getPiece(int x, int y) {
+		String id = this.chessBoard[x][y];
+		return pieces.get(id);
 	}
 
 }

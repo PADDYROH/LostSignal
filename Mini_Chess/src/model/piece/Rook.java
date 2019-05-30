@@ -9,6 +9,10 @@ public class Rook extends Piece {
 
 	}
 
+	/*
+	 * this is a bishop movement logic, NOTE: rooks can move by two or one on either
+	 * axis
+	 */
 	@Override
 	public boolean pieceMovement(GameBoard gameBoard, int x, int y) {
 

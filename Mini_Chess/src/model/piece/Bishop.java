@@ -9,6 +9,10 @@ public class Bishop extends Piece {
 
 	}
 
+	/*
+	 * this is a bishop movement logic NOTE: can only move in a diagonal direction
+	 * either by one or two spaces
+	 */
 	@Override
 	public boolean pieceMovement(GameBoard gameBoard, int x, int y) {
 

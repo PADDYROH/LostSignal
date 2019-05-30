@@ -8,6 +8,10 @@ public class Knight extends Piece {
 		super(COLOR, posX, posY);
 	}
 
+	/*
+	 * this is a bishop movement logic // NOTE: can only move two up and one across
+	 * or vice-versa , also has less checks because it can jump over pieces
+	 */
 	@Override
 	public boolean pieceMovement(GameBoard gameBoard, int x, int y) {
 

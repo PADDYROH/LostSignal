@@ -5,7 +5,7 @@ import model.GameBoardImpl;
 
 public abstract class Piece {
 
-	// define the movement length of a pice
+	// define the movement lengths of a pieces
 	protected static final int MOVE_BY_ONE = 1;
 	protected static final int MOVE_BY_TWO = 2;
 	// define the board limits
@@ -26,41 +26,47 @@ public abstract class Piece {
 	}
 
 	public boolean split(GameBoardImpl gameBoard) {
-
+		// splitting pieces must set the inner piece color
 		gameBoard.getPieces().get(mergedID).setCOLOR(getColor());
+		// must be set to null so a piece can merge again
 		this.mergedPiece = null;
 		return true;
 	}
 
 	public boolean checkMovement(GameBoard gameBoard, int x, int y) {
-		// keeps x and y with in bounds
+		// keeps x and y with in bounds of the game board
 		if (!inBoardLimits(x, y)) {
 			return false;
 		}
-		// checks if move is valid
 		if (validMove(gameBoard, x, y)) {
 
 			if (gameBoard.getChessBoard()[x][y] != null) {
 				Piece piece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
 
 				if (!sameTeam(gameBoard, x, y)) {
-
+					// set color to null to indicate that it has been removed from the game this is
+					// needed for end game checks and points
 					piece.setCOLOR(null);
+					// set to -1 this way it will not be in the game board
 					piece.setPosX(-1);
 					piece.setPosY(-1);
 
 				} else {
-					// check that piece on same team isn't of same type
+					// check that piece on same team isn't of same type this would be a pointless
+					// merge
 					if (piece.getClass().equals(this.getClass()) && piece.getColor().equals(this.getColor())) {
 						return false;
 					}
-
+					// check if the piece has already been merged
 					if (piece.getMergedPiece() != null) {
 						return false;
 					}
 					if (this.mergedPiece != null) {
 						return false;
 					} else {
+						// merge a piece
+						// NOTE: the merged pieces color must be null this is to keep continuity with
+						// the number of pieces in the game
 						mergedID = gameBoard.getChessBoard()[x][y];
 						mergedPiece = gameBoard.getPieces().get(mergedID);
 						mergedPiece.setCOLOR(null);
@@ -77,7 +83,6 @@ public abstract class Piece {
 	public boolean validMove(GameBoard gameBoard, int x, int y) {
 
 		Piece piece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
-
 		boolean validMove = false;
 		if (mergedPiece == null) {
 			if (piece != null) {
@@ -89,10 +94,13 @@ public abstract class Piece {
 			validMove = pieceMovement(gameBoard, x, y);
 		} else {
 			if (piece != null) {
+				// check that a piece isn't on the same team
 				if (piece.getColor() == this.getColor()) {
 					return false;
 				}
 			}
+			// check movement of a merged piece
+			// NOTE: both pieces, pieceMovement method is called here
 			if (gameBoard.getPieces().get(mergedID).pieceMovement(gameBoard, x, y) == true
 					|| this.pieceMovement(gameBoard, x, y) == true) {
 
@@ -110,7 +118,7 @@ public abstract class Piece {
 
 	@Override
 	public String toString() {
-
+		// used to debug
 		return (String.format(" Color=%s, posX=%s, posY=%s ", COLOR, posX, posY));
 
 	}
@@ -136,7 +144,7 @@ public abstract class Piece {
 	}
 
 	public boolean pieceMovement(GameBoard gameBoard, int x, int y) {
-		// NOTE: piece must overide for movement logic
+		// NOTE: piece will Override for individual movement logic
 		return false;
 	}
 
@@ -162,7 +170,6 @@ public abstract class Piece {
 	}
 
 	public String getMergedID() {
-		// TODO Auto-generated method stub
 		return this.mergedID;
 	}
 
