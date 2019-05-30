@@ -2,7 +2,6 @@ package view;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ public class CLIManagerTest00 {
 	@Test
 	public void saveGameboard() throws Exception {
 		GameBoard.movePiece("r1", 0, 1);
-		Object oldGameBoard;
+		//Object oldGameBoard;
 		//GameBoard.saveGameBoard(oldGameBoard);
 		//assertEquals(true,oldGameBoard.getPiece(0, 1));
 	}

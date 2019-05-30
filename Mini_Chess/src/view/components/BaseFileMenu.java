@@ -5,14 +5,13 @@ import javax.swing.JMenuItem;
 
 import controller.ExitListener;
 import controller.FileMenuListener;
+import view.model.GUIModel;
 
-
+@SuppressWarnings("serial")
 public class BaseFileMenu extends JMenu {
 
 	private JMenuItem exitMenuItem;
-	private BaseFrame mainFrame;
 	private RegisterMenuItem registerMenuItem;
-	
 
 	private LoginMenuItem loginMenuItem;
 	private StartMenuItem startMenuItem;
@@ -21,22 +20,33 @@ public class BaseFileMenu extends JMenu {
 	private SwapMenuItem swapMenuItem;
 
 	public BaseFileMenu(BaseFrame mainFrame) {
-		// TODO Auto-generated constructor stub
 		super("File");
-		this.mainFrame = mainFrame;
-		// set font?
+		setFont(GUIModel.normalFont);
+		// add listener that updates available items on click
 		addMenuListener(new FileMenuListener(mainFrame.getGUIModel()));
+		// add each item to the file menu, setting font
 		registerMenuItem = new RegisterMenuItem(mainFrame);
+		registerMenuItem.setFont(GUIModel.normalFont);
+
 		loginMenuItem = new LoginMenuItem(mainFrame);
+		loginMenuItem.setFont(GUIModel.normalFont);
+
 		startMenuItem = new StartMenuItem(mainFrame);
+		startMenuItem.setFont(GUIModel.normalFont);
+
 		logoutWhiteMenuItem = new LogoutMenuItem(mainFrame, true);
+		logoutWhiteMenuItem.setFont(GUIModel.normalFont);
+
 		logoutBlackMenuItem = new LogoutMenuItem(mainFrame, false);
+		logoutBlackMenuItem.setFont(GUIModel.normalFont);
+
 		swapMenuItem = new SwapMenuItem(mainFrame);
-		
+		swapMenuItem.setFont(GUIModel.normalFont);
+
 		exitMenuItem = new JMenuItem("Exit");
-		// font
 		exitMenuItem.addActionListener(new ExitListener());
-		
+		exitMenuItem.setFont(GUIModel.normalFont);
+
 		add(startMenuItem);
 		add(loginMenuItem);
 		add(registerMenuItem);
@@ -44,7 +54,7 @@ public class BaseFileMenu extends JMenu {
 		add(logoutWhiteMenuItem);
 		add(logoutBlackMenuItem);
 		add(exitMenuItem);
-	
+
 	}
 
 	public RegisterMenuItem getRegisterMenuItem() {

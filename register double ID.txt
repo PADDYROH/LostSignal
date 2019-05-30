@@ -1,2 +1,0 @@
-register 1 fail (if loaded from file)
-register 3 pass

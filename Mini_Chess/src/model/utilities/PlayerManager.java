@@ -19,8 +19,10 @@ public class PlayerManager {
 	public PlayerManager(String registryFile) {
 		this.registryFile = registryFile;
 		players = new HashMap<String, Player>();
+		loadPlayers();
 	}
 
+	// save players to file
 	public void savePlayers() {
 		try {
 			FileWriter fw = new FileWriter(registryFile, false);
@@ -29,11 +31,11 @@ public class PlayerManager {
 			}
 			fw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	// load players from file into HashMap
 	public void loadPlayers() {
 		players = new HashMap<String, Player>();
 		try {
@@ -49,21 +51,20 @@ public class PlayerManager {
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// return players;
 	}
 
+	// get Player from HashMap
 	public Player getPlayer(String id) {
 		return players.get(id);
 	}
 
-	public void addPlayer(Player p) throws IllegalArgumentException{
-		if(players.get(p.getID()) == null) {
+	// add Player, throw exception if ID in system already
+	public void addPlayer(Player p) throws IllegalArgumentException {
+		if (players.get(p.getID()) == null) {
 			players.put(p.getID(), p);
 			savePlayers();
 		} else {
@@ -87,8 +88,4 @@ public class PlayerManager {
 
 	}
 
-	public boolean verify(String id, String password) {
-		return false;
-	}
-	
 }
