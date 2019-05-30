@@ -12,9 +12,7 @@ public class PlayerTest{
 
 	@Before
 	public void setUp() throws Exception {
-		// given
 		player = new BasePlayer("100", "password123".hashCode(), "johnny the goose", 100);
-		// public BasePlayer(String playerID, int playerPasswordHash, String playerName,int playerPoints) {
 	}
 	
 	@Test
