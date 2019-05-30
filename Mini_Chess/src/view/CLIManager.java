@@ -12,9 +12,11 @@ public class CLIManager implements UserInterfaceManager {
 		this.mainEngine = mainEngine;
 	}
 
+	//Update Board on movement
 	@Override
 	public void updateBoard(boolean successfulMove) {
 		GameBoard chessBoard = mainEngine.getGameBoard();
+		//Print Board into console
 		System.out.print("      0       1       2       3       4      5  ");
 		for (int column = 0; column < chessBoard.getChessBoard().length; column++) {
 
@@ -39,7 +41,7 @@ public class CLIManager implements UserInterfaceManager {
 			System.out.println("Invalid move. Try again " + mainEngine.getCurrentPlayer().getID() + ":" + mainEngine.getCurrentPlayer().getName());
 		}
 	}
-
+	//List Current Players in console
 	@Override
 	public void updateCurrentPlayers() {
 		Player temp = mainEngine.getWhitePlayer();
@@ -55,6 +57,7 @@ public class CLIManager implements UserInterfaceManager {
 		}
 	}
 
+	//Show Winner on Game end
 	@Override
 	public void endGame() {
 		if (mainEngine.getBlackPlayerPoints() > mainEngine.getWhitePlayerPoints()) {

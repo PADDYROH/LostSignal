@@ -1,12 +1,11 @@
 package model;
 
 public class BasePlayer implements Player {
-
 	private String playerID;
 	private String playerName;
 	private int playerPoints;
 	private int playerPasswordHash;
-
+	//Base Player Requires an ID, Password, PlayerName and Points
 	public BasePlayer(String playerID, int playerPasswordHash, String playerName, int playerPoints) {
 
 		this.playerID = playerID;
@@ -15,7 +14,7 @@ public class BasePlayer implements Player {
 		this.playerName = playerName;
 	}
 
-	
+	//All BasePlayer Variables 
 	@Override
 	public void setName(String name) {
 
