@@ -115,7 +115,7 @@ public class GUIModel {
 						if (p.getColor() != null) {
 							// only check movement of pieces of the opposite colour
 							if (!p.getColor().equals(mainEngine.getGameBoard().getPiece(xPos, yPos).getColor())) {
-								if (p.validMove((GameBoardImpl) mainEngine.getGameBoard(), c, r)) {
+								if (p.validMove(mainEngine.getGameBoard(), c, r)) {
 									// set colour to orange
 									mainFrame.getMainBoardPanel().getTiles()[c][r]
 											.updateBorder(BorderFactory.createLineBorder(new Color(255, 128, 0), 5));
