@@ -5,14 +5,10 @@ import java.util.*;
 import model.piece.Piece;
 import model.utilities.PlayerManager;
 
-import java.io.*;
 import view.UserInterfaceManager;
 
 public class GameEngineImpl implements GameEngine {
 
-	// private static int MAX_PLAYERS = 2;
-	private static int BOARD_ROWS = 6;
-	private static int BOARD_COLS = 6;
 	private static int POINTS_PER_PIECE = 5;
 	private static int MAX_POINTS = 30;
 	private Player whitePlayer;
@@ -53,10 +49,10 @@ public class GameEngineImpl implements GameEngine {
 	public int calculatePlayerPoints(Player player) {
 		int newPoints = 0;
 		if (player.getID().equals(whitePlayer.getID())) {
-			newPoints = 30 - mainBoard.calculateNumberBlackPieces() * 5;
+			newPoints = MAX_POINTS - mainBoard.calculateNumberBlackPieces() * POINTS_PER_PIECE;
 			whitePlayerPoints = newPoints;
 		} else if (player.getID().equals(blackPlayer.getID())) {
-			newPoints = 30 - mainBoard.calculateNumberWhitePieces() * 5;
+			newPoints = MAX_POINTS - mainBoard.calculateNumberWhitePieces() * POINTS_PER_PIECE;
 			blackPlayerPoints = newPoints;
 		}
 		return newPoints;
@@ -72,7 +68,7 @@ public class GameEngineImpl implements GameEngine {
 		// check piece belongs to current player
 		// String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
 		Piece tempPiece = mainBoard.getPieces().get(pieceID);
-		// change to checkMove()
+		
 		if (checkMove(tempPiece.getPosX(), tempPiece.getPosY(), xCo, yCo)) {
 			// try to move piece
 			if (!mainBoard.movePiece(pieceID, xCo, yCo)) {
@@ -122,7 +118,7 @@ public class GameEngineImpl implements GameEngine {
 			uIM.updateBoard(true);
 			uIM.endGame();
 		}
-		// updatePlayerPoints 
+		// updatePlayerPoints
 		whitePlayer.setPoints(whitePlayer.getPoints() + whitePlayerPoints);
 		blackPlayer.setPoints(blackPlayer.getPoints() + blackPlayerPoints);
 		// save to file
@@ -274,7 +270,7 @@ public class GameEngineImpl implements GameEngine {
 		}
 
 	}
-	
+
 	@Override
 	public void swapPlayers() {
 		Player temp = whitePlayer;
@@ -293,7 +289,6 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public int getNumTurns() {
-		// TODO Auto-generated method stub
 		return numTurns;
 	}
 }

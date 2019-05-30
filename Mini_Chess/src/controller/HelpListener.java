@@ -16,6 +16,8 @@ import view.model.GUIModel;
 public class HelpListener implements ActionListener {
 	private JPanel helpPanel = new JPanel();
 	private BaseFrame mainFrame;
+
+	// create the Help Panel and add all contents to it
 	public HelpListener(BaseFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		helpPanel = new JPanel();
@@ -42,14 +44,16 @@ public class HelpListener implements ActionListener {
 		helpPanel.add(badMove);
 		helpPanel.add(new JLabel(" "));
 		helpPanel.add(new JLabel("Merge a piece by moving a piece onto another piece of the same colour."));
-		helpPanel.add(new JLabel("Split a piece by selecting a piece as normal, and right clicking on another square."));
-		helpPanel.add(new JLabel("            The splitting is determined by which of the 2 merged pieces can move to the selected location."));
+		helpPanel
+				.add(new JLabel("Split a piece by selecting a piece as normal, and right clicking on another square."));
+		helpPanel.add(new JLabel(
+				"            The splitting is determined by which of the 2 merged pieces can move to the selected location."));
 		GUIModel.updateFonts(helpPanel);
 	}
+
+	// show the Help panel popup when Help is clicked on
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
 		JOptionPane.showConfirmDialog(mainFrame, helpPanel, "Help Panel", JOptionPane.PLAIN_MESSAGE);
 	}
 

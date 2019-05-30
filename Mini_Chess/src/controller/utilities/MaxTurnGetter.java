@@ -16,7 +16,7 @@ public class MaxTurnGetter {
 	private JTextField numberField;
 	private JPanel panel;
 	private BaseFrame mainFrame;
-	
+
 	public MaxTurnGetter(BaseFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		numberField = new JTextField();
@@ -25,16 +25,17 @@ public class MaxTurnGetter {
 	}
 
 	public int getTurns(String playerMessage) {
-		// TODO Auto-generated method stub
+		// create labels and text fields for user input
 		JLabel numLabel = new JLabel(playerMessage + " Desired Max Turns:");
 		numLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		// set font
 		panel.add(numLabel);
 		panel.add(numberField);
 		GUIModel.updateFonts(panel);
 		int turns = 0;
+		// show dialog and get input
 		int result = JOptionPane.showConfirmDialog(mainFrame, panel, "Choose Max Turns", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
+		// return int input (0 is invalid) if OK, or 0 if cancel
 		if (result == JOptionPane.OK_OPTION) {
 			try {
 				turns = Integer.parseInt(numberField.getText());

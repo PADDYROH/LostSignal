@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import model.Player;
 import view.components.BaseFrame;
 import view.model.GUIModel;
 
@@ -30,7 +29,7 @@ public class LoginGetter {
 	
 	public String[] getLogin() {
 		String[] details = new String[2];
-		
+		// create labels and text fields for user input
 		JLabel userNameLabel = new JLabel("User ID: ");
 		userNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		// set fonts?
@@ -43,8 +42,10 @@ public class LoginGetter {
 		panel.add(passwordLabel);
 		panel.add(passwordField);
 		GUIModel.updateFonts(panel);
+		// show dialog and get input
 		int result = JOptionPane.showConfirmDialog(mainFrame, panel, "Login Player", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
+		// return details if OK, otherwise null if cancelled
 		if(result == JOptionPane.OK_OPTION) {
 			details[0] = idField.getText();
 			details[1] = String.valueOf(passwordField.getPassword());

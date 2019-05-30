@@ -19,6 +19,7 @@ public class PlayerManager {
 	public PlayerManager(String registryFile) {
 		this.registryFile = registryFile;
 		players = new HashMap<String, Player>();
+		loadPlayers();
 	}
 
 	public void savePlayers() {

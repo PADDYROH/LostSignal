@@ -20,7 +20,6 @@ public class RegistrationGetter {
 	private JTextField nameField;
 	private JPasswordField passwordField;
 	private JPanel panel;
-	private BaseFrame mainFrame;
 	
 	public RegistrationGetter(BaseFrame mainFrame) {
 		nameField = new JTextField();
@@ -31,22 +30,23 @@ public class RegistrationGetter {
 	}
 	
 	public Player registerPlayer() {
+		// create labels and text fields
 		JLabel iDLabel = new JLabel("User ID: ");
 		iDLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		// set font
+	
 		panel.add(iDLabel);
 		panel.add(iDField);
 		
 		JLabel usernameLabel = new JLabel("Username: ");
 		usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		// set font
+	
 		panel.add(usernameLabel);
 		panel.add(nameField);
 		
 		JLabel passwordLabel = new JLabel("Password: ");
 		passwordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		passwordField.setEchoChar('*');
-		// set font
+	
 		panel.add(passwordLabel);
 		panel.add(passwordField);
 		GUIModel.updateFonts(panel);
@@ -54,6 +54,7 @@ public class RegistrationGetter {
 		int result = JOptionPane.showConfirmDialog(null, panel, "Register Player", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
 		if (result == JOptionPane.OK_OPTION) {
+			// warn user if nothing inputted to each field
 			if(iDField.getText().length() < 1) {
 				JLabel temp = new JLabel("User ID must be entered!");
 				temp.setFont(GUIModel.normalFont);
@@ -72,6 +73,7 @@ public class RegistrationGetter {
 				JOptionPane.showMessageDialog(null, "Password must be entered!");
 				return null;
 			}
+			// return player based on input
 			return new BasePlayer(iDField.getText(), (String.valueOf(passwordField.getPassword())).hashCode(), nameField.getText(), 0);
 			
 		} else {

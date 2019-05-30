@@ -21,7 +21,7 @@ public class SwapListener implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		// swap players, warn user and do not swap if game in progress
 		if(mainFrame.getGUIModel().isGameStarted()) {
 			JLabel temp = new JLabel("Game has already started!");
 			temp.setFont(GUIModel.normalFont);
