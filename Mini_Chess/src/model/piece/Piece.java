@@ -1,5 +1,6 @@
 package model.piece;
 
+import model.GameBoard;
 import model.GameBoardImpl;
 
 public abstract class Piece {
@@ -31,7 +32,7 @@ public abstract class Piece {
 		return true;
 	}
 
-	public boolean checkMovement(GameBoardImpl gameBoard, int x, int y) {
+	public boolean checkMovement(GameBoard gameBoard, int x, int y) {
 		// keeps x and y with in bounds
 		if (!inBoardLimits(x, y)) {
 			return false;
@@ -73,7 +74,7 @@ public abstract class Piece {
 		return false;
 	}
 
-	public boolean validMove(GameBoardImpl gameBoard, int x, int y) {
+	public boolean validMove(GameBoard gameBoard, int x, int y) {
 
 		Piece piece = gameBoard.getPieces().get(gameBoard.getChessBoard()[x][y]);
 
@@ -114,7 +115,7 @@ public abstract class Piece {
 
 	}
 
-	public boolean sameTeam(GameBoardImpl gameBoard, int x, int y) {
+	public boolean sameTeam(GameBoard gameBoard, int x, int y) {
 
 		if (!inBoardLimits(x, y)) {
 			return false;
@@ -134,7 +135,7 @@ public abstract class Piece {
 
 	}
 
-	public boolean pieceMovement(GameBoardImpl gameBoard, int x, int y) {
+	public boolean pieceMovement(GameBoard gameBoard, int x, int y) {
 		// NOTE: piece must overide for movement logic
 		return false;
 	}

@@ -1,6 +1,6 @@
 package model.piece;
 
-import model.GameBoardImpl;
+import model.GameBoard;
 
 public class Rook extends Piece {
 
@@ -10,7 +10,7 @@ public class Rook extends Piece {
 	}
 
 	@Override
-	public boolean pieceMovement(GameBoardImpl gameBoard, int x, int y) {
+	public boolean pieceMovement(GameBoard gameBoard, int x, int y) {
 
 		if (posX + MOVE_BY_ONE == x && posY == y || posY + MOVE_BY_ONE == y && posX == x) {
 			return true;
