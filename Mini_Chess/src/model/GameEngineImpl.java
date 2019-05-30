@@ -65,20 +65,21 @@ public class GameEngineImpl implements GameEngine {
 
 	@Override
 	public boolean movePiece(String pieceID, int xCo, int yCo) {
-		// check piece belongs to current player
-		// String pieceColor = mainBoard.getPieces().get(pieceID).getColor();
 		Piece tempPiece = mainBoard.getPieces().get(pieceID);
-		
+		// check if player owns that piece
 		if (checkMove(tempPiece.getPosX(), tempPiece.getPosY(), xCo, yCo)) {
-			// try to move piece
+			// try to move piece and update views
 			if (!mainBoard.movePiece(pieceID, xCo, yCo)) {
 				for (UserInterfaceManager uIM : userInterfaceManagers) {
 					uIM.updateBoard(false);
 				}
 				return false;
 			} else {
+				// if move successful, check and update state
 				numTurns++;
 				calculatePlayerPoints(currentPlayer);
+				// end game if one player has 0 pieces and update views
+				// swap players otherwise
 				if (currentPlayer.getID().equals(whitePlayer.getID())) {
 					if (mainBoard.calculateNumberBlackPieces() == 0) {
 						endGame();
@@ -92,11 +93,7 @@ public class GameEngineImpl implements GameEngine {
 					}
 					currentPlayer = whitePlayer;
 				}
-
-				// update player points *
-				// change currentPlayer *
-				// check if game over *
-
+				// if maxTurns is reached, end game
 				if (numTurns >= maxTurns) {
 					endGame();
 				} else {
@@ -107,30 +104,34 @@ public class GameEngineImpl implements GameEngine {
 				return true;
 			}
 		} else {
+			// return false if move did not occur
 			return false;
 		}
 	}
 
 	@Override
 	public void endGame() {
-		// calculatePlayerPoints(currentPlayer);
+		// update views
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateBoard(true);
 			uIM.endGame();
 		}
-		// updatePlayerPoints
+		// update player pPoints
 		whitePlayer.setPoints(whitePlayer.getPoints() + whitePlayerPoints);
 		blackPlayer.setPoints(blackPlayer.getPoints() + blackPlayerPoints);
-		// save to file
+		// save players to file
 		playerManager.savePlayers();
+		// reset game state
 		currentPlayer = null;
 		whitePlayer = null;
 		blackPlayer = null;
+		// update player views
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateCurrentPlayers();
 		}
 		numTurns = 0;
 		maxTurns = 0;
+		// reset board
 		mainBoard = new GameBoardImpl();
 	}
 
@@ -153,17 +154,21 @@ public class GameEngineImpl implements GameEngine {
 	public void login(String id, String password) {
 		if (playerManager.getPlayer(id) != null) {
 			if (whitePlayer == null) {
+				// check if player already logged in
 				if (blackPlayer != null) {
 					if (!blackPlayer.getID().equals(id)) {
+						// login if passwords match
 						if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
 							whitePlayer = playerManager.getPlayer(id);
 						}
 					}
 				} else {
+					// login if passwords match
 					if (password.hashCode() == playerManager.getPlayer(id).getPasswordHash()) {
 						whitePlayer = playerManager.getPlayer(id);
 					}
 				}
+				// repeat above for black player
 			} else if (blackPlayer == null) {
 				if (whitePlayer != null) {
 					if (!whitePlayer.getID().equals(id)) {
@@ -178,10 +183,13 @@ public class GameEngineImpl implements GameEngine {
 				}
 			}
 		}
+		// white player starts first
 		currentPlayer = whitePlayer;
+		// update player views
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateCurrentPlayers();
 		}
+		// update board views, true means no invalid move was made 
 		if (whitePlayer != null && blackPlayer != null) {
 			for (UserInterfaceManager uIM : userInterfaceManagers) {
 				uIM.updateBoard(true);
@@ -214,9 +222,11 @@ public class GameEngineImpl implements GameEngine {
 		return maxTurns;
 	}
 
+	// method returns a piece or null, at xPos or yPos
 	@Override
 	public Piece selectPiece(int xPos, int yPos) {
 		Piece tempPiece = mainBoard.getPiece(xPos, yPos);
+		// isSelectable is true if player color matches the piece color
 		boolean isSelectable = false;
 		if (tempPiece != null) {
 			if (tempPiece.getColor().equals("white") && currentPlayer == whitePlayer) {
@@ -229,6 +239,7 @@ public class GameEngineImpl implements GameEngine {
 		return isSelectable ? tempPiece : null;
 	}
 
+	// check move is valid for a piece and player matches piece color
 	@Override
 	public boolean checkMove(int xSource, int ySource, int xTarg, int yTarg) {
 		Piece tempPiece = mainBoard.getPiece(xSource, ySource);

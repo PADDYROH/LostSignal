@@ -1,7 +1,6 @@
 package view;
 
 import model.GameBoard;
-import model.GameBoardImpl;
 import model.GameEngine;
 import model.Player;
 
@@ -14,6 +13,7 @@ public class CLIManager implements UserInterfaceManager {
 
 	@Override
 	public void updateBoard(boolean successfulMove) {
+		// print out the board
 		GameBoard chessBoard = mainEngine.getGameBoard();
 		System.out.print("      0       1       2       3       4      5  ");
 		for (int column = 0; column < chessBoard.getChessBoard().length; column++) {
@@ -34,6 +34,7 @@ public class CLIManager implements UserInterfaceManager {
 				}
 			}
 		}
+		// if invalid move was made, print warning
 		System.out.println("\n");
 		if(!successfulMove) {
 			System.out.println("Invalid move. Try again " + mainEngine.getCurrentPlayer().getID() + ":" + mainEngine.getCurrentPlayer().getName());
@@ -42,6 +43,7 @@ public class CLIManager implements UserInterfaceManager {
 
 	@Override
 	public void updateCurrentPlayers() {
+		// print out the White and Black players if they are logged in yet
 		Player temp = mainEngine.getWhitePlayer();
 		if (temp != null) {
 			System.out.printf("_____White_Player_____%n" + "ID:     %s%n" + "Name:   %s%n" + "Points: %s%n",
@@ -57,6 +59,7 @@ public class CLIManager implements UserInterfaceManager {
 
 	@Override
 	public void endGame() {
+		// print out the winner, based on points
 		if (mainEngine.getBlackPlayerPoints() > mainEngine.getWhitePlayerPoints()) {
 			System.out.printf("The winner is: %s:%s with %d points!", mainEngine.getBlackPlayer().getID(),
 					mainEngine.getBlackPlayer().getName(), mainEngine.getBlackPlayerPoints());

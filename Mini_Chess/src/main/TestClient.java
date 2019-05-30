@@ -6,8 +6,6 @@ import java.util.Scanner;
 import model.BasePlayer;
 import model.GameEngine;
 import model.Player;
-import model.piece.Piece;
-import model.utilities.PlayerManager;
 public class TestClient {
 	GameEngine gameEngine;
 	Scanner scanner = new Scanner(System.in);

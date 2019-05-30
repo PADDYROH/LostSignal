@@ -8,10 +8,10 @@ import controller.FileMenuListener;
 import view.model.GUIModel;
 
 
+@SuppressWarnings("serial")
 public class BaseFileMenu extends JMenu {
 
 	private JMenuItem exitMenuItem;
-	private BaseFrame mainFrame;
 	private RegisterMenuItem registerMenuItem;
 	
 
@@ -22,12 +22,11 @@ public class BaseFileMenu extends JMenu {
 	private SwapMenuItem swapMenuItem;
 
 	public BaseFileMenu(BaseFrame mainFrame) {
-		// TODO Auto-generated constructor stub
 		super("File");
-		this.mainFrame = mainFrame;
-		// set font?
 		setFont(GUIModel.normalFont);
+		// add listener that updates available items on click
 		addMenuListener(new FileMenuListener(mainFrame.getGUIModel()));
+		// add each item to the file menu, setting font
 		registerMenuItem = new RegisterMenuItem(mainFrame);
 		registerMenuItem.setFont(GUIModel.normalFont);
 		
@@ -47,7 +46,6 @@ public class BaseFileMenu extends JMenu {
 		swapMenuItem.setFont(GUIModel.normalFont);
 		
 		exitMenuItem = new JMenuItem("Exit");
-		// font
 		exitMenuItem.addActionListener(new ExitListener());
 		exitMenuItem.setFont(GUIModel.normalFont);
 		

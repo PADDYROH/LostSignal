@@ -2,27 +2,22 @@ package view;
 
 import model.GameEngine;
 import view.components.BaseFrame;
-import view.components.Tile;
 import view.model.GUIModel;
 
 public class GUIManager implements UserInterfaceManager {
 
-	//private GameEngine mainEngine;
 	private GUIModel gUIModel;
 	private BaseFrame mainFrame;
 
 	public GUIManager(GameEngine mainEngine) {
-		//this.mainEngine = mainEngine;
 		gUIModel = new GUIModel(mainEngine);
 		mainFrame = new BaseFrame(this, gUIModel);
-		//add frame to VM
 		gUIModel.setMainFrame(mainFrame);
 	}
 	
 	@Override
 	public void updateBoard(boolean successfulMove) {
-		// TODO Auto-generated method stub
-		// make take boolean so knows whether to update status bar
+		// update board and players (for points) in GUI
 		gUIModel.updateBoard();
 		gUIModel.updateCurrentPlayers();
 
@@ -30,21 +25,16 @@ public class GUIManager implements UserInterfaceManager {
 
 	@Override
 	public void updateCurrentPlayers() {
-		// TODO Auto-generated method stub
+		// update list of players (after logging in etc.)
 		gUIModel.updateCurrentPlayers();
 
 	}
 
 	@Override
 	public void endGame() {
-		// TODO Auto-generated method stub
+		// end game update of GUI
 		gUIModel.endGame();
 
-	}
-
-	public void selectPiece(String string) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
