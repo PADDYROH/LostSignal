@@ -150,11 +150,6 @@ public class GameBoardImplTest {
 		assertEquals(gb.getPiece(5, 0), gb.getPieces().get("r2"));
 	}
 	
-	@Test
-	public void checkMoveToOccupiedPosition() {
-		gb.movePiece("r2", 4, 0);
-		assertEquals(gb.getPiece(5, 0), gb.getPieces().get("r2"));
-	}
 
 	@Test
 	public void checkInitialBoard() {
