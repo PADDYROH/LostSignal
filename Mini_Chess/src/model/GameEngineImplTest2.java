@@ -2,6 +2,8 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +19,9 @@ class GameEngineImplTest2 {
 	GameEngine gE;
 	@BeforeEach
 	void setUp() throws Exception {
+		PrintWriter writer = new PrintWriter(new File("players.txt"));
+		writer.print("");
+		writer.close();
 		gE = new GameEngineImpl();
 		players = new HashMap<String, Player>();
 		players.put("001", new BasePlayer("001", "password1".hashCode(), "John F. Kennedy", 0));
