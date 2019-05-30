@@ -11,10 +11,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.utilities.PlayerManager;
 
 class GameEngineImplTest2 {
-	//PlayerManager pm; 
+	
 	Map<String, Player> players;
 	GameEngine gE;
 	@BeforeEach

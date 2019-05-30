@@ -20,19 +20,19 @@ public class StatusPanel extends JPanel {
 		setLayout(new GridLayout(1, 1));
 		// add 3 labels
 		currentPlayerLabel = new JLabel();
-		currentPlayerLabel.setBorder(BorderFactory.createMatteBorder(0,0,0,2, Color.BLACK));
+		currentPlayerLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
 		numTurnsLabel = new JLabel();
-		numTurnsLabel.setBorder(BorderFactory.createMatteBorder(0,0,0,2, Color.BLACK));
+		numTurnsLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, Color.BLACK));
 		maxTurnsLabel = new JLabel();
 		// use another panel to organise the labels into a 1x3 grid
 		JPanel infoPanel = new JPanel();
-		infoPanel.setLayout(new GridLayout(1,3));
-		
+		infoPanel.setLayout(new GridLayout(1, 3));
+
 		infoPanel.add(currentPlayerLabel);
 		infoPanel.add(numTurnsLabel);
 		infoPanel.add(maxTurnsLabel);
 		infoPanel.setBackground(null);
-	
+
 		add(infoPanel);
 
 	}
@@ -42,14 +42,12 @@ public class StatusPanel extends JPanel {
 		// get details from GUIModel
 		String[] statusDetails = mainFrame.getGUIModel().getStatusDetails();
 		currentPlayerLabel.setText(statusDetails[0]);
-		
+
 		numTurnsLabel.setText(statusDetails[1]);
-		
+
 		maxTurnsLabel.setText(statusDetails[2]);
 		revalidate();
 		repaint();
 	}
-	
+
 }
-
-

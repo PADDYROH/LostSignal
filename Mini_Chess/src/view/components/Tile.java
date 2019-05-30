@@ -24,7 +24,7 @@ public class Tile extends JPanel {
 		this.mainBoardPanel = mainBoardPanel;
 		this.xPos = xPos;
 		this.yPos = yPos;
-		setLayout(new GridLayout(1,1));
+		setLayout(new GridLayout(1, 1));
 		// add the left and right labels for base and merged piece
 		label = new JLabel();
 		add(label);
@@ -36,23 +36,23 @@ public class Tile extends JPanel {
 		setBackground(defaultColor);
 		this.addMouseListener(new TileListener(this));
 	}
-	
+
 	// set image when no merge (one icon)
 	public void setImage(ImageIcon icon) {
 		label.setIcon(icon);
 		remove(label2);
 		repaint();
 		revalidate();
-		
+
 	}
+
 	// set image when merged (two icons)
 	public void setImage(ImageIcon icon, ImageIcon icon2) {
-		if(icon2 == null) {
+		if (icon2 == null) {
 			setImage(icon);
-		} else if (icon == null){
+		} else if (icon == null) {
 			setImage(icon2);
-		}
-		else {
+		} else {
 			// scale labels to half size when merged
 			label.setIcon(PieceIconTools.getScaledImage(icon));
 			label2.setIcon(PieceIconTools.getScaledImage(icon2));
@@ -61,11 +61,11 @@ public class Tile extends JPanel {
 			revalidate();
 		}
 	}
-	
+
 	public BaseBoardPanel getMainBoardPanel() {
 		return mainBoardPanel;
 	}
-	
+
 	public int getXPos() {
 		return xPos;
 	}
@@ -73,15 +73,14 @@ public class Tile extends JPanel {
 	public int getYPos() {
 		return yPos;
 	}
-	
+
 	public void updateBorder(Border newBorder) {
 		this.defaultBorder = newBorder;
 		setBorder(newBorder);
 	}
-	
+
 	public Border getDefaultBorder() {
 		return defaultBorder;
 	}
-	
 
 }

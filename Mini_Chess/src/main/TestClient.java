@@ -6,6 +6,7 @@ import java.util.Scanner;
 import model.BasePlayer;
 import model.GameEngine;
 import model.Player;
+
 public class TestClient {
 	GameEngine gameEngine;
 	Scanner scanner = new Scanner(System.in);
@@ -23,6 +24,7 @@ public class TestClient {
 		System.out.println("* 3.Exit                                        *");
 		System.out.println("*************************************************");
 	}
+
 	// begin game, getting user input
 	public void initialiseGame() {
 		String input;
@@ -75,7 +77,7 @@ public class TestClient {
 		}
 
 	}
-	
+
 	// called to set max desired moves
 	private void setMaxMoves() {
 		System.out.println("Player 1: Enter desired max turns.");
@@ -83,14 +85,15 @@ public class TestClient {
 		System.out.println("Player 2: Enter desired max turns.");
 		int p2Max = scanner.nextInt();
 		scanner.nextLine();
-		gameEngine.setMaxTurns(Math.round((p1Max + p2Max)/2) * 2);
-		
+		gameEngine.setMaxTurns(Math.round((p1Max + p2Max) / 2) * 2);
+
 	}
+
 	// get user input for player 1 login (white)
 	private void loginPlayer1() {
 		System.out.println("\nPlayer 1, Enter your ID:");
 		String iDP1 = scanner.nextLine();
-		if(iDP1.equals("exit")) {
+		if (iDP1.equals("exit")) {
 			initialiseGame();
 		}
 		System.out.println("Type Password:");
@@ -101,11 +104,12 @@ public class TestClient {
 		}
 
 	}
+
 	// get user input for player 2 login (black)
 	private void loginPlayer2() {
 		System.out.println("\nPlayer 2, Enter your ID:");
 		String iDP2 = scanner.nextLine();
-		if(iDP2.equals("exit")) {
+		if (iDP2.equals("exit")) {
 			initialiseGame();
 		}
 		System.out.println("Type Password:");
@@ -151,18 +155,18 @@ public class TestClient {
 		try {
 			while (gameEngine.getCurrentPlayer() != null) {
 				Player tempPlayer = gameEngine.getCurrentPlayer();
-				//String pieceID = "";
+				// String pieceID = "";
 				System.out.println(gameEngine.getCurrentPlayer().getName()
 						+ ", Enter board piece you wish to move (Eg. r1 or r1w).");
 				String chosenpiece = scanner.nextLine();
 
 				System.out.println(gameEngine.getCurrentPlayer().getName()
 						+ ", Enter X Co-ordinate (Horizontal) of where you want piece to move to:");
-				
+
 				int x = scanner.nextInt();
 				System.out.println(gameEngine.getCurrentPlayer().getName()
 						+ ", Enter Y Co-ordinate (Vertical) of where you want piece to move to:");
-				
+
 				int y = scanner.nextInt();
 				scanner.nextLine();
 				gameEngine.movePiece(chosenpiece, x, y);

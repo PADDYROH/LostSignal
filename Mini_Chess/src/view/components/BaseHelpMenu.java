@@ -11,6 +11,6 @@ public class BaseHelpMenu extends JMenu {
 		// add Help item and set font
 		add(new BaseHelpMenuItem(mainFrame));
 		setFont(GUIModel.normalFont);
-		
+
 	}
 }

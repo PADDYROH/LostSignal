@@ -23,8 +23,8 @@ public class CLIManager implements UserInterfaceManager {
 			System.out.print(column + "  ");
 			for (int row = 0; row < chessBoard.getChessBoard().length; row++) {
 				if (chessBoard.getChessBoard()[row][column] != null) {
-					if(chessBoard.getChessBoard()[row][column].length() < 3) {
-						System.out.print("| " + chessBoard.getChessBoard()[row][column] + "    ");	
+					if (chessBoard.getChessBoard()[row][column].length() < 3) {
+						System.out.print("| " + chessBoard.getChessBoard()[row][column] + "    ");
 					} else {
 						System.out.print("| " + chessBoard.getChessBoard()[row][column] + "   ");
 					}
@@ -36,8 +36,9 @@ public class CLIManager implements UserInterfaceManager {
 		}
 		// if invalid move was made, print warning
 		System.out.println("\n");
-		if(!successfulMove) {
-			System.out.println("Invalid move. Try again " + mainEngine.getCurrentPlayer().getID() + ":" + mainEngine.getCurrentPlayer().getName());
+		if (!successfulMove) {
+			System.out.println("Invalid move. Try again " + mainEngine.getCurrentPlayer().getID() + ":"
+					+ mainEngine.getCurrentPlayer().getName());
 		}
 	}
 

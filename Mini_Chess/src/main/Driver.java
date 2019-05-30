@@ -15,8 +15,7 @@ public class Driver {
 		UserInterfaceManager gUIM = new GUIManager(gE);
 		// add views
 		gE.addUIManager(cLIM);
-		gE.addUIManager(gUIM);		
+		gE.addUIManager(gUIM);
 
 	}
 }
-

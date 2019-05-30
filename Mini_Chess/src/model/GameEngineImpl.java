@@ -189,7 +189,7 @@ public class GameEngineImpl implements GameEngine {
 		for (UserInterfaceManager uIM : userInterfaceManagers) {
 			uIM.updateCurrentPlayers();
 		}
-		// update board views, true means no invalid move was made 
+		// update board views, true means no invalid move was made
 		if (whitePlayer != null && blackPlayer != null) {
 			for (UserInterfaceManager uIM : userInterfaceManagers) {
 				uIM.updateBoard(true);

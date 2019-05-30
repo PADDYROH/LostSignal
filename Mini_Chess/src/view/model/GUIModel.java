@@ -247,6 +247,9 @@ public class GUIModel {
 				details[i] = new String[4];
 				details[i][0] = "ID: " + tempPlayer.getID();
 				details[i][1] = "Name: " + tempPlayer.getName();
+				if (details[i][1].length() > 17) {
+					details[i][1] = details[i][1].substring(0, 15) + "..";
+				}
 				details[i][2] = "Total Points: " + tempPlayer.getPoints();
 				int tempPoints = 0;
 				if (i == 0) {
@@ -271,7 +274,7 @@ public class GUIModel {
 			tempID = tempPlayer.getName() + "(" + tempPlayer.getID() + ")";
 		}
 		String[] statusDetails = new String[3];
-		// set statusDetails to contain current player, current turns and max turns 
+		// set statusDetails to contain current player, current turns and max turns
 		statusDetails[0] = "Current Player: " + tempID;
 
 		statusDetails[1] = "Turns Played: " + mainFrame.getGUIModel().getMainEngine().getNumTurns() / 2;

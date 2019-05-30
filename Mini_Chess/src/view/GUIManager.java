@@ -14,7 +14,7 @@ public class GUIManager implements UserInterfaceManager {
 		mainFrame = new BaseFrame(this, gUIModel);
 		gUIModel.setMainFrame(mainFrame);
 	}
-	
+
 	@Override
 	public void updateBoard(boolean successfulMove) {
 		// update board and players (for points) in GUI

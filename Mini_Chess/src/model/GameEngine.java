@@ -33,7 +33,7 @@ public interface GameEngine {
 	public abstract int getWhitePlayerPoints();
 
 	public abstract int getBlackPlayerPoints();
-	
+
 	public abstract void endGame();
 
 	public abstract int getMaxTurns();

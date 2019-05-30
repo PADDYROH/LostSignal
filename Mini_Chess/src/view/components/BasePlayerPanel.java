@@ -26,11 +26,11 @@ public class BasePlayerPanel extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBorder(
 				BorderFactory.createCompoundBorder(new LineBorder(Color.BLACK, 1), (new EmptyBorder(10, 10, 10, 10))));
-		
+
 		JLabel heading = new JLabel("Summary");
 		heading.setBorder(BorderFactory.createEmptyBorder(5, 40, 5, 0));
 		add(heading);
-		
+
 		// panel used to organise white and black player info
 		JPanel playerPanel = new JPanel();
 		playerPanel.setLayout(new GridLayout(2, 1));

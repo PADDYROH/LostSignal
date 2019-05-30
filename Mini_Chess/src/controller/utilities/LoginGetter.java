@@ -18,7 +18,7 @@ public class LoginGetter {
 	private JPasswordField passwordField;
 	private JPanel panel;
 	private BaseFrame mainFrame;
-	
+
 	public LoginGetter(BaseFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		idField = new JTextField();
@@ -26,7 +26,7 @@ public class LoginGetter {
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	}
-	
+
 	public String[] getLogin() {
 		String[] details = new String[2];
 		// create labels and text fields for user input
@@ -46,13 +46,13 @@ public class LoginGetter {
 		int result = JOptionPane.showConfirmDialog(mainFrame, panel, "Login Player", JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.PLAIN_MESSAGE, new ImageIcon());
 		// return details if OK, otherwise null if cancelled
-		if(result == JOptionPane.OK_OPTION) {
+		if (result == JOptionPane.OK_OPTION) {
 			details[0] = idField.getText();
 			details[1] = String.valueOf(passwordField.getPassword());
 		} else {
 			details = null;
 		}
-		
+
 		return details;
 	}
 
