@@ -5,7 +5,6 @@ import java.util.Map;
 import model.piece.Piece;
 import model.piece.Bishop;
 import model.piece.Knight;
-import model.piece.Piece;
 import model.piece.Rook;
 
 public class GameBoardImpl implements GameBoard {
