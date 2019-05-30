@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import model.GameBoardImpl;
 import model.GameEngine;
 import model.Player;
 import model.piece.Piece;
